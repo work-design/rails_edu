@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "jquery": "^3.3.1",
-    "turbolinks": "^5.2.0",
-    "yougexiangfa_ui": "https://github.com/yougexiangfa/yougexiangfa.github.io.git"
-  }
-}
