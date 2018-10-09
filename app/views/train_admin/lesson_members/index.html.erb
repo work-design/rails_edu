@@ -1,0 +1,59 @@
+<%= render 'nav_lesson' %>
+
+<div class="ui top attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Office</th>
+      <th>
+        <p><%= Member.human_attribute_name(:department) %></p>
+        <p><%= Member.human_attribute_name(:join_date) %></p>
+      </th>
+      <th><%= LessonMember.human_attribute_name(:created_at) %></th>
+      <th>
+        Check
+        <%= check_box_tag :lesson_member_all, nil, false, onclick: "toggleAll(this, 'lesson_member_id')", id: nil %>
+      </th>
+      <th><%= LessonMember.human_attribute_name(:state) %></th>
+      <th><%= LessonMember.human_attribute_name(:score) %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lesson_members.each do |lesson_member| %>
+    <tr>
+      <td>
+        <%= lesson_member.id %>
+      </td>
+      <td><%= lesson_member.member.name %></td>
+      <td><%= lesson_member.member.office&.name %></td>
+      <td>
+        <p><%= lesson_member.member.department&.full_name %></p>
+        <p><%= lesson_member.member.join_on %></p>
+      </td>
+      <td><time><%= lesson_member.created_at.to_s(:rfc822) %></time></td>
+      <td>
+        <%= check_box_tag :lesson_member_id, lesson_member.id, lesson_member.attended, id: nil %>
+      </td>
+      <td>
+        <span><%= lesson_member.state_i18n %></span>
+        <% if lesson_member.request_quit? %>
+          <%= link_to 'Approve', quit_train_lesson_lesson_member_path(@lesson, lesson_member), method: :patch %>
+        <% end %>
+        <% if ['request_quit', 'quitted'].include? lesson_member.state %>
+          <span class="grey text">(<%= lesson_member.quit_note %>)</span>
+        <% end %>
+      </td>
+      <td>
+        <%= lesson_member.score %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @lesson_members %>

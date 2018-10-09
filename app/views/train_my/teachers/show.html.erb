@@ -1,0 +1,18 @@
+<%= render 'the_auth_my/users/menu' %>
+
+<table class="ui very basic large table">
+  <thead>
+  <tr>
+    <th class="three wide"></th>
+    <th>
+      <%= link_to t('.edit'), edit_my_teacher_path, class: 'ui mini blue right floated button' %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="right aligned"><%= Teacher.human_attribute_name(:description) %></td>
+    <td><%= @teacher.description %></td>
+  </tr>
+  </tbody>
+</table>

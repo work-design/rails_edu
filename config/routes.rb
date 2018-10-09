@@ -1,0 +1,52 @@
+Rails.application.routes.draw do
+
+  scope :train, module: 'train_admin', as: 'train' do
+    root to: 'home#index'
+
+    resources :lesson_taxons
+    resources :lessons do
+      get :all, on: :collection
+      get :meet, on: :member
+      resources :lesson_members do
+        get :members, on: :collection
+        post :check, on: :collection
+        post :attend, on: :collection
+        patch :quit, on: :member
+      end
+    end
+    resources :lesson_papers do
+      get :add, on: :member
+      resources :exams do
+        put :refer, on: :member
+        patch :score, on: :member
+      end
+    end
+    resources :teachers do
+      get :search, on: :collection
+    end
+    resources 'exams', only: [] do
+      get :todo, on: :collection
+      get :cert, on: :collection
+    end
+  end
+
+  scope :my, module: 'train_my', as: 'my' do
+
+    resources :exams, only: [] do
+      post :add, on: :collection
+      get :certification, on: :collection
+    end
+    resources :lessons, only: [:index, :show] do
+      resources :exams, shallow: true do
+        match :finish, on: :member, via: [:get, :put]
+      end
+    end
+    resources :lesson_members do
+      get 'quit' => :edit_quit, on: :member
+      patch 'quit' => :update_quit, on: :member
+    end
+    resource :teacher
+
+  end
+
+end

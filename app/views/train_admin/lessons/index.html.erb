@@ -1,0 +1,44 @@
+<%= render 'nav_lessons' %>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached fixed table">
+  <thead>
+    <tr>
+      <th class="one wide">
+        <%= link_to Lesson.human_attribute_name(:id), filter_params('id-desc': 1, except: ['id-desc']) %>
+      </th>
+      <th class="ten wide">
+        <%= link_to Lesson.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
+      </th>
+      <th class="two wide"><%= Lesson.human_attribute_name(:lecturer) %></th>
+      <th class="one wide"><%= Lesson.human_attribute_name(:limit_people) %></th>
+      <th class="two wide"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @lessons.each do |lesson| %>
+    <tr>
+      <td><%= lesson.id %></td>
+      <td>
+        <%= link_to lesson.title, train_lesson_path(lesson) %>
+        <span class="<%= active_assert(lesson.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= lesson.compulsory_i18n %></span>
+      </td>
+      <td><%= lesson.lecturer&.name %></td>
+      <td>
+        <%= lesson.limit_people %> / <%= lesson.lesson_members_count %>
+      </td>
+      <td class="ui labels">
+        <%= link_to 'Meet Info', meet_train_lesson_path(lesson), class: 'ui pink label' %>
+        <%= link_to t('.edit'), edit_train_lesson_path(lesson), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), train_lesson_path(lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @lessons %>

@@ -1,0 +1,50 @@
+<%= render 'nav_lesson' %>
+
+<div class="ui top attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<div class="ui attached segment">
+  <%= link_to 'confirm', check_train_lesson_lesson_members_path(@lesson), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th>
+        ID
+        <%= check_box_tag :member_all, 1, false, onclick: "toggleAll(this, 'member_id')", id: nil %>
+      </th>
+      <th>Name</th>
+      <th>Office</th>
+      <th>Section</th>
+      <th></th>
+      <th></th>
+      <th>Join Time</th>
+      <th>Operate</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @members.each do |member| %>
+  <tr>
+    <td>
+      <%= member.id %>
+      <%= check_box_tag :member_id, member.id, @lesson.lesson_members.pluck(:member_id).include?(member.id), id: nil %>
+    </td>
+    <td><%= member.name %></td>
+    <td><%= member.office&.name %></td>
+    <td><%= member.department&.full_name %></td>
+    <td></td>
+    <td></td>
+    <td><%= member.join_on %></td>
+    <td>
+      <% @lesson.lesson_members.where(member_id: member.id).each do |pl| %>
+        <div><%= pl.assigned_status %></div>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @members %>

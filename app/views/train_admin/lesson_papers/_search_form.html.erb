@@ -1,0 +1,16 @@
+<%= search_form_with model: LessonPaper.new do |f| %>
+  <div class="fields">
+    <%= f.text_field :title, placeholder: 'Title' %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>Type:</dt>
+  <dd>
+    <%= link_to 'All', filter_params(except: [:type]), class: active_params(type: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% LessonPaper.options_i18n(:type).each do |text, type| %>
+      <%= link_to text, filter_params(type: type), class: active_params(type: type, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% end %>
+  </dd>
+</dl>

@@ -1,0 +1,34 @@
+<%= search_form_with do |f| %>
+  <div class="fields">
+    <%= f.text_field 'lesson.title' %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>Type:</dt>
+  <dd class="ui labels">
+    <%= link_to 'All', filter_params(except: ['lesson.type']), class: active_params('lesson.type': '', active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% Lesson.options_i18n(:type).each do |text, type| %>
+      <%= link_to text, filter_params('lesson.type': type), class: active_params('lesson.type': type, active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% end %>
+  </dd>
+</dl>
+<dl>
+  <dt>Module:</dt>
+  <dd class="ui labels">
+    <%= link_to 'All', filter_params(except: ['lesson.lesson_taxon_id']), class: active_params('lesson.lesson_taxon_id': '', active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% LessonTaxon.all.each do |taxon| %>
+      <%= link_to taxon.name, filter_params('lesson.lesson_taxon_id': taxon.id), class: active_params('lesson.lesson_taxon_id': taxon.id, active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% end %>
+  </dd>
+</dl>
+<dl>
+  <dt>Status:</dt>
+  <dd class="ui labels">
+    <%= link_to 'All', filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% LessonMember.options_i18n(:state).each do |text, state| %>
+      <%= link_to text, filter_params(state: state), class: active_params(state: state, active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% end %>
+  </dd>
+</dl>

@@ -1,0 +1,8 @@
+<%= search_form_with model: Exam.new do |f| %>
+  <div class="fields">
+    <%= f.collection_select :member_id, @members, :id, :name, prompt: 'Search Member' %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+

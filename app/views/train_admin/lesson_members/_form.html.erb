@@ -1,0 +1,4 @@
+<%= form_with model: @lesson_member, local: true do |f| %>
+  <%= render 'shared/error_messages', target: @lesson_member %>
+  <%= f.submit %>
+<% end %>

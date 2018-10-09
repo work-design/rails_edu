@@ -1,0 +1,56 @@
+<%= render 'nav_lesson' %>
+
+<div class="ui top attached borderless menu">
+  <div class="header item">Train My Exams</div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:id) %></th>
+      <th><%= LessonPaper.human_attribute_name(:title) %></th>
+      <th><%= Exam.human_attribute_name(:link) %></th>
+      <th><%= Exam.human_attribute_name(:state) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @exams.each do |exam| %>
+    <tr class="active">
+      <td><%= exam.id %></td>
+      <td><%= exam.lesson_paper.title %></td>
+      <td>
+        <i class="linkify icon"></i><%= link_to exam.link, exam.link, target: '_blank' if exam.link %>
+      </td>
+      <td>
+        <p><span class="ui label"><%= exam.state_i18n %></span></p>
+        <p><%= exam.answer_mark %></p>
+      </td>
+      <td class="ui labels">
+        <%= link_to my_exam_path(exam), data: { tooltip: t('.show') }, class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  <% @lesson_papers.each do |lesson_paper| %>
+    <tr>
+      <td><%= lesson_paper.id %></td>
+      <td><%= lesson_paper.title %></td>
+      <td><%= lesson_paper.type_i18n %></td>
+      <td></td>
+      <td class="ui labels">
+        <%= link_to add_my_exams_path(lesson_paper_id: lesson_paper.id), method: :post, data: { tooltip: 'Generate Your Exam!', turbolinks: false, confirm: 'please not refresh when finished!', 'disable-with': 'Generating...' }, class: 'ui blue mini icon button' do %>
+          <i class="clock icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @exams %>

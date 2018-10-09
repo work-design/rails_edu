@@ -1,0 +1,7 @@
+<%= form_with model: [:train, @teacher], local: true do |f| %>
+  <%= render 'shared/error_messages', target: @teacher %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.select :member_id, options_for_select([[@teacher.member&.name, @teacher.member_id]], @teacher.member_id), { include_blank: true, label: 'Member' } %>
+  <%= f.submit %>
+<% end %>

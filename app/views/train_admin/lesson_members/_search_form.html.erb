@@ -1,0 +1,18 @@
+<%= search_form_with model: Member.new do |f| %>
+  <div class="fields">
+    <%= f.text_field :name %>
+    <%= f.email_field :email %>
+    <%= f.collection_select :office_id, Office.all, :id, :name, { prompt: 'Select Office' } %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>Status:</dt>
+  <dd>
+    <%= link_to 'All', filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% LessonMember.options_i18n(:state).each do |text, state| %>
+      <%= link_to text, filter_params(state: state), class: active_params(state: state, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <% end %>
+  </dd>
+</dl>

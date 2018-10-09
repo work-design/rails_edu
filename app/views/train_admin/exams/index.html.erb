@@ -1,0 +1,76 @@
+<div class="ui segment breadcrumb">
+  <%= link_to @lesson_paper.type_i18n, train_lesson_papers_path(type: @lesson_paper.type), class: 'section' %>
+  <div class="divider"> / </div>
+  <% if @lesson_paper.lesson %>
+    <%= link_to @lesson_paper.lesson.title, train_lesson_papers_path(lesson_id: @lesson_paper.lesson_id), class: 'section' %>
+    <div class="divider"> / </div>
+  <% end %>
+  <div class="active section">Exams</div>
+</div>
+
+<div class="ui top attached borderless menu">
+  <div class="header item">
+    <%= @lesson_paper.title %>
+  </div>
+  <div class="right menu">
+    <div class="item">
+    </div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:id) %></th>
+      <th><%= Exam.human_attribute_name(:member) %></th>
+      <th><%= Exam.human_attribute_name(:state) %></th>
+      <th>
+        <p><%= Exam.human_attribute_name(:finish_at) %></p>
+        <p><%= Exam.human_attribute_name(:spent_minutes) %></p>
+      </th>
+      <th><%= Exam.human_attribute_name(:answer_mark) %></th>
+      <th><%= Exam.human_attribute_name(:comment) %></th>
+      <th><%= Exam.human_attribute_name(:referenced) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @exams.each do |exam| %>
+    <tr>
+      <td><%= exam.id %></td>
+      <td>
+        <%= link_to exam.member.name, hr_member_path(exam.member_id), target: '_blank' %>
+      </td>
+      <td><%= exam.state_i18n %></td>
+      <td>
+        <p><time><%= exam.finish_at.to_s(:rfc822) if exam.finish_at %></time></p>
+        <p><%= exam.spent_minutes.minutes.inspect if exam.spent_minutes %></p>
+      </td>
+      <td><%= exam.answer_mark %></td>
+      <td><%= exam.comment %></td>
+      <td>
+        <%= form_with model: exam, url: refer_train_lesson_paper_exam_path(@lesson_paper, exam.id), method: :put, remote: true do |f| %>
+          <%= f.check_box :referenced, disabled: exam.referenced, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to train_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_train_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui pink mini icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to train_lesson_paper_exam_path(@lesson_paper, exam), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @exams %>

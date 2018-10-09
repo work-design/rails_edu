@@ -1,0 +1,5 @@
+<%= form_with model: @teacher, url: my_teacher_path, method: :patch, local: true do |f| %>
+  <%= render 'shared/error_messages', target: @teacher %>
+  <%= f.text_area :description %>
+  <%= f.submit %>
+<% end %>
