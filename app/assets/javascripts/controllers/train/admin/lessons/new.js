@@ -1,4 +1,3 @@
-//= require rails_com/fetch_xhr_script
 
 $('#lesson_type').dropdown();
 $('#lesson_lesson_taxon_id').dropdown();

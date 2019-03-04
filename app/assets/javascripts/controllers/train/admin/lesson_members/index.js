@@ -1,4 +1,3 @@
-//= require rails_com/fetch_xhr_script
 //= require rails_com/checkbox
 
 $('#q_office_id').dropdown();

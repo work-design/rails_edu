@@ -26,7 +26,7 @@
       <td><%= teacher.id %></td>
       <td><%= teacher.name %></td>
       <td>
-        <%= link_to teacher.member&.name, hr_member_path(teacher.member_id) if teacher.member %>
+        <%= link_to teacher.member&.name, admin_member_path(teacher.member_id) if teacher.member %>
       </td>
       <td><%= simple_format(teacher.description) %></td>
       <td>

@@ -43,7 +43,7 @@
     <tr>
       <td><%= exam.id %></td>
       <td>
-        <%= link_to exam.member.name, hr_member_path(exam.member_id), target: '_blank' %>
+        <%= link_to exam.member.name, admin_member_path(exam.member_id), target: '_blank' %>
       </td>
       <td><%= exam.state_i18n %></td>
       <td>
