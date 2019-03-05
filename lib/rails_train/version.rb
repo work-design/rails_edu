@@ -1,3 +1,3 @@
-module RailsDoc
+module RailsTrain
   VERSION = '0.1.0'
 end
