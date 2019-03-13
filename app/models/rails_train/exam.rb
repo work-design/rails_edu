@@ -1,5 +1,5 @@
 class Exam < ApplicationRecord
-  include TheNotifiable
+  include RailsNoticeNotifiable
   include StateMachine
   belongs_to :lesson_paper, optional: true
   belongs_to :lesson, optional: true

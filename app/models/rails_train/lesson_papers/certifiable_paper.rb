@@ -1,5 +1,0 @@
-class CertifiablePaper < LessonPaper
-
-
-
-end
