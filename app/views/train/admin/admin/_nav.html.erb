@@ -1,0 +1,25 @@
+<div class="ui vertical fluid icon menu">
+  <div class="header center link item" id="close_side">
+    <i class="content icon"></i>
+  </div>
+  <div class="item ui dropdown">
+    <a class="<%= active_helper(controllers: ['users', 'roles', 'governs', 'govern_taxons', 'who_roles'], active_class: 'title active', item_class: 'title') %>">
+      <i class="address book outline icon"></i>
+      <span>User</span>
+    </a>
+    <div class="<%= active_helper(controllers: ['users', 'roles', 'governs', 'govern_taxons', 'who_roles'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to 'User Management', admin_users_path, class: active_helper(controllers: 'users') %>
+      <%= link_to 'Role Management', admin_roles_path, class: active_helper(controllers: ['roles', 'governs', 'govern_taxons', 'who_roles']) %>
+    </div>
+  </div>
+  <div class="item ui dropdown">
+    <a class="<%= active_helper(controllers: ['data_lists', 'table_lists', 'record_lists'], active_class: 'title active', item_class: 'title') %>">
+      <i class="database icon"></i>
+      <span>Data Center</span>
+    </a>
+    <div class="<%= active_helper(controllers: ['data_lists', 'table_lists', 'record_lists'], active_class: 'menu content active', item_class: 'menu content') %>">
+      <%= link_to 'Data List', data_lists_path, class: active_helper(controllers: 'data_lists') %>
+    </div>
+  </div>
+</div>
+

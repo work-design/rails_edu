@@ -1,0 +1,11 @@
+<div class="ui inverted site borderless menu">
+  <div class="ui container">
+
+    <div class="header item">Backend Management</div>
+    <%= link_to 'User Management', admin_users_path, class: 'item' %>
+    <%= link_to 'Queue Task', '/admin/sidekiq', class: 'item', target: '_blank' %>
+    <%= link_to 'Notifications', admin_notifications_path, class: active_helper(controllers: ['notifications']) %>
+
+    <%= render 'layouts/right_menu' %>
+  </div>
+</div>

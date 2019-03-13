@@ -1,0 +1,47 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Admin Sm Settings</div>
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'New Admin Sm Setting', new_admin_sm_setting_path, class: 'ui teal button' %>
+    </div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached fixed table">
+  <thead>
+    <tr>
+      <th class="one wide"><%= SmSetting.human_attribute_name(:id) %></th>
+      <th class="ten wide"><%= SmSetting.human_attribute_name(:access_token) %></th>
+      <th class="two wide"><%= SmSetting.human_attribute_name(:limit_at) %></th>
+      <th class="one wide"><%= SmSetting.human_attribute_name(:working) %></th>
+      <th class="two wide">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @sm_settings.each do |sm_setting| %>
+    <tr>
+      <td><%= sm_setting.id %></td>
+      <td><%= sm_setting.access_token %></td>
+      <td><%= sm_setting.limit_at %></td>
+      <td><%= sm_setting.working %></td>
+      <td class="ui labels">
+        <%= link_to admin_sm_setting_path(sm_setting), class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_admin_sm_setting_path(sm_setting), class: 'ui pink mini icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_sm_setting_path(sm_setting), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @sm_settings %>

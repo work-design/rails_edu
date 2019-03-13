@@ -1,7 +1,4 @@
-class Teacher < ApplicationRecord
-  belongs_to :user, optional: true
+class Teacher < Member
 
-  def allow_ids
-    self.id
-  end
+
 end

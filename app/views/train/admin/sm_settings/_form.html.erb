@@ -1,0 +1,6 @@
+<%= form_with model: [:admin, @sm_setting], local: true do |f| %>
+  <%= render 'shared/error_messages', target: @sm_setting %>
+  <%= f.text_area :access_token %>
+  <%= f.check_box :working %>
+  <%= f.submit %>
+<% end %>
