@@ -1,0 +1,15 @@
+<% if params[:course_id] %>
+  <%= render 'nav_course' %>
+<% end %>
+
+<div class="ui basic segment breadcrumb">
+  <%= link_to 'Back', admin_course_papers_path(course_id: params[:course_id]), class: 'section' %>
+  <div class="divider"> / </div>
+  <div class="active section">Edit</div>
+</div>
+
+<div class="ui segment">
+  <%= form_with model: @course_paper, scope: 'course_paper', url: admin_course_paper_path(@course_paper, course_id: params[:course_id]), method: :patch, local: true do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+  <% end %>
+</div>

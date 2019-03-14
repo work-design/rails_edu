@@ -1,0 +1,44 @@
+<%= render 'nav_courses' %>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached fixed table">
+  <thead>
+    <tr>
+      <th class="one wide">
+        <%= link_to Course.human_attribute_name(:id), filter_params('id-desc': 1, except: ['id-desc']) %>
+      </th>
+      <th class="ten wide">
+        <%= link_to Course.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
+      </th>
+      <th class="two wide"><%= Course.human_attribute_name(:lecturer) %></th>
+      <th class="one wide"><%= Course.human_attribute_name(:limit_people) %></th>
+      <th class="two wide"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.id %></td>
+      <td>
+        <%= link_to course.title, admin_course_path(course) %>
+        <span class="<%= active_assert(course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course.compulsory_i18n %></span>
+      </td>
+      <td><%= course.lecturer&.name %></td>
+      <td>
+        <%= course.limit_people %> / <%= course.course_members_count %>
+      </td>
+      <td class="ui labels">
+        <%= link_to 'Meet Info', meet_admin_course_path(course), class: 'ui pink label' %>
+        <%= link_to t('.edit'), edit_admin_course_path(course), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), admin_course_path(course), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @courses %>

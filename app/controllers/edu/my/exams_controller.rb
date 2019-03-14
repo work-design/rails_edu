@@ -1,19 +1,19 @@
 class Edu::My::ExamsController < Edu::My::BaseController
-  before_action :set_lesson, only: [:index, :new, :create]
+  before_action :set_course, only: [:index, :new, :create]
   before_action :set_exam, only: [:show, :edit, :update, :finish, :destroy]
 
   def index
-    @exams = @lesson.exams.where(member_id: current_member.id).page(params[:page])
-    @lesson_papers = @lesson.lesson_papers.where.not(id: @exams.processing.pluck(:lesson_paper_id))
+    @exams = @course.exams.where(member_id: current_member.id).page(params[:page])
+    @course_papers = @course.course_papers.where.not(id: @exams.processing.pluck(:course_paper_id))
   end
 
   def certification
     q_params = {
       member_id: current_member.id,
-      'lesson_paper.type': 'CertifiablePaper'
+      'course_paper.type': 'CertifiablePaper'
     }.with_indifferent_access
     @exams = Exam.default_where(q_params).page(params[:page])
-    @lesson_papers = CertifiablePaper.where.not(id: @exams.pluck(:lesson_paper_id).uniq).page(params[:page])
+    @course_papers = CertifiablePaper.where.not(id: @exams.pluck(:course_paper_id).uniq).page(params[:page])
   end
 
   def new
@@ -21,13 +21,13 @@ class Edu::My::ExamsController < Edu::My::BaseController
   end
 
   def add
-    @exam = current_member.exams.create(lesson_paper_id: params[:lesson_paper_id])
+    @exam = current_member.exams.create(course_paper_id: params[:course_paper_id])
     @exam.reload
     @exam.custom_link
     #ExamGenerateJob.perform_later(@exam.id)
 
-    if @exam.lesson_id
-      redirect_to my_lesson_exams_url(@exam.lesson_id, lesson_paper_id: params[:lesson_paper_id])
+    if @exam.course_id
+      redirect_to my_course_exams_url(@exam.course_id, course_paper_id: params[:course_paper_id])
     else
       redirect_to certification_my_exams_url
     end
@@ -37,7 +37,7 @@ class Edu::My::ExamsController < Edu::My::BaseController
     @exam = Exam.new(exam_params)
 
     if @exam.save
-      redirect_to my_lesson_exams_url(@lesson), notice: 'Exam was successfully created.'
+      redirect_to my_course_exams_url(@course), notice: 'Exam was successfully created.'
     else
       render :new
     end
@@ -51,7 +51,7 @@ class Edu::My::ExamsController < Edu::My::BaseController
 
   def update
     if @exam.update(exam_params)
-      redirect_to my_lesson_exams_url(@exam.lesson_id), notice: 'Exam was successfully updated.'
+      redirect_to my_course_exams_url(@exam.course_id), notice: 'Exam was successfully updated.'
     else
       render :edit
     end
@@ -59,10 +59,10 @@ class Edu::My::ExamsController < Edu::My::BaseController
 
   def finish
     @exam.set_finish
-    if @exam.lesson_id
-      redirect_to my_lesson_exams_url(@exam.lesson_id)
+    if @exam.course_id
+      redirect_to my_course_exams_url(@exam.course_id)
     else
-      redirect_to cert_edu_exams_url
+      redirect_to cert_admin_exams_url
     end
   end
 
@@ -70,16 +70,16 @@ class Edu::My::ExamsController < Edu::My::BaseController
     @exam.destroy
 
     flash[:notice] = 'Exam was successfully destroyed.'
-    if @exam.lesson_id
-      redirect_to my_lesson_exams_url(@exam.lesson_id, lesson_paper_id: params[:lesson_paper_id])
+    if @exam.course_id
+      redirect_to my_course_exams_url(@exam.course_id, course_paper_id: params[:course_paper_id])
     else
       redirect_to certification_my_exams_url
     end
   end
 
   private
-  def set_lesson
-    @lesson = Lesson.find params[:lesson_id]
+  def set_course
+    @course = Course.find params[:course_id]
   end
 
   def set_exam
@@ -88,7 +88,7 @@ class Edu::My::ExamsController < Edu::My::BaseController
 
   def exam_params
     params.fetch(:exam, {}).permit(
-      :lesson_paper_id
+      :course_paper_id
     )
   end
 

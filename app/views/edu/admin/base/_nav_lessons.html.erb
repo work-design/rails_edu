@@ -1,0 +1,9 @@
+<div class="ui top attached borderless menu">
+  <%= link_to 'My Courses', admin_courses_path, class: active_helper('admin_admin/courses': 'index') %>
+  <%= link_to 'All Courses', all_admin_courses_path, class: active_helper('admin_admin/courses': 'all') %>
+  <%= link_to 'Course Taxon', admin_course_taxons_path, class: active_helper(controllers: 'course_taxons') %>
+  <div class="right menu">
+    <div class="item"><%= link_to 'New Course', new_admin_course_path, class: 'ui teal button' %></div>
+    <div class="item"><%= link_to 'New Course Taxon', new_admin_course_taxon_path, class: 'ui teal button' %></div>
+  </div>
+</div>

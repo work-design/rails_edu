@@ -1,0 +1,17 @@
+<%= render 'nav_course' %>
+
+<div class="ui basic segment breadcrumb">
+  <%= link_to 'Back', admin_courses_path, class: 'section' %>
+  <div class="divider"> / </div>
+  <%= link_to 'Detail', admin_course_path(@course), class: 'section' %>
+  <div class="divider"> / </div>
+  <div class="active section">Edit Meet</div>
+</div>
+
+<div class="ui segment">
+
+  <%= form_with model: @course, scope: :course, url: admin_course_path(@course), method: 'patch', on: { wrapper_id: true } do |f| %>
+    <%= render partial: 'rails_booking/time/form', locals: { f: f } %>
+  <% end %>
+
+</div>

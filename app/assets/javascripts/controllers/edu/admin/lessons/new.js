@@ -1,7 +1,7 @@
 
-$('#lesson_type').dropdown();
-$('#lesson_lesson_taxon_id').dropdown();
-$('#lesson_lecturer_id').dropdown({
+$('#course_type').dropdown();
+$('#course_course_taxon_id').dropdown();
+$('#course_lecturer_id').dropdown({
   apiSettings: {
     url: '/edu/teachers/search?q={query}',
   },
@@ -10,7 +10,7 @@ $('#lesson_lecturer_id').dropdown({
     value: 'id'
   }
 });
-$('#lesson_author_id').dropdown({
+$('#course_author_id').dropdown({
   apiSettings: {
     url: '/edu/teachers/search?q={query}',
   },
@@ -19,7 +19,7 @@ $('#lesson_author_id').dropdown({
     value: 'id'
   }
 });
-$('#lesson_department_ids').dropdown({
+$('#course_department_ids').dropdown({
   apiSettings: {
     url: '/hr/departments/search?q={query}',
   },

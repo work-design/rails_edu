@@ -3,18 +3,18 @@ Rails.application.routes.draw do
   scope :edu, module: 'edu/admin', as: 'edu' do
     root to: 'home#index'
 
-    resources :lesson_taxons
-    resources :lessons do
+    resources :course_taxons
+    resources :courses do
       get :all, on: :collection
       get :meet, on: :member
-      resources :lesson_members do
+      resources :course_members do
         get :members, on: :collection
         post :check, on: :collection
         post :attend, on: :collection
         patch :quit, on: :member
       end
     end
-    resources :lesson_papers do
+    resources :course_papers do
       get :add, on: :member
       resources :exams do
         put :refer, on: :member
@@ -37,12 +37,12 @@ Rails.application.routes.draw do
       post :add, on: :collection
       get :certification, on: :collection
     end
-    resources :lessons, only: [:index, :show] do
+    resources :courses, only: [:index, :show] do
       resources :exams, shallow: true do
         match :finish, on: :member, via: [:get, :put]
       end
     end
-    resources :lesson_members do
+    resources :course_members do
       get 'quit' => :edit_quit, on: :member
       patch 'quit' => :update_quit, on: :member
     end

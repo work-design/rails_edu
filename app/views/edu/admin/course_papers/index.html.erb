@@ -1,0 +1,70 @@
+<% if params[:course_id] %>
+  <%= render 'nav_course' %>
+<% end %>
+
+<div class="ui top attached borderless menu">
+  <div class="header item">Edu Exam Papers</div>
+  <div class="right menu">
+    <% CoursePaper.options_i18n(:type).each do |text, type| %>
+    <div class="item">
+      <%= link_to text, new_admin_course_paper_path(type: type, course_id: params[:course_id]), class: 'ui teal button' %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= CoursePaper.human_attribute_name(:id) %></th>
+      <th>
+        <p><%= CoursePaper.human_attribute_name(:title) %></p>
+        <p><%= CoursePaper.human_attribute_name(:type) %></p>
+      </th>
+      <th><%= CoursePaper.human_attribute_name(:description) %></th>
+      <th>
+        <p><%= CoursePaper.human_attribute_name(:document) %></p>
+        <p><%= CoursePaper.human_attribute_name(:link) %></p>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_papers.each do |course_paper| %>
+    <tr>
+      <td><%= course_paper.id %></td>
+      <td>
+        <p><%= course_paper.title %></p>
+        <p class="ui label"><%= course_paper.type_i18n %></p>
+      </td>
+      <td><%= course_paper.description %></td>
+      <td>
+        <% if course_paper.link.present? %>
+          <p><i class="linkify icon"></i><%= link_to course_paper.link.to_s.truncate(50), course_paper.link, target: '_blank' %></p>
+        <% else %>
+          <p><i class="linkify icon"></i><%= link_to 'Add', add_admin_course_paper_path(course_paper), class: 'ui green label' %></p>
+        <% end %>
+        <p><%= link_to course_paper.document.filename, rails_blob_path(course_paper.document), target: '_blank' if course_paper.document.attached? %></p>
+      </td>
+      <td class="ui labels">
+        <%= link_to 'exams', admin_course_paper_exams_path(course_paper), class: 'ui blue mini icon button' %>
+        <%= link_to admin_course_paper_path(course_paper), class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_admin_course_paper_path(course_paper), class: 'ui pink mini icon button' do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_course_paper_path(course_paper), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @course_papers %>

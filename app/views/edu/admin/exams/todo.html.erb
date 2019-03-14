@@ -1,0 +1,48 @@
+<%= render 'admin_my/base/nav_courses' %>
+
+<div class="ui attached segment">
+  <%= search_form_with model: Exam.new do |f| %>
+    <div class="fields">
+      <%= f.collection_select :course_id, @courses, :id, :title, { include_blank: true } %>
+      <%= f.collection_select :member_id, @members, :id, :name, { include_blank: true } %>
+      <%= f.submit 'Search' %>
+    </div>
+  <% end %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Exam.human_attribute_name(:id) %></th>
+      <th><%= Exam.human_attribute_name(:member) %></th>
+      <th><%= Exam.human_attribute_name(:course) %></th>
+      <th><%= Exam.human_attribute_name(:link) %></th>
+      <th><%= Exam.human_attribute_name(:answer_mark) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @exams.each do |exam| %>
+    <tr>
+      <td><%= exam.id %></td>
+      <td>
+        <%= link_to exam.member.name, admin_member_path(exam.member_id), target: '_blank' %>
+      </td>
+      <td>
+        <% if exam.course %>
+          <%= link_to exam.course.title, admin_course_path(exam.course_id), target: '_blank' %>
+        <% end %>
+      </td>
+      <td><%= exam.link %></td>
+      <td><%= exam.answer_mark %></td>
+      <td class="ui labels">
+        <%= link_to admin_course_paper_exam_path(exam.course_paper_id, exam), class: 'ui blue mini icon button' do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @exams %>

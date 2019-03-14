@@ -1,21 +1,21 @@
-class Edu::My::LessonsController < Edu::My::BaseController
-  before_action :set_lesson, only: [:show, :edit]
+class Edu::My::CoursesController < Edu::My::BaseController
+  before_action :set_course, only: [:show, :edit]
 
   def index
     l_params = {
-      'lesson.type': params[:type],
-      'lesson.lesson_taxon_id': params[:lesson_taxon_id],
-      'lesson.title-asc': params['title-asc']
+      'course.type': params[:type],
+      'course.course_taxon_id': params[:course_taxon_id],
+      'course.title-asc': params['title-asc']
     }
-    @lesson_members = current_member.lesson_members.includes(:lesson).default_where(l_params)
+    @course_members = current_member.course_members.includes(:course).default_where(l_params)
 
     q_params = params.fetch(:q, {}).permit!
-    q_params.merge! params.permit(:type, 'title-asc', :lesson_taxon_id)
-    q_params.merge! 'id-not': @lesson_members.pluck(:lesson_id)
+    q_params.merge! params.permit(:type, 'title-asc', :course_taxon_id)
+    q_params.merge! 'id-not': @course_members.pluck(:course_id)
     # if current_member.department
-    #   @lessons = current_member.department.lessons.default_where(q_params).page(params[:page])
+    #   @courses = current_member.department.courses.default_where(q_params).page(params[:page])
     # else
-      @lessons = Lesson.outward.default_where(q_params).page(params[:page])
+      @courses = Course.outward.default_where(q_params).page(params[:page])
     #end
 
     respond_to do |format|
@@ -33,8 +33,8 @@ class Edu::My::LessonsController < Edu::My::BaseController
   end
 
   private
-  def set_lesson
-    @lesson = Lesson.find(params[:id])
+  def set_course
+    @course = Course.find(params[:id])
   end
 
 end

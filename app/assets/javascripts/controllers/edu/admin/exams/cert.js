@@ -1,4 +1,4 @@
-$('#q_lesson_id').dropdown({
+$('#q_course_id').dropdown({
   placeholder: false
 })
 $('#q_member_id').dropdown({

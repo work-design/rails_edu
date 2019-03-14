@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :lesson_taxon do
+  factory :course_taxon do
     
   end
 end

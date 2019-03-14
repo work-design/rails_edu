@@ -1,0 +1,69 @@
+<table class="ui very basic unstackable table">
+  <thead>
+  <tr>
+    <th class="six wide"></th>
+    <th class="ten wide"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="right aligned">Course Category</td>
+    <td><%= @course.course_taxon.name %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:title) %></td>
+    <td><%= @course.title %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:type) %></td>
+    <td><%= @course.type_i18n %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:description) %></td>
+    <td><%= simple_format(@course.description) %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:lecturer) %></td>
+    <td><%= @course.lecturer&.name %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:author) %></td>
+    <td><%= @course.author&.name %></td>
+  </tr>
+  <tr>
+    <td class="right aligned">Lecturer Desc</td>
+    <td><%= simple_format(@course.lecturer&.description) %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:meeting_room) %></td>
+    <td><%= @course.meeting_room %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:next_start_time) %></td>
+    <td><%= @course.next_start_time %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:next_finish_time) %></td>
+    <td><%= @course.next_finish_time %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:video) %></td>
+    <td>
+      <%= link_to @course.video.filename, rails_blob_path(@course.video, disposition: 'attachment'), target: '_blank' if @course.video.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:en_video) %></td>
+    <td>
+      <%= link_to @course.en_video.filename, rails_blob_path(@course.en_video), target: '_blank' if @course.en_video.attached? %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:document) %></td>
+    <td>
+      <%= link_to @course.document.filename, rails_blob_path(@course.document), target: '_blank' if @course.document.attached? %>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

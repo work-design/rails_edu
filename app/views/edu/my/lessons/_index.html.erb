@@ -1,0 +1,38 @@
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Course.human_attribute_name(:id) %></th>
+      <th>
+        <%= link_to Course.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
+      </th>
+      <th><%= Course.human_attribute_name(:lecturer) %></th>
+      <th><%= Course.human_attribute_name(:type) %></th>
+      <th><%= Course.human_attribute_name(:limit_people) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.select { |i| i.enabled? }.each do |course| %>
+    <tr>
+      <td><%= course.id %></td>
+      <td>
+        <%= link_to course.title, my_course_path(course) %>
+        <span class="<%= active_assert(course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course.compulsory_i18n %></span>
+      </td>
+      <td><%= course.lecturer&.name %></td>
+      <td><%= course.type_i18n %></td>
+      <td>
+        <%= course.limit_people %> / <%= course.course_members_count %>
+      </td>
+      <td>
+        <% unless course.is_a?(OfflineCourse) && (course.course_members_count >= course.limit_people.to_i) %>
+          <%= link_to 'Select', my_course_members_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @courses %>

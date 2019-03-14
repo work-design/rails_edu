@@ -1,0 +1,14 @@
+<% form_object = default_form_object(@course, on: { wrapper_id: true }) %>
+<% if params[:repeat_type] == 'week' %>
+  $('#course_repeat_days_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/week_checkboxes', locals: { f: form_object }) %>');
+  $('#course_start_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/start_at', locals: { f: form_object }) %>');
+  $('#course_finish_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/finish_at', locals: { f: form_object }) %>');
+<% elsif params[:repeat_type] == 'month' %>
+  $('#course_repeat_days_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/month_checkboxes', locals: { f: form_object }) %>');
+  $('#course_start_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/start_at', locals: { f: form_object }) %>');
+  $('#course_finish_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/finish_at', locals: { f: form_object }) %>');
+<% elsif params[:repeat_type] == 'once' %>
+  $('#course_repeat_days_wrapper').html('');
+  $('#course_start_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/start_at_once', locals: { f: form_object }) %>');
+  $('#course_finish_at_wrapper').replaceWith('<%= j(render partial: 'rails_booking/time/finish_at_once', locals: { f: form_object }) %>');
+<% end %>

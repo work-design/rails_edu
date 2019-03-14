@@ -1,0 +1,25 @@
+<%= search_form_with model: Course.new do |f| %>
+  <div class="fields">
+    <%= f.text_field :name %>
+    <%= f.submit 'Search' %>
+  </div>
+<% end %>
+
+<dl>
+  <dt>Type:</dt>
+  <dd class="ui labels">
+    <%= link_to 'All', filter_params(except: [:type]), class: active_params(type: '', active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% Course.options_i18n(:type).each do |text, type| %>
+      <%= link_to text, filter_params(type: type), class: active_params(type: type, active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% end %>
+  </dd>
+</dl>
+<dl>
+  <dt>Module:</dt>
+  <dd class="ui labels">
+    <%= link_to 'All', filter_params(except: [:course_taxon_id]), class: active_params(course_taxon_id: '', active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% CourseTaxon.all.each do |taxon| %>
+      <%= link_to taxon.name, filter_params(course_taxon_id: taxon.id), class: active_params(course_taxon_id: taxon.id, active_class: 'ui blue label', item_class: 'ui white label') %>
+    <% end %>
+  </dd>
+</dl>

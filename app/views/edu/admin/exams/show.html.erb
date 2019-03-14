@@ -1,0 +1,50 @@
+<div class="ui basic segment breadcrumb">
+  <%= link_to 'Back', admin_course_paper_exams_path(@course_paper), class: 'section' %>
+  <div class="divider"> / </div>
+  <div class="active section">Show</div>
+</div>
+
+<table class="ui very basic large table">
+  <thead>
+    <tr>
+      <th class="active six wide">Question</th>
+      <th class="five wide">Reference Answer</th>
+      <th class="five wide">Person's Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @exam.referred_answer_detail.each do |detail| %>
+    <tr>
+      <td class="active">
+        <%= detail[0].html_safe %>
+        <% detail[4].each do |o| %>
+          <p><%= o %></p>
+        <% end %>
+      </td>
+      <td><%= simple_format(detail[1]) %></td>
+      <td>
+      <% if detail[3] %>
+        <%= simple_format(detail[2], class: 'green text') %>
+      <% else %>
+        <%= simple_format(detail[2]) %>
+      <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>
+        <% if @exam.course_paper.is_a?(ExamPaper) %>
+        <%= form_with model: @exam, url: score_admin_course_paper_exam_path(@course_paper, @exam.id), method: :patch, remote: true, on: { wrapper_all: false, offset: false, label: false }, css: { wrapper_input: 'field' } do |f| %>
+          <%= f.text_field :answer_mark, placeholder: 'Mark' %>
+          <%= f.text_area :comment, placeholder: 'Comment' %>
+          <%= f.submit %>
+        <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

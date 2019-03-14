@@ -1,26 +1,26 @@
-class Edu::My::LessonMembersController < Edu::My::BaseController
-  before_action :set_lesson_member, only: [:show, :edit, :update, :edit_quit, :update_quit, :destroy]
+class Edu::My::CourseMembersController < Edu::My::BaseController
+  before_action :set_course_member, only: [:show, :edit, :update, :edit_quit, :update_quit, :destroy]
 
   def index
     q_params = {}.with_indifferent_access
     q_params.merge! params.fetch(:q, {}).permit!
-    q_params.merge! params.permit('lesson.lesson_taxon_id', 'lesson.type', 'lesson.title-asc', :state)
-    @lesson_members = current_member.lesson_members.includes(:lesson).default_where(q_params).page(params[:page])
+    q_params.merge! params.permit('course.course_taxon_id', 'course.type', 'course.title-asc', :state)
+    @course_members = current_member.course_members.includes(:course).default_where(q_params).page(params[:page])
   end
 
   def new
-    @lesson_member = current_member.lesson_members.build
+    @course_member = current_member.course_members.build
   end
 
   def create
-    if params[:lesson_id]
-      @lesson_member = current_member.lesson_members.build(lesson_id: params[:lesson_id])
+    if params[:course_id]
+      @course_member = current_member.course_members.build(course_id: params[:course_id])
     else
-      @lesson_member = current_member.lesson_members.build(lesson_member_params)
+      @course_member = current_member.course_members.build(course_member_params)
     end
 
-    if @lesson_member.save_with_remind
-      redirect_to my_lesson_members_url, notice: 'Lesson member was successfully created.'
+    if @course_member.save_with_remind
+      redirect_to my_course_members_url, notice: 'Course member was successfully created.'
     else
       render :new
     end
@@ -33,8 +33,8 @@ class Edu::My::LessonMembersController < Edu::My::BaseController
   end
 
   def update
-    if @lesson_member.update(lesson_member_params)
-      redirect_to my_lesson_members_url, notice: 'Lesson member was successfully updated.'
+    if @course_member.update(course_member_params)
+      redirect_to my_course_members_url, notice: 'Course member was successfully updated.'
     else
       render :edit
     end
@@ -44,22 +44,22 @@ class Edu::My::LessonMembersController < Edu::My::BaseController
   end
 
   def update_quit
-    @lesson_member.quit_note = lesson_member_params[:quit_note]
-    @lesson_member.trigger_to! state: 'request_quit'
+    @course_member.quit_note = course_member_params[:quit_note]
+    @course_member.trigger_to! state: 'request_quit'
   end
 
   def destroy
-    @lesson_member.destroy
-    redirect_to my_lesson_members_url, notice: 'Lesson member was successfully destroyed.'
+    @course_member.destroy
+    redirect_to my_course_members_url, notice: 'Course member was successfully destroyed.'
   end
 
   private
-  def set_lesson_member
-    @lesson_member = LessonMember.find(params[:id])
+  def set_course_member
+    @course_member = CourseMember.find(params[:id])
   end
 
-  def lesson_member_params
-    params.fetch(:lesson_member, {}).permit(:lesson_id, :quit_note)
+  def course_member_params
+    params.fetch(:course_member, {}).permit(:course_id, :quit_note)
   end
 
 end

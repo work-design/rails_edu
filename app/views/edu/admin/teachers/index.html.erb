@@ -1,0 +1,42 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Teachers</div>
+  <div class="right menu">
+    <div class="item"><%= link_to 'New Teacher', new_admin_teacher_path, class: 'ui teal button' %></div>
+  </div>
+</div>
+
+<div class="ui attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Teacher.human_attribute_name(:id) %></th>
+      <th><%= Teacher.human_attribute_name(:name) %></th>
+      <th><%= Teacher.human_attribute_name(:member) %></th>
+      <th><%= Teacher.human_attribute_name(:description) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @teachers.each do |teacher| %>
+    <tr>
+      <td><%= teacher.id %></td>
+      <td><%= teacher.name %></td>
+      <td>
+        <%= link_to teacher.member&.name, admin_member_path(teacher.member_id) if teacher.member %>
+      </td>
+      <td><%= simple_format(teacher.description) %></td>
+      <td>
+        <%#= link_to 'Show', admin_teacher_path(teacher), class: 'ui blue label' %>
+        <%= link_to t('.edit'), edit_admin_teacher_path(teacher), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), admin_teacher_path(teacher), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @teachers %>

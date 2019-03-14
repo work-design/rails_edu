@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages', target: @course %>
+<%= f.select :type, options_for_select(Course.options_i18n(:type), @course.type) %>
+<%= f.collection_select :course_taxon_id, CourseTaxon.all, :id, :name %>
+<%= f.text_field :title %>
+<%= f.text_area :description %>
+<%= f.number_field :limit_people %>
+<%= f.select :lecturer_id, options_for_select([[@course.lecturer&.name, @course.lecturer_id]], @course.lecturer_id), {include_blank: true, label: 'Lecturer'} %>
+<%= f.file_field :video, multiple: true %>
+<%= render 'active_storage/attachments/list_form', target: @course.video %>
+<%= f.file_field :en_video, multiple: true %>
+<%= render 'active_storage/attachments/list_form', target: @course.en_video %>
+<%= f.file_field :document, multiple: true %>
+<%= render 'active_storage/attachments/list_form', target: @course.document %>
+<%= f.text_field :meeting_room %>
+<%= f.select :department_ids, options_for_select(@course.departments.pluck(:name, :id), @course.department_ids), {include_blank: true, label: 'Department'}, { multiple: true } %>
+<%= f.check_box :compulsory %>
+<%= f.submit %>

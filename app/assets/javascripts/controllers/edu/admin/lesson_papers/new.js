@@ -1,1 +1,1 @@
-$('#lesson_paper_type').dropdown()
+$('#course_paper_type').dropdown()

@@ -1,7 +1,0 @@
-<%= render 'shared/error_messages', target: @lesson_paper %>
-<%= f.select :type, options_for_select(LessonPaper.options_i18n(:type), @lesson_paper.type) %>
-<%= f.hidden_field :lesson_id %>
-<%= f.text_field :title %>
-<%= f.text_area :description %>
-<%= f.file_field :document %>
-<%= f.submit %>

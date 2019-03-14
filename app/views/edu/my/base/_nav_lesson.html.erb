@@ -1,0 +1,6 @@
+<div class="ui top attached tabular menu">
+  <%= link_to 'Course Detail', my_course_path(@course), class: active_helper(id: @course.id) %>
+  <% if current_member.course_ids.include?(@course.id) %>
+    <%= link_to 'Survey/Exams', my_course_exams_path(@course), class: active_helper(controllers: 'exams') %>
+  <% end %>
+</div>

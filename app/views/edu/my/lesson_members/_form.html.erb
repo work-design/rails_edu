@@ -1,0 +1,5 @@
+<%= form_with model: [:my, @course_member] do |f| %>
+  <%= render 'shared/error_messages', target: @course_member %>
+  <%= f.text_area :quit_note %>
+  <%= f.submit %>
+<% end %>

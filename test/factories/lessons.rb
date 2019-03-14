@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :lesson do
+  factory :course do
     
   end
 end

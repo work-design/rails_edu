@@ -1,0 +1,99 @@
+<%= render 'nav_course' %>
+
+<table class="ui very basic large table">
+  <thead>
+  <tr>
+    <th class="three wide"></th>
+    <th>
+      <%= link_to 'meet', meet_admin_course_path(@course), class: 'ui mini blue right floated button' %>
+      <%= link_to t('.edit'), edit_admin_course_path(@course), class: 'ui mini blue right floated button' %>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="right aligned">Course Category</td>
+    <td><%= @course.course_taxon&.name %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:title) %></td>
+    <td><%= @course.title %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:type) %></td>
+    <td><%= @course.type_i18n %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:description) %></td>
+    <td><%= simple_format(@course.description) %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:limit_people) %></td>
+    <td><%= @course.limit_people %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:lecturer) %></td>
+    <td><%= @course.lecturer&.name %></td>
+  </tr>
+  <tr>
+    <td class="right aligned">Lecturer Desc: </td>
+    <td><%= simple_format(@course.lecturer&.description) %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:video) %></td>
+    <td>
+      <%= render partial: 'active_storage/attachments/list_edit', locals: { target: @course.video } %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:en_video) %></td>
+    <td>
+      <%= render partial: 'active_storage/attachments/list_edit', locals: { target: @course.en_video } %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:document) %></td>
+    <td>
+      <%= render 'active_storage/attachments/list_edit', target: @course.document %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:compulsory) %></td>
+    <td>
+      <%= form_with model: @course, scope: :course, url: admin_course_path(@course), method: :patch, remote: true do |f| %>
+        <%= f.check_box :compulsory, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
+      <% end %>
+    </td>
+  </tr>
+  <% unless @course.is_a?(OnlineCourse) %>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:meeting_room) %></td>
+    <td><%= @course.meeting_room %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:next_start_time) %></td>
+    <td><time><%= @course.next_start_time.to_s(:rfc822) if @course.next_start_time %></time></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:next_finish_time) %></td>
+    <td><time><%= @course.next_finish_time.to_s(:rfc822) if @course.next_finish_time %></time></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:departments) %></td>
+    <td class="ui labels">
+      <% @course.departments.select(:name).each do |department| %>
+        <span class="ui label"><%= department.name %></span>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:created_at) %></td>
+    <td><%= @course.created_at.to_s(:rfc822) %></td>
+  </tr>
+  <tr>
+    <td class="right aligned"><%= Course.human_attribute_name(:updated_at) %></td>
+    <td><%= @course.updated_at.to_s(:rfc822) %></td>
+  </tr>
+  </tbody>
+</table>

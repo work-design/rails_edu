@@ -1,0 +1,7 @@
+<%= render 'shared/error_messages', target: @course_paper %>
+<%= f.select :type, options_for_select(CoursePaper.options_i18n(:type), @course_paper.type) %>
+<%= f.hidden_field :course_id %>
+<%= f.text_field :title %>
+<%= f.text_area :description %>
+<%= f.file_field :document %>
+<%= f.submit %>

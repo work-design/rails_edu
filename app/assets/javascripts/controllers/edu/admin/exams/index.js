@@ -1,4 +1,4 @@
-$('#q_lesson_paper_id').dropdown({
+$('#q_course_paper_id').dropdown({
   placeholder: false
 })
 

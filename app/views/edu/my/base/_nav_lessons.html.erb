@@ -1,0 +1,6 @@
+<div class="ui top attached borderless menu">
+  <%= link_to 'My Courses', my_course_members_path, class: active_helper(controller: 'admin_my/course_members') %>
+  <%= link_to 'Available Courses', my_courses_path, class: active_helper(controller: 'admin_my/courses') %>
+  <%= link_to 'Exams Review', todo_admin_exams_path, class: active_helper('admin_admin/exams': 'todo') %>
+  <%= link_to 'Certifications Review', cert_admin_exams_path, class: active_helper('admin_admin/exams': 'cert') %>
+</div>
