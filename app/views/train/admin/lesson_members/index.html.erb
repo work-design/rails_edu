@@ -42,7 +42,7 @@
       <td>
         <span><%= lesson_member.state_i18n %></span>
         <% if lesson_member.request_quit? %>
-          <%= link_to 'Approve', quit_train_lesson_lesson_member_path(@lesson, lesson_member), method: :patch %>
+          <%= link_to 'Approve', quit_edu_lesson_lesson_member_path(@lesson, lesson_member), method: :patch %>
         <% end %>
         <% if ['request_quit', 'quitted'].include? lesson_member.state %>
           <span class="grey text">(<%= lesson_member.quit_note %>)</span>

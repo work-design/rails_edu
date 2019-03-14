@@ -3,11 +3,11 @@
 <% end %>
 
 <div class="ui top attached borderless menu">
-  <div class="header item">Train Exam Papers</div>
+  <div class="header item">Edu Exam Papers</div>
   <div class="right menu">
     <% LessonPaper.options_i18n(:type).each do |text, type| %>
     <div class="item">
-      <%= link_to text, new_train_lesson_paper_path(type: type, lesson_id: params[:lesson_id]), class: 'ui teal button' %>
+      <%= link_to text, new_edu_lesson_paper_path(type: type, lesson_id: params[:lesson_id]), class: 'ui teal button' %>
     </div>
     <% end %>
   </div>
@@ -46,19 +46,19 @@
         <% if lesson_paper.link.present? %>
           <p><i class="linkify icon"></i><%= link_to lesson_paper.link.to_s.truncate(50), lesson_paper.link, target: '_blank' %></p>
         <% else %>
-          <p><i class="linkify icon"></i><%= link_to 'Add', add_train_lesson_paper_path(lesson_paper), class: 'ui green label' %></p>
+          <p><i class="linkify icon"></i><%= link_to 'Add', add_edu_lesson_paper_path(lesson_paper), class: 'ui green label' %></p>
         <% end %>
         <p><%= link_to lesson_paper.document.filename, rails_blob_path(lesson_paper.document), target: '_blank' if lesson_paper.document.attached? %></p>
       </td>
       <td class="ui labels">
-        <%= link_to 'exams', train_lesson_paper_exams_path(lesson_paper), class: 'ui blue mini icon button' %>
-        <%= link_to train_lesson_paper_path(lesson_paper), class: 'ui blue mini icon button' do %>
+        <%= link_to 'exams', edu_lesson_paper_exams_path(lesson_paper), class: 'ui blue mini icon button' %>
+        <%= link_to edu_lesson_paper_path(lesson_paper), class: 'ui blue mini icon button' do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_train_lesson_paper_path(lesson_paper), class: 'ui pink mini icon button' do %>
+        <%= link_to edit_edu_lesson_paper_path(lesson_paper), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to train_lesson_paper_path(lesson_paper), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to edu_lesson_paper_path(lesson_paper), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>

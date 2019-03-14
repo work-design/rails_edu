@@ -1,14 +1,14 @@
 <div class="ui segment breadcrumb">
-  <%= link_to 'Lesson list', train_lessons_path, class: 'section' %>
+  <%= link_to 'Lesson list', edu_lessons_path, class: 'section' %>
   <div class="divider"> / </div>
   <div class="active section"><%= @lesson.title %></div>
 </div>
 <div class="ui top attached tabular menu">
-  <%= link_to 'Lesson Detail', train_lesson_path(@lesson), class: active_helper(id: @lesson.id) %>
-  <%= link_to 'Exam/Survey', train_lesson_papers_path(lesson_id: @lesson.id), class: active_helper(controllers: 'lesson_papers') %>
-  <%# link_to 'Finished Exams', train_lesson_exams_path(@lesson), class: active_helper(controllers: 'exams') %>
-  <%= link_to 'Joined People', train_lesson_lesson_members_path(@lesson), class: active_helper('train_admin/lesson_members': 'index') %>
-  <%= link_to 'Select People', members_train_lesson_lesson_members_path(@lesson), class: active_helper('train_admin/lesson_members': 'members') %>
+  <%= link_to 'Lesson Detail', edu_lesson_path(@lesson), class: active_helper(id: @lesson.id) %>
+  <%= link_to 'Exam/Survey', edu_lesson_papers_path(lesson_id: @lesson.id), class: active_helper(controllers: 'lesson_papers') %>
+  <%# link_to 'Finished Exams', edu_lesson_exams_path(@lesson), class: active_helper(controllers: 'exams') %>
+  <%= link_to 'Joined People', edu_lesson_lesson_members_path(@lesson), class: active_helper('edu_admin/lesson_members': 'index') %>
+  <%= link_to 'Select People', members_edu_lesson_lesson_members_path(@lesson), class: active_helper('edu_admin/lesson_members': 'members') %>
   <div class="right menu">
     <div class="item">
       <%= link_to t('.export'), find_data_list_table_lists_path('LessonMemberExport', params.permit(:lesson_id).merge(timestamp: @lesson.timestamp)), class: 'ui mini blue button', remote: true %>

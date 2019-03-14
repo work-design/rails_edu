@@ -1,12 +1,12 @@
 $:.push File.expand_path('lib', __dir__)
-require 'rails_train/version'
+require 'rails_edu/version'
 
 Gem::Specification.new do |s|
-  s.name = 'rails_train'
-  s.version = RailsTrain::VERSION
+  s.name = 'rails_edu'
+  s.version = RailsEdu::VERSION
   s.authors = ['qinmingyuan']
   s.email = ['mingyuan0715@foxmail.com']
-  s.homepage = 'https://github.com/work-design/rails_train'
+  s.homepage = 'https://github.com/work-design/rails_edu'
   s.summary = ' Summary of RailsDoc.'
   s.description = ' Description of RailsDoc.'
   s.license = 'MIT'

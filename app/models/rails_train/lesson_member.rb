@@ -2,9 +2,9 @@ class LessonMember < ApplicationRecord
   include StateMachine
   attribute :state, :string, default: 'in_studying'
   belongs_to :lesson, counter_cache: true
-  belongs_to :member
+  belongs_to :student, polymorphic: true
 
-  #validates :member_id, uniqueness: { scope: :lesson_id }
+  validates :member_id, uniqueness: { scope: :lesson_id }
 
   enum state: {
     in_studying: 'in_studying',

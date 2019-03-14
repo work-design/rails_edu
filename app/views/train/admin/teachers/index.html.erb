@@ -1,7 +1,7 @@
 <div class="ui top attached borderless menu">
   <div class="header item">Teachers</div>
   <div class="right menu">
-    <div class="item"><%= link_to 'New Teacher', new_train_teacher_path, class: 'ui teal button' %></div>
+    <div class="item"><%= link_to 'New Teacher', new_edu_teacher_path, class: 'ui teal button' %></div>
   </div>
 </div>
 
@@ -30,9 +30,9 @@
       </td>
       <td><%= simple_format(teacher.description) %></td>
       <td>
-        <%#= link_to 'Show', train_teacher_path(teacher), class: 'ui blue label' %>
-        <%= link_to t('.edit'), edit_train_teacher_path(teacher), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), train_teacher_path(teacher), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <%#= link_to 'Show', edu_teacher_path(teacher), class: 'ui blue label' %>
+        <%= link_to t('.edit'), edit_edu_teacher_path(teacher), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), edu_teacher_path(teacher), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
       </td>
     </tr>
   <% end %>

@@ -1,4 +1,4 @@
-class TrainMy::LessonMembersController < TrainMy::BaseController
+class Edu::My::LessonMembersController < Edu::My::BaseController
   before_action :set_lesson_member, only: [:show, :edit, :update, :edit_quit, :update_quit, :destroy]
 
   def index

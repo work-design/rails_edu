@@ -3,7 +3,7 @@ $('#lesson_type').dropdown();
 $('#lesson_lesson_taxon_id').dropdown();
 $('#lesson_lecturer_id').dropdown({
   apiSettings: {
-    url: '/train/teachers/search?q={query}',
+    url: '/edu/teachers/search?q={query}',
   },
   fields: {
     name: 'name',
@@ -12,7 +12,7 @@ $('#lesson_lecturer_id').dropdown({
 });
 $('#lesson_author_id').dropdown({
   apiSettings: {
-    url: '/train/teachers/search?q={query}',
+    url: '/edu/teachers/search?q={query}',
   },
   fields: {
     name: 'name',

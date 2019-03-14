@@ -19,8 +19,8 @@
       <td><%= lesson_taxon.id %></td>
       <td><%= lesson_taxon.name %></td>
       <td class="ui labels">
-        <%= link_to t('.edit'), edit_train_lesson_taxon_path(lesson_taxon), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), train_lesson_taxon_path(lesson_taxon), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <%= link_to t('.edit'), edit_edu_lesson_taxon_path(lesson_taxon), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), edu_lesson_taxon_path(lesson_taxon), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
       </td>
     </tr>
   <% end %>

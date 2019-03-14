@@ -1,8 +1,8 @@
 <div class="ui segment breadcrumb">
-  <%= link_to @lesson_paper.type_i18n, train_lesson_papers_path(type: @lesson_paper.type), class: 'section' %>
+  <%= link_to @lesson_paper.type_i18n, edu_lesson_papers_path(type: @lesson_paper.type), class: 'section' %>
   <div class="divider"> / </div>
   <% if @lesson_paper.lesson %>
-    <%= link_to @lesson_paper.lesson.title, train_lesson_papers_path(lesson_id: @lesson_paper.lesson_id), class: 'section' %>
+    <%= link_to @lesson_paper.lesson.title, edu_lesson_papers_path(lesson_id: @lesson_paper.lesson_id), class: 'section' %>
     <div class="divider"> / </div>
   <% end %>
   <div class="active section">Exams</div>
@@ -53,18 +53,18 @@
       <td><%= exam.answer_mark %></td>
       <td><%= exam.comment %></td>
       <td>
-        <%= form_with model: exam, url: refer_train_lesson_paper_exam_path(@lesson_paper, exam.id), method: :put, remote: true do |f| %>
+        <%= form_with model: exam, url: refer_edu_lesson_paper_exam_path(@lesson_paper, exam.id), method: :put, remote: true do |f| %>
           <%= f.check_box :referenced, disabled: exam.referenced, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
         <% end %>
       </td>
       <td>
-        <%= link_to train_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui blue mini icon button' do %>
+        <%= link_to edu_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui blue mini icon button' do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_train_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui pink mini icon button' do %>
+        <%= link_to edit_edu_lesson_paper_exam_path(@lesson_paper, exam), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to train_lesson_paper_exam_path(@lesson_paper, exam), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to edu_lesson_paper_exam_path(@lesson_paper, exam), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>

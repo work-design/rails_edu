@@ -1,4 +1,4 @@
-<%= render 'train_my/base/nav_lessons' %>
+<%= render 'edu_my/base/nav_lessons' %>
 
 <div class="ui attached segment">
   <%= search_form_with model: Exam.new do |f| %>
@@ -30,13 +30,13 @@
       </td>
       <td>
         <% if exam.lesson %>
-          <%= link_to exam.lesson.title, train_lesson_path(exam.lesson_id), target: '_blank' %>
+          <%= link_to exam.lesson.title, edu_lesson_path(exam.lesson_id), target: '_blank' %>
         <% end %>
       </td>
       <td><%= exam.link %></td>
       <td><%= exam.answer_mark %></td>
       <td class="ui labels">
-        <%= link_to train_lesson_paper_exam_path(exam.lesson_paper_id, exam), class: 'ui blue mini icon button' do %>
+        <%= link_to edu_lesson_paper_exam_path(exam.lesson_paper_id, exam), class: 'ui blue mini icon button' do %>
           <i class="location arrow icon"></i>
         <% end %>
       </td>

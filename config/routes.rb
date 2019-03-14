@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :train, module: 'train/admin', as: 'train' do
+  scope :edu, module: 'edu/admin', as: 'edu' do
     root to: 'home#index'
 
     resources :lesson_taxons
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :sm_settings
   end
 
-  scope :my, module: 'train/my', as: 'my' do
+  scope :my, module: 'edu/my', as: 'my' do
 
     resources :exams, only: [] do
       post :add, on: :collection

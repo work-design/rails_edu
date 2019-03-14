@@ -24,7 +24,7 @@
     <tr>
       <td><%= lesson.id %></td>
       <td>
-        <%= link_to lesson.title, train_lesson_path(lesson) %>
+        <%= link_to lesson.title, edu_lesson_path(lesson) %>
         <span class="<%= active_assert(lesson.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= lesson.compulsory_i18n %></span>
       </td>
       <td><%= lesson.lecturer&.name %></td>
@@ -32,9 +32,9 @@
         <%= lesson.limit_people %> / <%= lesson.lesson_members_count %>
       </td>
       <td class="ui labels">
-        <%= link_to 'Meet Info', meet_train_lesson_path(lesson), class: 'ui pink label' %>
-        <%= link_to t('.edit'), edit_train_lesson_path(lesson), class: 'ui pink label' %>
-        <%= link_to t('.destroy'), train_lesson_path(lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <%= link_to 'Meet Info', meet_edu_lesson_path(lesson), class: 'ui pink label' %>
+        <%= link_to t('.edit'), edit_edu_lesson_path(lesson), class: 'ui pink label' %>
+        <%= link_to t('.destroy'), edu_lesson_path(lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
       </td>
     </tr>
   <% end %>

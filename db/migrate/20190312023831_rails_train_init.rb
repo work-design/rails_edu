@@ -1,6 +1,33 @@
-class RailsTrainInit < ActiveRecord::Migration[5.0]
+class RailsEduInit < ActiveRecord::Migration[5.0]
 
   def change
+
+    create_table :lessons do |t|
+      t.string "type"
+      t.bigint "lesson_taxon_id"
+      t.string "title"
+      t.string "description", limit: 4096
+      t.integer "position", default: 1
+      t.bigint "author_id"
+      t.bigint "lecturer_id"
+      t.string "repeat_type"
+      t.string "repeat_days"
+      t.datetime "start_at"
+      t.datetime "finish_at"
+      t.string "meeting_room"
+      t.datetime "created_at", null: false
+      t.datetime "updated_at", null: false
+      t.integer "lesson_members_count", default: 0
+      t.integer "limit_people"
+      t.string "video_link"
+      t.string "en_video_link"
+      t.string "document_link"
+      t.boolean "compulsory", default: false
+      t.index ["author_id"], name: "index_lessons_on_author_id"
+      t.index ["lecturer_id"], name: "index_lessons_on_lecturer_id"
+      t.index ["lesson_taxon_id"], name: "index_lessons_on_lesson_taxon_id"
+    end
+
     create_table "lesson_grants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
       t.bigint "lesson_id"
       t.bigint "department_id"
@@ -49,31 +76,7 @@ class RailsTrainInit < ActiveRecord::Migration[5.0]
       t.datetime "updated_at", null: false
     end
 
-    create_table "lessons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-      t.string "type"
-      t.bigint "lesson_taxon_id"
-      t.string "title"
-      t.string "description", limit: 4096
-      t.integer "position", default: 1
-      t.bigint "author_id"
-      t.bigint "lecturer_id"
-      t.string "repeat_type"
-      t.string "repeat_days"
-      t.datetime "start_at"
-      t.datetime "finish_at"
-      t.string "meeting_room"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "lesson_members_count", default: 0
-      t.integer "limit_people"
-      t.string "video_link"
-      t.string "en_video_link"
-      t.string "document_link"
-      t.boolean "compulsory", default: false
-      t.index ["author_id"], name: "index_lessons_on_author_id"
-      t.index ["lecturer_id"], name: "index_lessons_on_lecturer_id"
-      t.index ["lesson_taxon_id"], name: "index_lessons_on_lesson_taxon_id"
-    end
+
 
     create_table "teachers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
       t.bigint "user_id"

@@ -3,13 +3,13 @@
 <% end %>
 
 <div class="ui basic segment breadcrumb">
-  <%= link_to 'Back', train_lesson_papers_path(lesson_id: params[:lesson_id]), class: 'section' %>
+  <%= link_to 'Back', edu_lesson_papers_path(lesson_id: params[:lesson_id]), class: 'section' %>
   <div class="divider"> / </div>
   <div class="active section">Add</div>
 </div>
 
 <div class="ui segment">
-  <%= form_with model: @lesson_paper, scope: 'lesson_paper', url: train_lesson_papers_path(lesson_id: params[:lesson_id]), local: true do |f| %>
+  <%= form_with model: @lesson_paper, scope: 'lesson_paper', url: edu_lesson_papers_path(lesson_id: params[:lesson_id]), local: true do |f| %>
     <%= render partial: 'form', locals: { f: f } %>
   <% end %>
 </div>

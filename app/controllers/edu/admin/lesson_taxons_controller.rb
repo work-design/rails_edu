@@ -1,4 +1,4 @@
-class TrainAdmin::LessonTaxonsController < TrainAdmin::BaseController
+class Edu::Admin::LessonTaxonsController < Edu::Admin::BaseController
   before_action :set_lesson_taxon, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,7 +13,7 @@ class TrainAdmin::LessonTaxonsController < TrainAdmin::BaseController
     @lesson_taxon = LessonTaxon.new(lesson_taxon_params)
 
     if @lesson_taxon.save
-      redirect_to train_lesson_taxons_url, notice: 'Lesson taxon was successfully created.'
+      redirect_to edu_lesson_taxons_url, notice: 'Lesson taxon was successfully created.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class TrainAdmin::LessonTaxonsController < TrainAdmin::BaseController
 
   def update
     if @lesson_taxon.update(lesson_taxon_params)
-      redirect_to train_lesson_taxons_url, notice: 'Lesson taxon was successfully updated.'
+      redirect_to edu_lesson_taxons_url, notice: 'Lesson taxon was successfully updated.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class TrainAdmin::LessonTaxonsController < TrainAdmin::BaseController
 
   def destroy
     @lesson_taxon.destroy
-    redirect_to train_lesson_taxons_url, notice: 'Lesson taxon was successfully destroyed.'
+    redirect_to edu_lesson_taxons_url, notice: 'Lesson taxon was successfully destroyed.'
   end
 
   private

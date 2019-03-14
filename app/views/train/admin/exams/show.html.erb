@@ -1,5 +1,5 @@
 <div class="ui basic segment breadcrumb">
-  <%= link_to 'Back', train_lesson_paper_exams_path(@lesson_paper), class: 'section' %>
+  <%= link_to 'Back', edu_lesson_paper_exams_path(@lesson_paper), class: 'section' %>
   <div class="divider"> / </div>
   <div class="active section">Show</div>
 </div>
@@ -38,7 +38,7 @@
       <td></td>
       <td>
         <% if @exam.lesson_paper.is_a?(ExamPaper) %>
-        <%= form_with model: @exam, url: score_train_lesson_paper_exam_path(@lesson_paper, @exam.id), method: :patch, remote: true, on: { wrapper_all: false, offset: false, label: false }, css: { wrapper_input: 'field' } do |f| %>
+        <%= form_with model: @exam, url: score_edu_lesson_paper_exam_path(@lesson_paper, @exam.id), method: :patch, remote: true, on: { wrapper_all: false, offset: false, label: false }, css: { wrapper_input: 'field' } do |f| %>
           <%= f.text_field :answer_mark, placeholder: 'Mark' %>
           <%= f.text_area :comment, placeholder: 'Comment' %>
           <%= f.submit %>

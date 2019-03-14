@@ -1,4 +1,4 @@
-class TrainAdmin::LessonsController < TrainAdmin::BaseController
+class Edu::Admin::LessonsController < Edu::Admin::BaseController
   before_action :set_lesson, only: [:show, :edit, :meet, :repeat_form, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:repeat_form]
 
@@ -28,7 +28,7 @@ class TrainAdmin::LessonsController < TrainAdmin::BaseController
     @lesson = Lesson.new(lesson_params)
 
     if @lesson.save
-      redirect_to train_lessons_url, notice: 'Lesson was successfully created.'
+      redirect_to edu_lessons_url, notice: 'Lesson was successfully created.'
     else
       render :new
     end
@@ -43,7 +43,7 @@ class TrainAdmin::LessonsController < TrainAdmin::BaseController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to train_lesson_url(@lesson), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to edu_lesson_url(@lesson), notice: 'Lesson was successfully updated.' }
         format.js { head :no_content }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class TrainAdmin::LessonsController < TrainAdmin::BaseController
 
   def destroy
     @lesson.destroy
-    redirect_to train_lessons_url, notice: 'Lesson was successfully destroyed.'
+    redirect_to edu_lessons_url, notice: 'Lesson was successfully destroyed.'
   end
 
   private

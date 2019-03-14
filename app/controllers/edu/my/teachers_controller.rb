@@ -1,4 +1,4 @@
-class TrainMy::TeachersController < TrainMy::BaseController
+class Edu::My::TeachersController < Edu::My::BaseController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
   def new

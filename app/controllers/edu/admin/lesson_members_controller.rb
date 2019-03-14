@@ -1,4 +1,4 @@
-class TrainAdmin::LessonMembersController < TrainAdmin::BaseController
+class Edu::Admin::LessonMembersController < Edu::Admin::BaseController
   before_action :set_lesson
   before_action :set_lesson_member, only: [:show, :edit, :update, :destroy]
 
@@ -43,7 +43,7 @@ class TrainAdmin::LessonMembersController < TrainAdmin::BaseController
 
   def destroy
     @lesson_member.destroy
-    redirect_to train_lesson_members_url, notice: 'Lesson member was successfully destroyed.'
+    redirect_to edu_lesson_members_url, notice: 'Lesson member was successfully destroyed.'
   end
 
   def check
@@ -63,7 +63,7 @@ class TrainAdmin::LessonMembersController < TrainAdmin::BaseController
       end
     end
 
-    redirect_to train_lesson_lesson_members_url(@lesson)
+    redirect_to edu_lesson_lesson_members_url(@lesson)
   end
 
   def attend
@@ -82,7 +82,7 @@ class TrainAdmin::LessonMembersController < TrainAdmin::BaseController
 
   def show
     @lesson_member = LessonMember.find_by(id: params[:id])
-    @training_histories = @lesson_member.training_histories.order('id desc')
+    @eduing_histories = @lesson_member.eduing_histories.order('id desc')
   end
 
   def edit
@@ -92,7 +92,7 @@ class TrainAdmin::LessonMembersController < TrainAdmin::BaseController
   def quit
     @lesson_member = LessonMember.find params[:id]
     @lesson_member.trigger_to! state: 'quitted'
-    redirect_to train_lesson_lesson_members_url(member_id: @lesson_member.member_id)
+    redirect_to edu_lesson_lesson_members_url(member_id: @lesson_member.member_id)
   end
 
   private

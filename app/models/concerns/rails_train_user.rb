@@ -1,4 +1,4 @@
-module RailsTrainUser
+module RailsEduUser
   extend ActiveSupport::Concern
   included do
     has_many :lesson_members, dependent: :destroy

@@ -1,9 +1,9 @@
 <div class="ui top attached borderless menu">
-  <%= link_to 'My Lessons', train_lessons_path, class: active_helper('train_admin/lessons': 'index') %>
-  <%= link_to 'All Lessons', all_train_lessons_path, class: active_helper('train_admin/lessons': 'all') %>
-  <%= link_to 'Lesson Taxon', train_lesson_taxons_path, class: active_helper(controllers: 'lesson_taxons') %>
+  <%= link_to 'My Lessons', edu_lessons_path, class: active_helper('edu_admin/lessons': 'index') %>
+  <%= link_to 'All Lessons', all_edu_lessons_path, class: active_helper('edu_admin/lessons': 'all') %>
+  <%= link_to 'Lesson Taxon', edu_lesson_taxons_path, class: active_helper(controllers: 'lesson_taxons') %>
   <div class="right menu">
-    <div class="item"><%= link_to 'New Lesson', new_train_lesson_path, class: 'ui teal button' %></div>
-    <div class="item"><%= link_to 'New Lesson Taxon', new_train_lesson_taxon_path, class: 'ui teal button' %></div>
+    <div class="item"><%= link_to 'New Lesson', new_edu_lesson_path, class: 'ui teal button' %></div>
+    <div class="item"><%= link_to 'New Lesson Taxon', new_edu_lesson_taxon_path, class: 'ui teal button' %></div>
   </div>
 </div>

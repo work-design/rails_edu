@@ -1,5 +1,4 @@
-class TrainAdmin::HomeController < TrainAdmin::BaseController
-  before_action :check_variant
+class Edu::Admin::HomeController < Edu::Admin::BaseController
 
   def index
     respond_to do |format|

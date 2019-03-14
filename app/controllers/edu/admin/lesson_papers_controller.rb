@@ -1,4 +1,4 @@
-class TrainAdmin::LessonPapersController < TrainAdmin::BaseController
+class Edu::Admin::LessonPapersController < Edu::Admin::BaseController
   before_action :set_lesson
   before_action :set_lesson_paper, only: [:show, :edit, :update, :add, :destroy]
 
@@ -20,7 +20,7 @@ class TrainAdmin::LessonPapersController < TrainAdmin::BaseController
     @lesson_paper.assign_attributes lesson_paper_params
 
     if @lesson_paper.save
-      redirect_to train_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully created.'
+      redirect_to edu_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class TrainAdmin::LessonPapersController < TrainAdmin::BaseController
 
   def update
     if @lesson_paper.update(lesson_paper_params)
-      redirect_to train_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully updated.'
+      redirect_to edu_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully updated.'
     else
       render :edit
     end
@@ -43,12 +43,12 @@ class TrainAdmin::LessonPapersController < TrainAdmin::BaseController
   def add
     @lesson_paper.add
 
-    redirect_to train_lesson_papers_url(lesson_id: @lesson_paper.lesson_id)
+    redirect_to edu_lesson_papers_url(lesson_id: @lesson_paper.lesson_id)
   end
 
   def destroy
     @lesson_paper.destroy
-    redirect_to train_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully destroyed.'
+    redirect_to edu_lesson_papers_url(lesson_id: @lesson_paper.lesson_id), notice: 'Exam paper was successfully destroyed.'
   end
 
   private

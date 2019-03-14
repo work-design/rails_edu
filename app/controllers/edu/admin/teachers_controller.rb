@@ -1,4 +1,4 @@
-class TrainAdmin::TeachersController < TrainAdmin::BaseController
+class Edu::Admin::TeachersController < Edu::Admin::BaseController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -29,7 +29,7 @@ class TrainAdmin::TeachersController < TrainAdmin::BaseController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      redirect_to train_teachers_url, notice: 'Teacher was successfully created.'
+      redirect_to edu_teachers_url, notice: 'Teacher was successfully created.'
     else
       render :new
     end
@@ -43,7 +43,7 @@ class TrainAdmin::TeachersController < TrainAdmin::BaseController
 
   def update
     if @teacher.update(teacher_params)
-      redirect_to train_teachers_url, notice: 'Teacher was successfully updated.'
+      redirect_to edu_teachers_url, notice: 'Teacher was successfully updated.'
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class TrainAdmin::TeachersController < TrainAdmin::BaseController
 
   def destroy
     @teacher.destroy
-    redirect_to train_teachers_url, notice: 'Teacher was successfully destroyed.'
+    redirect_to edu_teachers_url, notice: 'Teacher was successfully destroyed.'
   end
 
   private

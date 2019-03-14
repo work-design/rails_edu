@@ -1,4 +1,4 @@
-class TrainAdmin::ExamsController < TrainAdmin::BaseController
+class Edu::Admin::ExamsController < Edu::Admin::BaseController
   before_action :set_lesson_paper, except: [:todo, :cert]
   before_action :set_exam, only: [:show, :edit, :update, :score, :refer, :destroy]
 
@@ -50,7 +50,7 @@ class TrainAdmin::ExamsController < TrainAdmin::BaseController
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to train_lesson_exams_url(@lesson), notice: 'Exam was successfully updated.' }
+        format.html { redirect_to edu_lesson_exams_url(@lesson), notice: 'Exam was successfully updated.' }
         format.js { head :no_content }
       else
         format.html { render :edit }
@@ -65,12 +65,12 @@ class TrainAdmin::ExamsController < TrainAdmin::BaseController
 
   def refer
     @exam.set_referenced
-    redirect_to train_lesson_paper_exams_url(@lesson.lesson_paper_id), notice: 'Exam was successfully set referenced.'
+    redirect_to edu_lesson_paper_exams_url(@lesson.lesson_paper_id), notice: 'Exam was successfully set referenced.'
   end
 
   def destroy
     @exam.destroy
-    redirect_to train_lesson_paper_exams_url(@exam.lesson_paper_id), notice: 'Exam was successfully destroyed.'
+    redirect_to edu_lesson_paper_exams_url(@exam.lesson_paper_id), notice: 'Exam was successfully destroyed.'
   end
 
   private

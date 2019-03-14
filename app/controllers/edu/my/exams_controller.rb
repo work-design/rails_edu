@@ -1,4 +1,4 @@
-class TrainMy::ExamsController < TrainMy::BaseController
+class Edu::My::ExamsController < Edu::My::BaseController
   before_action :set_lesson, only: [:index, :new, :create]
   before_action :set_exam, only: [:show, :edit, :update, :finish, :destroy]
 
@@ -62,7 +62,7 @@ class TrainMy::ExamsController < TrainMy::BaseController
     if @exam.lesson_id
       redirect_to my_lesson_exams_url(@exam.lesson_id)
     else
-      redirect_to cert_train_exams_url
+      redirect_to cert_edu_exams_url
     end
   end
 
