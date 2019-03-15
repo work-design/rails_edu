@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
   include RailsBookingTime
-  belongs_to :course_taxon, optional: true 
+  belongs_to :course_taxon, optional: true
   belongs_to :author, class_name: 'Teacher', optional: true
 
   has_many :course_members, dependent: :destroy
