@@ -6,23 +6,17 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :course_taxon
       t.references :author
       t.references :teacher
+      t.references :room
       t.string :type
       t.string :title
       t.string :description, limit: 4096
       t.integer :position, default: 1
-      t.bigint :author_id
-      t.bigint :lecturer_id
       t.string :repeat_type
       t.string :repeat_days
-      t.datetime :start_at
-      t.datetime :finish_at
-      t.string :meeting_room
-      t.integer :course_members_count, default: 0
       t.integer :limit_people
-      t.string :video_link
-      t.string :en_video_link
-      t.string :document_link
       t.boolean :compulsory, default: false
+      t.integer :course_members_count, default: 0
+      t.integer :lessons_count, default: 0
       t.timestamps
     end
 
@@ -43,6 +37,12 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.string :quit_note
       t.string :assigned_status
       t.string :job_id
+      t.timestamps
+    end
+
+    create_table :lessons do |t|
+      t.string :title
+      t.references :author
       t.timestamps
     end
 

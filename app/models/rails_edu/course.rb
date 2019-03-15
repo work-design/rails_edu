@@ -1,23 +1,17 @@
 class Course < ApplicationRecord
   include RailsBookingTime
-  belongs_to :course_taxon, optional: true # todo remove
+  belongs_to :course_taxon, optional: true 
   belongs_to :author, class_name: 'Teacher', optional: true
-  belongs_to :lecturer, class_name: 'Teacher', optional: true
+
   has_many :course_members, dependent: :destroy
   has_many :members, through: :course_member
+  has_many :lessons
+
   has_many :course_grants, dependent: :destroy
-  has_many :departments, through: :course_grants
-  has_many :bands, through: :course_grants
   has_many :course_papers, dependent: :destroy
   has_many :exam_papers, dependent: :destroy
   has_many :survey_papers, dependent: :destroy
   has_many :exams, dependent: :destroy
-
-  has_many_attached :document
-  has_many_attached :video
-  has_many_attached :en_video
-
-  scope :outward, -> { all }
 
   def save_with_remind
     self.class.transaction do
