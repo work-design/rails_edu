@@ -11,7 +11,7 @@
 <div class="ui segment">
 
   <%= form_with model: @course, scope: :course, url: admin_course_path(@course), method: 'patch', on: { wrapper_id: true } do |f| %>
-    <%= render partial: 'rails_booking/time/form', locals: { f: f } %>
+    <%= render partial: 'booking/time/form', locals: { f: f } %>
   <% end %>
 
 </div>
