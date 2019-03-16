@@ -2,7 +2,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   before_action :set_course, only: [:show, :edit, :meet, :update, :destroy]
 
   def index
-    q_params = params.fetch(:q, {}).permit!
+    q_params = default_params.merge! params.fetch(:q, {}).permit!
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     if current_member
       @courses = Course.default_where(q_params).permit_with(current_member).page(params[:page])
@@ -66,7 +66,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   end
 
   def course_params
-    params.fetch(:course, {}).permit(
+    p = params.fetch(:course, {}).permit(
       :course_taxon_id,
       :title,
       :description,
@@ -86,6 +86,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
       repeat_days: [],
       department_ids: []
     )
+    p.merge! default_params
   end
 
 end
