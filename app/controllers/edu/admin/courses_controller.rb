@@ -1,6 +1,5 @@
 class Edu::Admin::CoursesController < Edu::Admin::BaseController
-  before_action :set_course, only: [:show, :edit, :meet, :repeat_form, :update, :destroy]
-  skip_before_action :verify_authenticity_token, only: [:repeat_form]
+  before_action :set_course, only: [:show, :edit, :meet, :update, :destroy]
 
   def index
     q_params = params.fetch(:q, {}).permit!

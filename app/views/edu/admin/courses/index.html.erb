@@ -32,7 +32,7 @@
         <%= course.limit_people %> / <%= course.course_members_count %>
       </td>
       <td class="ui labels">
-        <%= link_to 'Meet Info', meet_admin_course_path(course), class: 'ui pink label' %>
+        <%= link_to 'Meet Info', time_plans_path('Course', course.id), class: 'ui pink label' %>
         <%= link_to t('.edit'), edit_admin_course_path(course), class: 'ui pink label' %>
         <%= link_to t('.destroy'), admin_course_path(course), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
       </td>
