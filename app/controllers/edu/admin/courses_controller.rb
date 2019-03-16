@@ -5,8 +5,8 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   def index
     q_params = params.fetch(:q, {}).permit!
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
-    if current_teacher
-      @courses = Course.default_where(q_params).permit_with(current_teacher).page(params[:page])
+    if current_member
+      @courses = Course.default_where(q_params).permit_with(current_member).page(params[:page])
     else
       @courses = Course.none.page
     end

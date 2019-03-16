@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope :edu, module: 'edu/admin', as: 'edu' do
+  scope :admin, module: 'edu/admin', as: 'admin' do
     root to: 'home#index'
 
     resources :course_taxons

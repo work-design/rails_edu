@@ -1,5 +1,2 @@
-require 'rails_edu/engine'
-
-module RailsEdu
-  # Your code goes here...
-end
+require_relative 'rails_edu/config'
+require_relative 'rails_edu/engine'

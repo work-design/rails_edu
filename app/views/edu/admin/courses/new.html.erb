@@ -5,7 +5,7 @@
 </div>
 
 <div class="ui segment">
-  <%= form_with model: [:edu, @course], local: true do |f| %>
+  <%= form_with model: [:admin, @course], local: true do |f| %>
     <%= render partial: 'form', locals: { f: f } %>
   <% end %>
 </div>
