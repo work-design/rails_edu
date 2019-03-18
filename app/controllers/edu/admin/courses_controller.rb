@@ -12,7 +12,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   end
 
   def all
-    q_params = params.fetch(:q, {}).permit!
+    q_params = default_params.merge! params.fetch(:q, {}).permit!
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     @courses = Course.default_where(q_params).page(params[:page])
 
