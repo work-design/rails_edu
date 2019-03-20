@@ -1,4 +1,4 @@
-class Admin::SmSettingsController < Admin::BaseController
+class Edu::Admin::SmSettingsController < Edu::Admin::BaseController
   before_action :set_sm_setting, only: [:show, :edit, :update, :destroy]
 
   def index

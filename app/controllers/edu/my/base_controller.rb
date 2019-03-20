@@ -1,4 +1,4 @@
-class Edu::My::BaseController < My::BaseController
+class Edu::My::BaseController < RailsEdu.config.my_class.constantize
 
 
 end
