@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
   scope :admin, module: 'edu/admin', as: 'admin' do
-    root to: 'home#index'
-
     resources :course_taxons
     resources :courses do
       get :all, on: :collection
@@ -32,7 +30,6 @@ Rails.application.routes.draw do
   end
 
   scope :my, module: 'edu/my', as: 'my' do
-
     resources :exams, only: [] do
       post :add, on: :collection
       get :certification, on: :collection
