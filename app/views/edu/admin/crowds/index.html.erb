@@ -15,6 +15,7 @@
       <th><%= Crowd.human_attribute_name(:id) %></th>
       <th><%= Crowd.human_attribute_name(:name) %></th>
       <th><%= Crowd.human_attribute_name(:student_type) %></th>
+      <th><%= Crowd.human_attribute_name(:crowd_students_count) %></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -23,7 +24,8 @@
     <tr>
       <td><%= crowd.id %></td>
       <td><%= crowd.name %></td>
-      <td><%= crowd.student_type %></td>
+      <td><%= crowd.student_type_i18n %></td>
+      <td><%= crowd.crowd_students_count %></td>
       <td class="ui labels">
         <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
           <i class="location arrow icon"></i>

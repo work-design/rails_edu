@@ -42,7 +42,7 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
 
     create_table :crowd_students do |t|
       t.references :crowd
-      t.references :student
+      t.references :student, polymorphic: true
       t.string :state
       t.timestamps
     end

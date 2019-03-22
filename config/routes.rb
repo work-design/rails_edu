@@ -12,6 +12,9 @@ Rails.application.routes.draw do
         patch :quit, on: :member
       end
     end
+    resources :crowds do
+      resources :crowd_students
+    end
     resources :course_papers do
       get :add, on: :member
       resources :exams do
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
     resources :teachers do
       get :search, on: :collection
     end
-    resources 'exams', only: [] do
+    resources :exams, only: [] do
       get :todo, on: :collection
       get :cert, on: :collection
     end

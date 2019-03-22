@@ -1,6 +1,6 @@
-<%= form_with model: @crowd do |f| %>
+<%= form_with model: [:admin, @crowd] do |f| %>
   <%= render 'shared/error_messages', target: @crowd %>
   <%= f.text_field :name %>
-  <%= f.text_field :student_type %>
+  <%= f.select :student_type, options_for_select(Crowd.options_i18n(:student_type), @crowd.student_type) %>
   <%= f.submit %>
 <% end %>
