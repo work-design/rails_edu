@@ -2,7 +2,7 @@
   <thead>
     <tr>
       <th class="six wide">
-        <%= link_to t('.edit'), edit_edu_admin_crowd_path(@crowd), class: 'ui mini blue right floated button', remote: true %>
+        <%= link_to t('.edit'), edit_admin_crowd_path(@crowd), class: 'ui mini blue right floated button', remote: true %>
       </th>
       <th class="ten wide"></th>
     </tr>
@@ -14,7 +14,23 @@
     </tr>
     <tr>
       <td class="right aligned"><%= Crowd.human_attribute_name(:student_type) %></td>
-      <td><%= @crowd.student_type %></td>
+      <td><%= @crowd.student_type_i18n %></td>
+    </tr>
+    <tr>
+      <td class="right aligned">学生</td>
+      <td>
+        <table class="ui very basic table">
+          <% @crowd_students.each do |crowd_student| %>
+          <tr>
+            <td>
+              <span class="ui label"><%= crowd_student.state_i18n %></span>
+            </td>
+            <td><%= crowd_student.student.real_name %></td>
+            <td><%= crowd_student.student.nick_name %></td>
+          </tr>
+          <% end %>
+        </table>
+      </td>
     </tr>
   </tbody>
 </table>

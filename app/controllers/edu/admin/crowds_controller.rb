@@ -28,6 +28,7 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
   end
 
   def show
+    @crowd_students = @crowd.crowd_students.includes(:student)
   end
 
   def edit
