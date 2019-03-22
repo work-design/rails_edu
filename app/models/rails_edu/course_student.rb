@@ -1,4 +1,4 @@
-class CourseMember < ApplicationRecord
+class CourseStudent < ApplicationRecord
   include StateMachine
   attribute :state, :string, default: 'in_studying'
   belongs_to :course, counter_cache: true
@@ -25,9 +25,9 @@ class CourseMember < ApplicationRecord
     return unless self.persisted?
 
     self.class.transaction do
-      CourseMemberMailer.assign(self.id).deliver_later
+      CourseStudentMailer.assign(self.id).deliver_later
       if self.course.next_start_time
-        job = CourseMemberMailer.remind(self.id).deliver_later(wait_until: self.course.next_start_time - 1.day)
+        job = CourseStudentMailer.remind(self.id).deliver_later(wait_until: self.course.next_start_time - 1.day)
         self.update(job_id: job.job_id)
       end
     end

@@ -1,0 +1,59 @@
+<%= render 'nav_course' %>
+
+<div class="ui top attached segment">
+  <%= render 'search_form' %>
+</div>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Office</th>
+      <th>
+        <p><%= Member.human_attribute_name(:department) %></p>
+        <p><%= Member.human_attribute_name(:join_date) %></p>
+      </th>
+      <th><%= CourseStudent.human_attribute_name(:created_at) %></th>
+      <th>
+        Check
+        <%= check_box_tag :course_student_all, nil, false, onclick: "toggleAll(this, 'course_student_id')", id: nil %>
+      </th>
+      <th><%= CourseStudent.human_attribute_name(:state) %></th>
+      <th><%= CourseStudent.human_attribute_name(:score) %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_students.each do |course_student| %>
+    <tr>
+      <td>
+        <%= course_student.id %>
+      </td>
+      <td><%= course_student.member.name %></td>
+      <td><%= course_student.member.office&.name %></td>
+      <td>
+        <p><%= course_student.member.department&.full_name %></p>
+        <p><%= course_student.member.join_on %></p>
+      </td>
+      <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
+      <td>
+        <%= check_box_tag :course_student_id, course_student.id, course_student.attended, id: nil %>
+      </td>
+      <td>
+        <span><%= course_student.state_i18n %></span>
+        <% if course_student.request_quit? %>
+          <%= link_to 'Approve', quit_admin_course_course_student_path(@course, course_student), method: :patch %>
+        <% end %>
+        <% if ['request_quit', 'quitted'].include? course_student.state %>
+          <span class="grey text">(<%= course_student.quit_note %>)</span>
+        <% end %>
+      </td>
+      <td>
+        <%= course_student.score %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @course_students %>

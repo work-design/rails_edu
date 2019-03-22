@@ -1,0 +1,43 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Edu Admin Crowds</div>
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'New Edu Admin Crowd', new_admin_crowd_path, class: 'ui teal button', remote: true %>
+    </div>
+  </div>
+</div>
+
+<%= render 'filter' %>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= Crowd.human_attribute_name(:id) %></th>
+      <th><%= Crowd.human_attribute_name(:name) %></th>
+      <th><%= Crowd.human_attribute_name(:student_type) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @crowds.each do |crowd| %>
+    <tr>
+      <td><%= crowd.id %></td>
+      <td><%= crowd.name %></td>
+      <td><%= crowd.student_type %></td>
+      <td class="ui labels">
+        <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @crowds %>

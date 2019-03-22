@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :courses do
       get :all, on: :collection
       get :meet, on: :member
-      resources :course_members do
+      resources :course_students do
         get :members, on: :collection
         post :check, on: :collection
         post :attend, on: :collection
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
         match :finish, on: :member, via: [:get, :put]
       end
     end
-    resources :course_members do
+    resources :course_students do
       get 'quit' => :edit_quit, on: :member
       patch 'quit' => :update_quit, on: :member
     end

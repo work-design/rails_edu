@@ -27,7 +27,7 @@
   <dt>Status:</dt>
   <dd class="ui labels">
     <%= link_to 'All', filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui blue label', item_class: 'ui white label') %>
-    <% CourseMember.options_i18n(:state).each do |text, state| %>
+    <% CourseStudent.options_i18n(:state).each do |text, state| %>
       <%= link_to text, filter_params(state: state), class: active_params(state: state, active_class: 'ui blue label', item_class: 'ui white label') %>
     <% end %>
   </dd>

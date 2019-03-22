@@ -1,0 +1,20 @@
+<table class="ui very basic large table">
+  <thead>
+    <tr>
+      <th class="six wide">
+        <%= link_to t('.edit'), edit_edu_admin_crowd_path(@crowd), class: 'ui mini blue right floated button', remote: true %>
+      </th>
+      <th class="ten wide"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="right aligned"><%= Crowd.human_attribute_name(:name) %></td>
+      <td><%= @crowd.name %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= Crowd.human_attribute_name(:student_type) %></td>
+      <td><%= @crowd.student_type %></td>
+    </tr>
+  </tbody>
+</table>

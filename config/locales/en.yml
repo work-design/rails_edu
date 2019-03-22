@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      course/type:
+        OffineCourse: Offline Course
+        OnlineCourse: Online Course

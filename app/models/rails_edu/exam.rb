@@ -5,7 +5,7 @@ class Exam < ApplicationRecord
   belongs_to :course, optional: true
   belongs_to :member
   belongs_to :reviewer, class_name: 'Member', inverse_of: 'review_exams', counter_cache: 'review_exams_count', optional: true
-  has_one :course_member, ->(o){ where(member_id: o.member_id) }, primary_key: 'course_id', foreign_key: 'course_id'
+  has_one :course_student, ->(o){ where(member_id: o.member_id) }, primary_key: 'course_id', foreign_key: 'course_id'
   serialize :answer_detail, Hash
 
   enum state: {
@@ -42,17 +42,17 @@ class Exam < ApplicationRecord
     self.answer_mark = params[:answer_mark]
     self.comment = params[:comment]
     self.state = 'evaluated'
-    course_member&.score = self.answer_mark
+    course_student&.score = self.answer_mark
 
     if Integer(answer_mark) >= 60
-      course_member&.state = 'passed'
+      course_student&.state = 'passed'
     else
-      course_member&.state = 'failed'
+      course_student&.state = 'failed'
     end
 
     self.class.transaction do
       self.save!
-      course_member&.save!
+      course_student&.save!
     end
     ExamMailer.result(self.id).deliver_later
   end

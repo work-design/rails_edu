@@ -23,11 +23,11 @@
       <td><%= course.lecturer&.name %></td>
       <td><%= course.type_i18n %></td>
       <td>
-        <%= course.limit_people %> / <%= course.course_members_count %>
+        <%= course.limit_people %> / <%= course.course_students_count %>
       </td>
       <td>
-        <% unless course.is_a?(OfflineCourse) && (course.course_members_count >= course.limit_people.to_i) %>
-          <%= link_to 'Select', my_course_members_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
+        <% unless course.is_a?(OfflineCourse) && (course.course_students_count >= course.limit_people.to_i) %>
+          <%= link_to 'Select', my_course_students_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
         <% end %>
       </td>
     </tr>

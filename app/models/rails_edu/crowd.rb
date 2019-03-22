@@ -1,0 +1,4 @@
+class Crowd < ApplicationRecord
+
+
+end

@@ -1,0 +1,6 @@
+zh:
+  activerecord:
+    attributes:
+      course/type:
+        OfflineCourse: 线下课程
+        OnlineCourse: 线上课程

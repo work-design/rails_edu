@@ -1,5 +1,5 @@
 <div class="ui top attached borderless menu">
-  <%= link_to 'My Courses', my_course_members_path, class: 'item' %>
+  <%= link_to 'My Courses', my_course_students_path, class: 'item' %>
   <div class="header item">Courses</div>
 </div>
 
@@ -14,17 +14,17 @@
   </thead>
 
   <tbody>
-  <% @course_members.each do |course_member| %>
+  <% @course_students.each do |course_student| %>
     <tr>
-      <td><%= course_member.course_id %></td>
+      <td><%= course_student.course_id %></td>
       <td>
-        <%= link_to course_member.course.title, my_course_path(course_member.course_id) %>
+        <%= link_to course_student.course.title, my_course_path(course_student.course_id) %>
       </td>
       <td>
-        <%= course_member.course.limit_people %> / <%= course_member.course.course_members_count %>
+        <%= course_student.course.limit_people %> / <%= course_student.course.course_students_count %>
       </td>
       <td>
-        <span class="ui label"><%= course_member.state_i18n %></span>
+        <span class="ui label"><%= course_student.state_i18n %></span>
       </td>
     </tr>
   <% end %>
@@ -35,10 +35,10 @@
         <%= link_to course.title, my_course_path(course) %>
       </td>
       <td>
-        <%= course.limit_people %> / <%= course.course_members_count %>
+        <%= course.limit_people %> / <%= course.course_students_count %>
       </td>
       <td>
-        <%= link_to 'Select', my_course_members_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
+        <%= link_to 'Select', my_course_students_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
       </td>
     </tr>
   <% end %>

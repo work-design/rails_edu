@@ -14,27 +14,27 @@
     <th><%= Course.human_attribute_name(:lecturer) %></th>
     <th><%= Course.human_attribute_name(:type) %></th>
     <th><%= Course.human_attribute_name(:course_taxon) %></th>
-    <th><%= CourseMember.human_attribute_name(:state) %></th>
+    <th><%= CourseStudent.human_attribute_name(:state) %></th>
   </tr>
   </thead>
-  
+
   <tbody>
-  <% @course_members.each do |course_member| %>
+  <% @course_students.each do |course_student| %>
     <tr>
-      <td><%= course_member.course_id %></td>
+      <td><%= course_student.course_id %></td>
       <td>
-        <%= link_to course_member.course.title, my_course_path(course_member.course_id) %>
-        <span class="<%= active_assert(course_member.course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course_member.course.compulsory_i18n %></span>
+        <%= link_to course_student.course.title, my_course_path(course_student.course_id) %>
+        <span class="<%= active_assert(course_student.course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course_student.course.compulsory_i18n %></span>
       </td>
-      <td><%= course_member.course.lecturer&.name %></td>
-      <td><%= course_member.course.type_i18n %></td>
-      <td><%= course_member.course.course_taxon&.name %></td>
+      <td><%= course_student.course.lecturer&.name %></td>
+      <td><%= course_student.course.type_i18n %></td>
+      <td><%= course_student.course.course_taxon&.name %></td>
       <td>
-        <span class="ui label"><%= course_member.state_i18n %></span>
-        <% if course_member.in_studying? %>
-          <%= link_to 'Quit', quit_my_course_member_path(course_member), remote: true %>
+        <span class="ui label"><%= course_student.state_i18n %></span>
+        <% if course_student.in_studying? %>
+          <%= link_to 'Quit', quit_my_course_student_path(course_student), remote: true %>
         <% else %>
-          <span><%= course_member.score %></span>
+          <span><%= course_student.score %></span>
         <% end %>
       </td>
     </tr>
@@ -42,6 +42,6 @@
   </tbody>
 </table>
 
-<%= paginate @course_members %>
+<%= paginate @course_students %>
 
-<div id="course_member_modal"></div>
+<div id="course_student_modal"></div>

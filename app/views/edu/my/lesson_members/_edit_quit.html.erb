@@ -1,12 +1,12 @@
-<div class="ui modal" id="course_member_modal">
+<div class="ui modal" id="course_student_modal">
   <i class="close icon"></i>
   <div class="ui header blue">
     Add Note
   </div>
 
   <div class="content">
-    <%= form_with model: @course_member, url: quit_my_course_member_path, method: :patch do |f| %>
-      <%= render 'shared/error_messages', target: @course_member %>
+    <%= form_with model: @course_student, url: quit_my_course_student_path, method: :patch do |f| %>
+      <%= render 'shared/error_messages', target: @course_student %>
       <%= f.text_area :quit_note %>
       <%= f.submit %>
     <% end %>

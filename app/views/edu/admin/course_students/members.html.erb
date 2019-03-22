@@ -5,7 +5,7 @@
 </div>
 
 <div class="ui attached segment">
-  <%= link_to 'confirm', check_admin_course_course_members_path(@course), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
+  <%= link_to 'confirm', check_admin_course_course_students_path(@course), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
 </div>
 
 <table class="ui bottom attached table">
@@ -29,7 +29,7 @@
   <tr>
     <td>
       <%= member.id %>
-      <%= check_box_tag :member_id, member.id, @course.course_members.pluck(:member_id).include?(member.id), id: nil %>
+      <%= check_box_tag :member_id, member.id, @course.course_students.pluck(:member_id).include?(member.id), id: nil %>
     </td>
     <td><%= member.name %></td>
     <td><%= member.office&.name %></td>
@@ -38,7 +38,7 @@
     <td></td>
     <td><%= member.join_on %></td>
     <td>
-      <% @course.course_members.where(member_id: member.id).each do |pl| %>
+      <% @course.course_students.where(member_id: member.id).each do |pl| %>
         <div><%= pl.assigned_status %></div>
       <% end %>
     </td>

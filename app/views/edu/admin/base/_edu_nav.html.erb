@@ -1,11 +1,11 @@
 <div class="item">
-  <a class="<%= active_helper(controllers: ['courses', 'course_taxons', 'course_members', 'course_papers', 'exams', 'teachers'], active_class: 'title active', item_class: 'title') %>">
+  <a class="<%= active_helper(controllers: ['courses', 'course_taxons', 'course_students', 'course_papers', 'exams', 'teachers'], active_class: 'title active', item_class: 'title') %>">
     <i class="plug icon"></i>
     <span>教务管理</span>
     <i class="dropdown icon"></i>
   </a>
-  <div class="<%= active_helper(controllers: ['courses', 'course_taxons', 'course_members', 'course_papers', 'exams', 'teachers'], active_class: 'menu content active', item_class: 'menu content') %>">
-    <%= link_to 'Courses', admin_courses_path, class: active_helper(controllers: ['courses', 'course_taxons', 'course_members']) %>
+  <div class="<%= active_helper(controllers: ['courses', 'course_taxons', 'course_students', 'course_papers', 'exams', 'teachers'], active_class: 'menu content active', item_class: 'menu content') %>">
+    <%= link_to 'Courses', admin_courses_path, class: active_helper(controllers: ['courses', 'course_taxons', 'course_students']) %>
     <%= link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
     <%= link_to 'Teachers', admin_teachers_path, class: active_helper(controllers: 'teachers') %>
   </div>

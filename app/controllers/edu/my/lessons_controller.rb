@@ -7,11 +7,11 @@ class Edu::My::CoursesController < Edu::My::BaseController
       'course.course_taxon_id': params[:course_taxon_id],
       'course.title-asc': params['title-asc']
     }
-    @course_members = current_member.course_members.includes(:course).default_where(l_params)
+    @course_students = current_member.course_students.includes(:course).default_where(l_params)
 
     q_params = params.fetch(:q, {}).permit!
     q_params.merge! params.permit(:type, 'title-asc', :course_taxon_id)
-    q_params.merge! 'id-not': @course_members.pluck(:course_id)
+    q_params.merge! 'id-not': @course_students.pluck(:course_id)
     # if current_member.department
     #   @courses = current_member.department.courses.default_where(q_params).page(params[:page])
     # else

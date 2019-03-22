@@ -1,0 +1,6 @@
+<%= form_with model: @crowd do |f| %>
+  <%= render 'shared/error_messages', target: @crowd %>
+  <%= f.text_field :name %>
+  <%= f.text_field :student_type %>
+  <%= f.submit %>
+<% end %>
