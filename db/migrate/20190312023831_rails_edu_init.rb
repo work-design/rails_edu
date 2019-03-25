@@ -27,6 +27,15 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :lesson_students do |t|
+      t.references :lesson
+      t.references :course
+      t.references :student, polymorphic: true
+      t.string :state
+      t.boolean :attended, default: false
+      t.timestamps
+    end
+
     create_table :course_grants do |t|
       t.references :course
       t.references :department
@@ -52,7 +61,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :student, polymorphic: true
       t.string :state
       t.string :watch_ids
-      t.boolean :attended, default: false
       t.integer :score
       t.string :comment, limit: 4096
       t.string :quit_note
