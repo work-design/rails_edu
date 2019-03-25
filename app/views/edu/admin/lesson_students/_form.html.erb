@@ -1,0 +1,8 @@
+<%= form_with model: @lesson_student do |f| %>
+  <%= render 'shared/error_messages', target: @lesson_student %>
+  <%= f.text_field :student %>
+  <%= f.text_field :state %>
+  <%= f.text_field :attended %>
+  <%= f.text_field :created_at %>
+  <%= f.submit %>
+<% end %>

@@ -13,12 +13,14 @@ module RailsEdu
       g.rails = {
         assets: false,
         stylesheets: false,
-        helper: false,
-        jbuilder: true
+        helper: false
       }
       g.test_unit = {
         fixture: true,
         fixture_replacement: :factory_girl
+      }
+      g.scaffold_controller = {
+        jbuilder: true
       }
       g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
     end

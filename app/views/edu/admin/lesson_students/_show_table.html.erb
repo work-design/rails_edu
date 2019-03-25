@@ -1,0 +1,28 @@
+<table class="ui very basic large table">
+  <thead>
+    <tr>
+      <th class="six wide">
+        <%= link_to t('.edit'), edit_admin_lesson_student_path(@lesson_student), class: 'ui mini blue right floated button', remote: true %>
+      </th>
+      <th class="ten wide"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="right aligned"><%= LessonStudent.human_attribute_name(:student) %></td>
+      <td><%= @lesson_student.student %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= LessonStudent.human_attribute_name(:state) %></td>
+      <td><%= @lesson_student.state %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= LessonStudent.human_attribute_name(:attended) %></td>
+      <td><%= @lesson_student.attended %></td>
+    </tr>
+    <tr>
+      <td class="right aligned"><%= LessonStudent.human_attribute_name(:created_at) %></td>
+      <td><%= @lesson_student.created_at %></td>
+    </tr>
+  </tbody>
+</table>

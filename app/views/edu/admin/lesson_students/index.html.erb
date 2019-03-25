@@ -1,0 +1,47 @@
+<div class="ui top attached borderless menu">
+  <div class="header item">Edu Admin Lesson Students</div>
+  <div class="right menu">
+    <div class="item">
+      <%= link_to 'New Edu Admin Lesson Student', new_admin_lesson_student_path, class: 'ui teal button', remote: true %>
+    </div>
+  </div>
+</div>
+
+<%= render 'filter' %>
+
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= LessonStudent.human_attribute_name(:id) %></th>
+      <th><%= LessonStudent.human_attribute_name(:student) %></th>
+      <th><%= LessonStudent.human_attribute_name(:state) %></th>
+      <th><%= LessonStudent.human_attribute_name(:attended) %></th>
+      <th><%= LessonStudent.human_attribute_name(:created_at) %></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lesson_students.each do |lesson_student| %>
+    <tr>
+      <td><%= lesson_student.id %></td>
+      <td><%= lesson_student.student %></td>
+      <td><%= lesson_student.state %></td>
+      <td><%= lesson_student.attended %></td>
+      <td><%= lesson_student.created_at %></td>
+      <td class="ui labels">
+        <%= link_to admin_lesson_student_path(lesson_student), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+          <i class="location arrow icon"></i>
+        <% end %>
+        <%= link_to edit_admin_lesson_student_path(lesson_student), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+          <i class="pencil alternate icon"></i>
+        <% end %>
+        <%= link_to admin_lesson_student_path(lesson_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+          <i class="times icon"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @lesson_students %>
