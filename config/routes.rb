@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         post :attend, on: :collection
         patch :quit, on: :member
       end
+      resources :lessons
     end
     resources :crowds do
       resources :crowd_students

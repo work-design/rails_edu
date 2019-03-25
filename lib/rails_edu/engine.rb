@@ -21,11 +21,11 @@ module RailsEdu
         fixture_replacement: :factory_girl
       }
       g.templates.unshift File.expand_path('lib/templates', RailsCom::Engine.root)
-
-      initializer 'rails_edu.assets.precompile' do |app|
-        app.config.assets.precompile += ['rails_edu_manifest.js']
-      end
-
     end
+
+    initializer 'rails_edu.assets.precompile' do |app|
+      app.config.assets.precompile += ['rails_edu_manifest.js']
+    end
+
   end
 end

@@ -2,7 +2,7 @@
   <div class="header item">Edu Admin Lessons</div>
   <div class="right menu">
     <div class="item">
-      <%= link_to 'New Edu Admin Lesson', new_admin_lesson_path, class: 'ui teal button', remote: true %>
+      <%= link_to 'New Edu Admin Lesson', new_admin_course_lesson_path(@course), class: 'ui teal button', remote: true %>
     </div>
   </div>
 </div>
@@ -24,16 +24,20 @@
     <tr>
       <td><%= lesson.id %></td>
       <td><%= lesson.title %></td>
-      <td><%= lesson.videos %></td>
-      <td><%= lesson.documents %></td>
+      <td>
+        <%= render 'active_storage_ext/attachments/list', target: lesson.videos %>
+      </td>
+      <td>
+        <%= render 'active_storage_ext/attachments/list', target: lesson.documents %>
+      </td>
       <td class="ui labels">
-        <%= link_to admin_lesson_path(lesson), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+        <%= link_to admin_course_lesson_path(@course, lesson), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_admin_lesson_path(lesson), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+        <%= link_to edit_admin_course_lesson_path(@course, lesson), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_lesson_path(lesson), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to admin_course_lesson_path(@course, lesson), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>
