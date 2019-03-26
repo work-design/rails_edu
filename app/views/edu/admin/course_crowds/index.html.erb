@@ -1,8 +1,6 @@
 <%= render 'nav_course' %>
 
-<div class="ui top attached segment">
-  <%= render 'search_form' %>
-</div>
+<%= render 'filter' %>
 
 <div class="ui attached segment">
   <%= link_to 'confirm', check_admin_course_course_students_path(@course), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
@@ -31,8 +29,11 @@
     <td>
       <%= render partial: 'crowd_student', locals: { students: crowd.students } %>
     </td>
-    <td></td>
-    <td></td>
+    <td>
+      <%= link_to admin_course_course_crowds_path(@course), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+        <i class="location arrow icon"></i>
+      <% end %>
+    </td>
   </tr>
   <% end %>
   </tbody>

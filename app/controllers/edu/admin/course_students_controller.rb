@@ -13,13 +13,6 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
     end
   end
 
-  def crowds
-    q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
-    q_params.merge! params.permit(:id, :email, :office_id)
-    @crowds = Crowd.includes(crowd_students: :student).default_where(q_params).page(params[:page])
-    @course_students = @course.course_students.page(params[:page])
-  end
-
   def new
     @course_student = CourseStudent.new
   end

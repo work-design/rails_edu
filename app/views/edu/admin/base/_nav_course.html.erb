@@ -7,8 +7,8 @@
   <%= link_to 'Course Detail', admin_course_path(@course), class: active_helper(id: @course.id) %>
   <%= link_to 'Exam/Survey', admin_course_papers_path(course_id: @course.id), class: active_helper(controllers: 'course_papers') %>
   <%# link_to 'Finished Exams', admin_course_exams_path(@course), class: active_helper(controllers: 'exams') %>
-  <%= link_to 'Joined People', admin_course_course_students_path(@course), class: active_helper('admin_admin/course_students': 'index') %>
-  <%= link_to 'Select People', crowds_admin_course_course_students_path(@course), class: active_helper('admin_admin/course_students': 'members') %>
+  <%= link_to 'Joined People', admin_course_course_students_path(@course), class: active_helper('edu/admin/course_students': 'index') %>
+  <%= link_to 'Select People', admin_course_course_crowds_path(@course), class: active_helper('edu/admin/course_students': 'members') %>
   <div class="right menu">
     <div class="item">
       <%= link_to t('.export'), find_data_list_table_lists_path('CourseStudentExport', params.permit(:course_id).merge(timestamp: @course.timestamp)), class: 'ui mini blue button', remote: true %>
