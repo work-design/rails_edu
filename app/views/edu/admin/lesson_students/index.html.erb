@@ -24,7 +24,11 @@
       <td><%= course_student.created_at %></td>
       <td>
         <div class="ui toggle checkbox">
-          <%= check_box_tag :lesson_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+          <% if @lesson.student_ids.include?(course_student.student_id) %>
+            <%= check_box_tag :lesson_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+          <% else %>
+            <%= check_box_tag :lesson_student_id, course_student.id, false, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+          <% end %>
         </div>
       </td>
       <td class="ui labels">
@@ -40,4 +44,4 @@
   </tbody>
 </table>
 
-<%= paginate @lesson_students %>
+<%= paginate @course_students %>

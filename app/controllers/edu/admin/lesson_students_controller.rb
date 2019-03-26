@@ -3,7 +3,7 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   before_action :set_lesson_student, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_students = @lesson.course.course_students
+    @course_students = @lesson.course.course_students.page(params[:page])
     @lesson_students = LessonStudent.page(params[:page])
   end
 
