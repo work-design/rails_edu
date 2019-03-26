@@ -32,7 +32,7 @@
     <td>
       <div class="ui toggle checkbox">
         <% if @course.crowd_ids.include?(crowd.id) %>
-          <%= check_box_tag :crowd_id, crowd.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(@course, crowd.id), submit: true }, id: nil %>
+          <%= check_box_tag :crowd_id, crowd.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
         <% else %>
           <%= check_box_tag :crowd_id, crowd.id, false, data: { method: :post, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
         <% end %>

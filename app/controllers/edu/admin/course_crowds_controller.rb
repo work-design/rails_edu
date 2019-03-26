@@ -4,10 +4,10 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   def index
     q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
     q_params.merge! params.permit(:id, :email, :office_id)
+    @course_crowds = @course.course_crowds
     @crowds = Crowd.includes(crowd_students: :student).default_where(q_params).page(params[:page])
-    @course_students = @course.course_students.page(params[:page])
 
-    @course_crowds = CourseCrowd.page(params[:page])
+    @course_students = @course.course_students.page(params[:page])
   end
 
   def create
