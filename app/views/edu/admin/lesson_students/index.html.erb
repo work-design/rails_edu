@@ -23,7 +23,9 @@
       <td><%= course_student.state %></td>
       <td><%= course_student.created_at %></td>
       <td>
-        <%# check_box_tag :lesson_student_id, course_student.id, course_student.attended, id: nil %>
+        <div class="ui toggle checkbox">
+          <%= check_box_tag :lesson_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+        </div>
       </td>
       <td class="ui labels">
         <%= link_to edit_admin_lesson_lesson_student_path(@lesson, course_student), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
