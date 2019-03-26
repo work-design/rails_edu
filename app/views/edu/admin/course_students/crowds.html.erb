@@ -16,8 +16,6 @@
         <%= check_box_tag :member_all, 1, false, onclick: "toggleAll(this, 'member_id')", id: nil %>
       </th>
       <th>Name</th>
-      <th>Office</th>
-      <th>Section</th>
       <th></th>
       <th></th>
       <th>Join Time</th>
@@ -30,22 +28,12 @@
     <td>
       <%= crowd.name %>
     </td>
-    <%= check_box_tag :member_id, member.id, @course.course_students.pluck(:member_id).include?(member.id), id: nil %>
-  
-    <td><%= member.name %></td>
-    <td><%= member.office&.name %></td>
-    <td><%= member.department&.full_name %></td>
-    <td></td>
-    <td></td>
-    <td><%= member.join_on %></td>
     <td>
-      <% @course.course_students.where(member_id: member.id).each do |pl| %>
-        <div><%= pl.assigned_status %></div>
-      <% end %>
+      <%= render partial: 'crowd_student', locals: { students: crowd.students } %>
     </td>
+    <td></td>
+    <td></td>
   </tr>
   <% end %>
   </tbody>
 </table>
-
-<%= paginate @members %>
