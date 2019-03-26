@@ -7,10 +7,8 @@
 <table class="ui bottom attached table">
   <thead>
     <tr>
-      <th><%= LessonStudent.human_attribute_name(:id) %></th>
       <th><%= LessonStudent.human_attribute_name(:student) %></th>
       <th><%= LessonStudent.human_attribute_name(:state) %></th>
-      <th><%= LessonStudent.human_attribute_name(:attended) %></th>
       <th><%= LessonStudent.human_attribute_name(:created_at) %></th>
       <th>
         <%= LessonStudent.human_attribute_name(:attended) %>
@@ -19,24 +17,19 @@
     </tr>
   </thead>
   <tbody>
-  <% @lesson_students.each do |lesson_student| %>
+  <% @course_students.each do |course_student| %>
     <tr>
-      <td><%= lesson_student.id %></td>
-      <td><%= lesson_student.student %></td>
-      <td><%= lesson_student.state %></td>
-      <td><%= lesson_student.attended %></td>
-      <td><%= lesson_student.created_at %></td>
+      <td><%= course_student.student.real_name %></td>
+      <td><%= course_student.state %></td>
+      <td><%= course_student.created_at %></td>
       <td>
-        <%= check_box_tag :lesson_student_id, lesson_student.id, lesson_student.attended, id: nil %>
+        <%# check_box_tag :lesson_student_id, course_student.id, course_student.attended, id: nil %>
       </td>
       <td class="ui labels">
-        <%= link_to admin_lesson_student_path(lesson_student), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
-          <i class="location arrow icon"></i>
-        <% end %>
-        <%= link_to edit_admin_lesson_student_path(lesson_student), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+        <%= link_to edit_admin_lesson_lesson_student_path(@lesson, course_student), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_lesson_student_path(lesson_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to admin_lesson_lesson_student_path(@lesson, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>
