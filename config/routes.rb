@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :courses do
       get :all, on: :collection
       get :meet, on: :member
-      resources :course_crowds, only: [:index, :create, :destroy] do
-
+      resources :course_crowds, only: [:index, :create] do
+        delete '' => :destroy, on: :collection
       end
       resources :course_students do
         post :check, on: :collection

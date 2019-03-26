@@ -6,7 +6,7 @@ class CourseStudent < ApplicationRecord
   belongs_to :course, counter_cache: true
   belongs_to :student, polymorphic: true
 
-  validates :member_id, uniqueness: { scope: :course_id }
+  validates :student_id, uniqueness: { scope: [:student_type, :course_id] }
 
   enum state: {
     in_studying: 'in_studying',

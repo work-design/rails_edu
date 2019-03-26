@@ -11,7 +11,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   end
 
   def create
-    @course_crowd = @course.course_crowds.build(params.permit(:crowd_id))
+    @course_crowd = @course.course_crowds.find_or_initialize_by(crowd_id: params[:crowd_id])
 
     respond_to do |format|
       if @course_crowd.save
@@ -47,8 +47,10 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   end
 
   def destroy
+    @course_crowd = @course.course_crowds.find_by(crowd_id: params[:crowd_id])
     @course_crowd.destroy
-    redirect_to admin_course_crowds_url, notice: 'Course crowd was successfully destroyed.'
+
+    redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully destroyed.'
   end
 
   private

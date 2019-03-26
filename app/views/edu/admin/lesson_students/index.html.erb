@@ -12,6 +12,9 @@
       <th><%= LessonStudent.human_attribute_name(:state) %></th>
       <th><%= LessonStudent.human_attribute_name(:attended) %></th>
       <th><%= LessonStudent.human_attribute_name(:created_at) %></th>
+      <th>
+        <%= LessonStudent.human_attribute_name(:attended) %>
+      </th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -23,6 +26,9 @@
       <td><%= lesson_student.state %></td>
       <td><%= lesson_student.attended %></td>
       <td><%= lesson_student.created_at %></td>
+      <td>
+        <%= check_box_tag :lesson_student_id, lesson_student.id, lesson_student.attended, id: nil %>
+      </td>
       <td class="ui labels">
         <%= link_to admin_lesson_student_path(lesson_student), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
           <i class="location arrow icon"></i>
