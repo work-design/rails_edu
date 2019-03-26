@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   belongs_to :course_taxon, optional: true
   belongs_to :author, class_name: 'Teacher', optional: true
+  belongs_to :teacher
 
   has_many :lessons
 

@@ -32,30 +32,12 @@
     <td><%= @course.limit_people %></td>
   </tr>
   <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:lecturer) %></td>
-    <td><%= @course.lecturer&.name %></td>
+    <td class="right aligned"><%= Course.human_attribute_name(:teacher) %></td>
+    <td><%= @course.teacher&.name %></td>
   </tr>
   <tr>
     <td class="right aligned">Lecturer Desc: </td>
-    <td><%= simple_format(@course.lecturer&.description) %></td>
-  </tr>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:video) %></td>
-    <td>
-      <%= render partial: 'active_storage/attachments/list_edit', locals: { target: @course.video } %>
-    </td>
-  </tr>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:en_video) %></td>
-    <td>
-      <%= render partial: 'active_storage/attachments/list_edit', locals: { target: @course.en_video } %>
-    </td>
-  </tr>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:document) %></td>
-    <td>
-      <%= render 'active_storage/attachments/list_edit', target: @course.document %>
-    </td>
+    <td><%= simple_format(@course.teacher&.description) %></td>
   </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:compulsory) %></td>
@@ -66,10 +48,6 @@
     </td>
   </tr>
   <% unless @course.is_a?(OnlineCourse) %>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:meeting_room) %></td>
-    <td><%= @course.meeting_room %></td>
-  </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:next_start_time) %></td>
     <td><time><%= @course.next_start_time.to_s(:rfc822) if @course.next_start_time %></time></td>
