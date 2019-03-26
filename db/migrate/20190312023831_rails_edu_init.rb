@@ -56,9 +56,16 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :course_crowds do |t|
+      t.references :course
+      t.references :crowd
+      t.timestamps
+    end
+
     create_table :course_students do |t|
       t.references :course
       t.references :student, polymorphic: true
+      t.references :course_crowd
       t.string :state
       t.string :watch_ids
       t.integer :score

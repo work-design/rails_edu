@@ -2,7 +2,8 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
   before_action :set_crowd, only: [:show, :edit, :update, :destroy]
 
   def index
-    @crowds = Crowd.page(params[:page])
+    q_params = default_params
+    @crowds = Crowd.default_where(q_params).page(params[:page])
   end
 
   def new
@@ -63,10 +64,11 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
   end
 
   def crowd_params
-    params.fetch(:crowd, {}).permit(
+    p = params.fetch(:crowd, {}).permit(
       :name,
       :student_type
     )
+    p.merge! default_params
   end
 
 end

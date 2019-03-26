@@ -2,9 +2,12 @@ class Course < ApplicationRecord
   belongs_to :course_taxon, optional: true
   belongs_to :author, class_name: 'Teacher', optional: true
 
-  has_many :course_students, dependent: :destroy
-  has_many :members, through: :course_student
   has_many :lessons
+
+  has_many :course_crowds
+  has_many :crowds, through: :course_crowds
+  has_many :course_students, dependent: :destroy
+  has_many :students, through: :course_students
 
   has_many :course_grants, dependent: :destroy
   has_many :course_papers, dependent: :destroy

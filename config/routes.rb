@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :all, on: :collection
       get :meet, on: :member
       resources :course_students do
-        get :members, on: :collection
+        get :crowds, on: :collection
         post :check, on: :collection
         post :attend, on: :collection
         patch :quit, on: :member

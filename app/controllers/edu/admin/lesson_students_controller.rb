@@ -1,7 +1,9 @@
 class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
+  before_action :set_lesson
   before_action :set_lesson_student, only: [:show, :edit, :update, :destroy]
 
   def index
+    @course_students = @lesson.course.course_students
     @lesson_students = LessonStudent.page(params[:page])
   end
 
@@ -57,6 +59,10 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   private
+  def set_lesson
+    @lesson = Lesson.find params[:lesson_id]
+  end
+
   def set_lesson_student
     @lesson_student = LessonStudent.find(params[:id])
   end

@@ -1,6 +1,8 @@
 class CourseStudent < ApplicationRecord
   include StateMachine
   attribute :state, :string, default: 'in_studying'
+
+  belongs_to :course_crowd, optional: true
   belongs_to :course, counter_cache: true
   belongs_to :student, polymorphic: true
 
