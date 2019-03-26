@@ -11,18 +11,18 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   end
 
   def create
-    @course_crowd = CourseCrowd.new(course_crowd_params)
+    @course_crowd = @course.course_crowds.build(params.permit(:crowd_id))
 
     respond_to do |format|
       if @course_crowd.save
         format.html.phone
-        format.html { redirect_to admin_course_crowds_url, notice: 'Course crowd was successfully created.' }
-        format.js { redirect_back fallback_location: admin_course_crowds_url }
+        format.html { redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully created.' }
+        format.js { redirect_to admin_course_course_crowds_url(@course) }
         format.json { render :show }
       else
         format.html.phone { render :new }
         format.html { render :new }
-        format.js { redirect_back fallback_location: admin_course_crowds_url }
+        format.js { redirect_to admin_course_course_crowds_url(@course) }
         format.json { render :show }
       end
     end

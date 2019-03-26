@@ -4,4 +4,18 @@ class CourseCrowd < ApplicationRecord
 
   has_many :course_students
 
+  after_create_commit :sync_to_course_students
+  after_destroy_commit :destroy_from_course_students
+
+  def sync_to_course_students
+    self.crowd.students.each do |i|
+      cs = i.course_students.build(student_id: i.id)
+      cs.save
+    end
+  end
+
+  def destroy_from_course_students
+
+  end
+
 end
