@@ -25,9 +25,9 @@
       <td>
         <div class="ui toggle checkbox">
           <% if @lesson.student_ids.include?(course_student.student_id) %>
-            <%= check_box_tag :lesson_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+            <%= check_box_tag :course_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_lesson_lesson_students_path(@lesson), submit: true }, id: nil %>
           <% else %>
-            <%= check_box_tag :lesson_student_id, course_student.id, false, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(course_student), submit: true }, id: nil %>
+            <%= check_box_tag :course_student_id, course_student.id, false, data: { method: :post, remote: true, url: admin_lesson_lesson_students_path(@lesson), submit: true }, id: nil %>
           <% end %>
         </div>
       </td>

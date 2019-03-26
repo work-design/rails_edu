@@ -5,7 +5,7 @@ class CourseStudent < ApplicationRecord
   belongs_to :course_crowd, optional: true
   belongs_to :course, counter_cache: true
   belongs_to :student, polymorphic: true
-  has_many :lesson_students, ->(o){ where(student_type: o.student_type, student_id: o.student_id) }, foreign_key: :course_id, primary_key: :course_id
+  has_many :lesson_students
 
   validates :student_id, uniqueness: { scope: [:student_type, :course_id] }
 

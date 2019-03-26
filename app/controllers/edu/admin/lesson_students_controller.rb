@@ -12,13 +12,13 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   def create
-    @lesson_student = LessonStudent.new(lesson_student_params)
+    @lesson_student = @lesson.lesson_students.build(course_student_id: params[:course_student_id])
 
     respond_to do |format|
       if @lesson_student.save
         format.html.phone
-        format.html { redirect_to admin_lesson_students_url, notice: 'Lesson student was successfully created.' }
-        format.js { redirect_back fallback_location: admin_lesson_students_url }
+        format.html { redirect_to admin_lesson_lesson_students_url(@lesson), notice: 'Lesson student was successfully created.' }
+        format.js { redirect_to admin_lesson_lesson_students_url(@lesson) }
         format.json { render :show }
       else
         format.html.phone { render :new }

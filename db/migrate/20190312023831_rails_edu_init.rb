@@ -29,6 +29,7 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
 
     create_table :lesson_students do |t|
       t.references :lesson
+      t.references :course_student
       t.references :course
       t.references :student, polymorphic: true
       t.string :state
