@@ -1,0 +1,7 @@
+<div class="item">
+  <span class="header">Training</span>
+  <div class="menu">
+    <%= link_to 'Lessons', my_lesson_members_path, class: active_helper(controllers: ['lesson_members', 'lessons'], 'train_admin/exams': ['todo', 'cert'], 'train_my/exams': ['index']) %>
+    <%= link_to 'Certification Test', certification_my_exams_path, class: active_helper('train_my/exams': 'certification') %>
+  </div>
+</div>
