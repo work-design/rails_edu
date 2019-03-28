@@ -1,6 +1,26 @@
 en:
   activerecord:
-    attributes:
+    enum:
       course/type:
         OffineCourse: Offline Course
         OnlineCourse: Online Course
+        ShareLesson: Experience Sharing
+        CaseStudy: Case Study
+      course/compulsory:
+        true: compulsory
+        false: optional
+      course_student/state:
+        in_studying: Registered
+        request_quit: Cancel
+        quitted: Cancelled
+        in_evaluating: Reviewing
+        passed: Passed
+        failed: Failed
+      course_paper/type:
+        ExamPaper: Exam Paper
+        SurveyPaper: Survey Paper
+        CertifiablePaper: Certification Test
+      time_plan/repeat_type:
+        once: Once
+        week: Weekly
+        month: Monthly
