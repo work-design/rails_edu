@@ -1,0 +1,7 @@
+en:
+  activerecord:
+    attributes:
+      lesson:
+        lesson_taxon: Module
+      lesson_member:
+        state: Status

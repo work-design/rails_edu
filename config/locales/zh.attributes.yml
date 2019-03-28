@@ -1,0 +1,7 @@
+zh:
+  activerecord:
+    attributes:
+      course:
+        course_taxon: 类别
+      course_student:
+        state: 状态
