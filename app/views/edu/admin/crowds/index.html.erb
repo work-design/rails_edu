@@ -1,13 +1,12 @@
-<div class="ui top attached borderless menu">
-  <div class="header item">Edu Admin Crowds</div>
-  <div class="right menu">
-    <div class="item">
-      <%= link_to 'New Edu Admin Crowd', new_admin_crowd_path, class: 'ui teal button', remote: true %>
-    </div>
-  </div>
+<%= render 'layouts/topbar' %>
+<div class="content-breadcrumb-section">
+  <%= render 'layouts/breadcrumb' %>
 </div>
 
-<%= render 'filter' %>
+<div class="ui attached segment">
+  <%= render 'filter' %>
+  <%= render 'right_menu_table_tool'%>
+</div>
 
 <table class="ui bottom attached table">
   <thead>
