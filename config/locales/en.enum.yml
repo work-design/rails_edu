@@ -20,7 +20,3 @@ en:
         ExamPaper: Exam Paper
         SurveyPaper: Survey Paper
         CertifiablePaper: Certification Test
-      time_plan/repeat_type:
-        once: Once
-        week: Weekly
-        month: Monthly

@@ -20,7 +20,3 @@ zh:
         ExamPaper: 考卷
         SurveyPaper: 调查问卷
         CertifiablePaper: 认证考试
-      time_plan/repeat_type:
-        once: 一次
-        week: 每周
-        month: 每月
