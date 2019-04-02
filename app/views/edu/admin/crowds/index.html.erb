@@ -25,14 +25,14 @@
       <td><%= crowd.student_type_i18n %></td>
       <td><%= crowd.crowd_students_count %></td>
       <td class="ui labels">
-        <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui blue mini icon button', remote: true do %>
+        <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui circular mini icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+        <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui circular mini icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui circular mini icon button' do %>
+          <i class="trash alternate icon"></i>
         <% end %>
       </td>
     </tr>
