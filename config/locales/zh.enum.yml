@@ -1,22 +1,25 @@
 zh:
   activerecord:
     enum:
-      course/type:
-        OfflineCourse: 线下课程
-        OnlineCourse: 在线课程
-        ShareLesson: 分享
-        CaseStudy: 案例
-      course/compulsory:
-        true: 必修
-        false: 选修
-      course_student/state:
-        in_studying: In Studying
-        request_quit: Request quit
-        quitted: Quitted
-        in_evaluating: Reviewing
-        passed: Passed
-        failed: Failed
-      course_paper/type:
-        ExamPaper: 考卷
-        SurveyPaper: 调查问卷
-        CertifiablePaper: 认证考试
+      course:
+        type:
+          OfflineCourse: 线下课程
+          OnlineCourse: 在线课程
+          ShareLesson: 分享
+          CaseStudy: 案例
+        compulsory:
+          true: 必修
+          false: 选修
+      course_student:
+        state:
+          in_studying: In Studying
+          request_quit: Request quit
+          quitted: Quitted
+          in_evaluating: Reviewing
+          passed: Passed
+          failed: Failed
+      course_paper:
+        type:
+          ExamPaper: 考卷
+          SurveyPaper: 调查问卷
+          CertifiablePaper: 认证考试
