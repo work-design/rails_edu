@@ -3,7 +3,7 @@ en:
     enum:
       course:
         type:
-          OffineCourse: Offline Course
+          OfflineCourse: Offline Course
           OnlineCourse: Online Course
           ShareLesson: Experience Sharing
           CaseStudy: Case Study
