@@ -5,8 +5,6 @@ zh:
         type:
           OfflineCourse: 线下课程
           OnlineCourse: 在线课程
-          ShareLesson: 分享
-          CaseStudy: 案例
         compulsory:
           true: 必修
           false: 选修

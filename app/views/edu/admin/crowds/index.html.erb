@@ -1,10 +1,9 @@
-<div class="content-breadcrumb-section">
-  <%= render 'layouts/breadcrumb' %>
-</div>
+<% content_for :breadcrumb do %>
+  <%= render 'breadcrumb' %>
+<% end %>
 
 <div class="ui attached segment">
   <%= render 'filter' %>
-  <%= render 'right_menu_table_tool'%>
 </div>
 
 <table class="ui bottom attached table">
@@ -14,7 +13,9 @@
       <th><%= Crowd.human_attribute_name(:name) %></th>
       <th><%= Crowd.human_attribute_name(:student_type) %></th>
       <th><%= Crowd.human_attribute_name(:crowd_students_count) %></th>
-      <th>Actions</th>
+      <th>
+        <%= link_to 'New Crowd', new_admin_crowd_path, class: 'ui teal primary button', remote: true %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -24,14 +25,14 @@
       <td><%= crowd.name %></td>
       <td><%= crowd.student_type_i18n %></td>
       <td><%= crowd.crowd_students_count %></td>
-      <td class="ui labels">
-        <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui circular mini icon button', remote: true do %>
+      <td>
+        <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui circular mini icon button', remote: true do %>
+        <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui circular mini icon button' do %>
+        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
           <i class="trash alternate icon"></i>
         <% end %>
       </td>

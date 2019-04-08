@@ -5,8 +5,6 @@ en:
         type:
           OfflineCourse: Offline Course
           OnlineCourse: Online Course
-          ShareLesson: Experience Sharing
-          CaseStudy: Case Study
         compulsory:
           true: compulsory
           false: optional

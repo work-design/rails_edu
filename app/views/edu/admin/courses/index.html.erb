@@ -1,12 +1,9 @@
 <% content_for :breadcrumb do %>
-<div class="content-breadcrumb-section">
-  <%= render 'layouts/breadcrumb' %>
-</div>
+  <%= render 'breadcrumb' %>
 <% end %>
 
 <div class="ui attached segment">
   <%= render 'search_form' %>
-  <%= render 'right_menu_table_tool' %>
 </div>
 
 <table class="ui bottom attached fixed table">
@@ -21,7 +18,10 @@
       </th>
       <th class="two wide"><%= Course.human_attribute_name(:author) %></th>
       <th class="one wide"><%= Course.human_attribute_name(:limit_people) %></th>
-      <th class="two wide"></th>
+      <th class="two wide">
+        <%= link_to 'New', new_admin_course_path, remote: true, class: 'ui primary button' %>
+        <%= link_to 'Course Taxon', new_admin_course_taxon_path, class: 'ui primary button' %>
+      </th>
     </tr>
   </thead>
 
@@ -38,16 +38,18 @@
       <td>
         <%= course.limit_people %> / <%= course.course_students_count %>
       </td>
-      <td class="ui labels">
+      <td>
         <%= link_to '分配学生', admin_course_course_students_path(course), class: 'ui green label' %>
         <%= link_to '课程安排', time_plans_path('Course', course.id), class: 'ui pink label' %>
-        <%= link_to admin_course_lessons_path(course), data: { tooltip: '课程内容' }, class: 'ui green mini icon button' do %>
+        <%= link_to admin_course_lessons_path(course), data: { tooltip: '课程内容' }, class: 'ui mini circular icon button' do %>
           <i class="list icon"></i>
         <% end %>
-        <%= link_to edit_admin_course_path(course), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button' do %>
+        <%= link_to edit_admin_course_path(course), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to t('.destroy'), admin_course_path(course), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red label' %>
+        <%= link_to admin_course_path(course), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+          <i class="trash alternate icon"></i>
+        <% end %>
       </td>
     </tr>
   <% end %>
