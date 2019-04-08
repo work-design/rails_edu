@@ -7,6 +7,6 @@
   <div class="<%= active_helper(controllers: ['courses', 'course_taxons', 'crowds', 'course_students', 'course_papers', 'exams', 'teachers'], active_class: 'menu content active', item_class: 'menu content') %>">
     <%= link_to '课程', admin_courses_path, class: active_helper(controllers: ['courses', 'course_taxons', 'course_students']) %>
     <%= link_to '班级', admin_crowds_path, class: active_helper(controllers: 'crowds') %>
-    <%= link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
+    <%# link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
   </div>
 </div>
