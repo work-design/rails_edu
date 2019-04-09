@@ -19,8 +19,9 @@
       <th class="two wide"><%= Course.human_attribute_name(:author) %></th>
       <th class="one wide"><%= Course.human_attribute_name(:limit_people) %></th>
       <th class="two wide">
-        <%= link_to 'New', new_admin_course_path, remote: true, class: 'ui primary button' %>
-        <%= link_to 'Course Taxon', new_admin_course_taxon_path, class: 'ui primary button' %>
+        <%= link_to new_admin_course_path, remote: true, class: 'ui mini primary button' do %>
+          <i class="plus icon"></i><%= t('.new') %>
+        <% end %>
       </th>
     </tr>
   </thead>
