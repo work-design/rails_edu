@@ -43,7 +43,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to admin_course_url(@course), notice: 'Course was successfully updated.' }
-        format.js { head :no_content }
+        format.js { redirect_to admin_courses_url }
       else
         format.html { render :edit }
         format.js
