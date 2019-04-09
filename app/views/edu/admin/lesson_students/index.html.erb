@@ -1,6 +1,12 @@
-<div class="ui top attached borderless menu">
-  <div class="header item">Edu Admin Lesson Students</div>
-</div>
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to 'Back', admin_courses_path(id: @lesson.course_id), class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <%= link_to 'lesson', admin_course_lessons_path(@lesson.course_id), class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="active section">list</div>
+  </div>
+<% end %>
 
 <%= render 'filter' %>
 
@@ -32,11 +38,11 @@
         </div>
       </td>
       <td class="ui labels">
-        <%= link_to edit_admin_lesson_lesson_student_path(@lesson, course_student), data: { tooltip: t('.edit') }, class: 'ui pink mini icon button', remote: true do %>
+        <%= link_to edit_admin_lesson_lesson_student_path(@lesson, course_student), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_lesson_lesson_student_path(@lesson, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
-          <i class="times icon"></i>
+        <%= link_to admin_lesson_lesson_student_path(@lesson, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+          <i class="trash alternate icon"></i>
         <% end %>
       </td>
     </tr>

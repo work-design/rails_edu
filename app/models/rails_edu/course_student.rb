@@ -37,7 +37,7 @@ class CourseStudent < ApplicationRecord
   end
 
   def delete_reminder_job
-    ActionMailer::DeliveryJob.cancel(self.job_id)
+    ActionMailer::DeliveryJob.cancel(self.job_id) if ActionMailer::DeliveryJob.respond_to?(:cancel)
   end
 
 end

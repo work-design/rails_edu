@@ -1,6 +1,6 @@
 class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   before_action :set_course
-  before_action :set_course_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_course_student, only: [:show, :edit, :update]
 
   def index
     q_params = params.fetch(:q, {}).permit!
@@ -18,10 +18,10 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   end
 
   def create
-    @course_student = CourseStudent.new(course_student_params)
+    @course_student = @course.course_students.build(course_student_params)
 
     if @course_student.save
-      redirect_to course_students_url, notice: 'Course member was successfully created.'
+      redirect_to admin_course_course_crowds_url(@course), notice: 'Course member was successfully created.'
     else
       render :new
     end
@@ -36,8 +36,10 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   end
 
   def destroy
+    @course_student = @course.course_students.find_by(student_type: params[:student_type], student_id: params[:student_id])
     @course_student.destroy
-    redirect_to admin_course_students_url, notice: 'Course member was successfully destroyed.'
+
+    redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully destroyed.'
   end
 
   def check
@@ -99,7 +101,8 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   end
 
   def course_student_params
-    params.fetch(:course_student, {}).permit(:state)
+    p = params.fetch(:course_student, {}).permit(:state)
+    p.merge! params.permit(:student_type, :student_id)
   end
 
 end

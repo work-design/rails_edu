@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         post :check, on: :collection
         post :attend, on: :collection
         patch :quit, on: :member
+        delete '' => :destroy, on: :collection
       end
       resources :lessons do
       end

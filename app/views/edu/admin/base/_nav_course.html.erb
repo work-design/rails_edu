@@ -1,8 +1,11 @@
-<div class="ui segment breadcrumb">
+<% content_for :breadcrumb do %>
+<div class="ui basic segment breadcrumb">
   <%= link_to 'Course list', admin_courses_path, class: 'section' %>
-  <div class="divider"> / </div>
+  <i class="right angle icon divider"></i>
   <div class="active section"><%= @course.title %></div>
 </div>
+<% end %>
+
 <div class="ui top attached tabular menu">
   <%= link_to 'Course Detail', admin_course_path(@course), class: active_helper(id: @course.id) %>
   <%= link_to 'Exam/Survey', admin_course_papers_path(course_id: @course.id), class: active_helper(controllers: 'course_papers') %>

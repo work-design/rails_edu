@@ -9,13 +9,16 @@ class Course < ApplicationRecord
   has_many :course_crowds
   has_many :crowds, through: :course_crowds
   has_many :course_students, dependent: :destroy
-  has_many :students, through: :course_students
 
   has_many :course_grants, dependent: :destroy
   has_many :course_papers, dependent: :destroy
   has_many :exam_papers, dependent: :destroy
   has_many :survey_papers, dependent: :destroy
   has_many :exams, dependent: :destroy
+
+  def student_type_ids
+    course_students.pluck(:student_type, :student_id)
+  end
 
   def save_with_remind
     self.class.transaction do

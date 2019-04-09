@@ -47,24 +47,6 @@
       <% end %>
     </td>
   </tr>
-  <% unless @course.is_a?(OnlineCourse) %>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:next_start_time) %></td>
-    <td><time><%= @course.next_start_time.to_s(:rfc822) if @course.next_start_time %></time></td>
-  </tr>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:next_finish_time) %></td>
-    <td><time><%= @course.next_finish_time.to_s(:rfc822) if @course.next_finish_time %></time></td>
-  </tr>
-  <% end %>
-  <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:departments) %></td>
-    <td class="ui labels">
-      <% @course.departments.select(:name).each do |department| %>
-        <span class="ui label"><%= department.name %></span>
-      <% end %>
-    </td>
-  </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:created_at) %></td>
     <td><%= @course.created_at.to_s(:rfc822) %></td>
