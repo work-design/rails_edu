@@ -66,6 +66,7 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
   def crowd_params
     p = params.fetch(:crowd, {}).permit(
       :name,
+      :logo,
       :student_type
     )
     p.merge! default_params

@@ -24,7 +24,10 @@
   <% @crowds.each do |crowd| %>
     <tr>
       <td><%= crowd.id %></td>
-      <td><%= crowd.name %></td>
+      <td>
+        <%= image_tag crowd.logo, class: 'ui avatar image' if crowd.logo.present? %>
+        <%= crowd.name %>
+      </td>
       <td><%= crowd.student_type_i18n %></td>
       <td><%= crowd.crowd_students_count %></td>
       <td>
