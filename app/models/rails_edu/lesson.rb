@@ -1,4 +1,6 @@
 class Lesson < ApplicationRecord
+  include RailsBookingBooked
+
   belongs_to :course
   has_many :lesson_students
   has_many :students, through: :lesson_students, source_type: 'Profile'

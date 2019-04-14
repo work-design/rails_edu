@@ -2,17 +2,6 @@
   <%= render 'nav_course' %>
 <% end %>
 
-<div class="ui top attached borderless menu">
-  <div class="header item">Edu Exam Papers</div>
-  <div class="right menu">
-    <% CoursePaper.options_i18n(:type).each do |text, type| %>
-    <div class="item">
-      <%= link_to text, new_admin_course_paper_path(type: type, course_id: params[:course_id]), class: 'ui teal button' %>
-    </div>
-    <% end %>
-  </div>
-</div>
-
 <div class="ui attached segment">
   <%= render 'search_form' %>
 </div>
@@ -30,7 +19,11 @@
         <p><%= CoursePaper.human_attribute_name(:document) %></p>
         <p><%= CoursePaper.human_attribute_name(:link) %></p>
       </th>
-      <th>Actions</th>
+      <th>
+        <% CoursePaper.options_i18n(:type).each do |text, type| %>
+          <%= link_to text, new_admin_course_paper_path(type: type, course_id: params[:course_id]), class: 'ui mini primary button' %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>

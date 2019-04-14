@@ -1,10 +1,4 @@
-<% content_for :breadcrumb do %>
-<div class="ui basic segment breadcrumb">
-  <%= link_to 'Back', admin_courses_path(id: @course), class: 'section' %>
-  <i class="right angle icon divider"></i>
-  <div class="active section">list</div>
-</div>
-<% end %>
+<%= render 'nav_course' %>
 
 <%= render 'filter' %>
 
@@ -40,11 +34,12 @@
         <%= link_to admin_course_lesson_path(@course, lesson), data: { tooltip: t('.show') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <% end %>
+        <%= link_to '排期', time_bookings_path('Lesson', lesson.id), class: 'ui mini circular icon button' %>
         <%= link_to edit_admin_course_lesson_path(@course, lesson), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
         <%= link_to admin_course_lesson_path(@course, lesson), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
-          <i class="times icon"></i>
+          <i class="trash alternate icon"></i>
         <% end %>
       </td>
     </tr>

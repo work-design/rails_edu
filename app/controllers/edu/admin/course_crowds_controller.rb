@@ -1,5 +1,6 @@
 class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   before_action :set_course
+  before_action :set_course_crowds
 
   def index
     q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
@@ -17,12 +18,12 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
       if @course_crowd.save
         format.html.phone
         format.html { redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully created.' }
-        format.js { redirect_to admin_course_course_crowds_url(@course) }
+        format.js { render 'index' }
         format.json { render :show }
       else
         format.html.phone { render :new }
         format.html { render :new }
-        format.js { redirect_to admin_course_course_crowds_url(@course) }
+        format.js { render 'index' }
         format.json { render :show }
       end
     end
@@ -54,6 +55,15 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   end
 
   private
+  def set_course_crowds
+    q_params = {}.with_indifferent_access
+    q_params.merge! params.permit(:id, :email, :name, :office_id, :email)
+    @course_crowds = @course.course_crowds
+    @crowds = Crowd.includes(crowd_students: :student).default_where(q_params).page(params[:page])
+
+    @course_students = @course.course_students.page(params[:page])
+  end
+
   def set_course
     @course = Course.find(params[:course_id])
   end

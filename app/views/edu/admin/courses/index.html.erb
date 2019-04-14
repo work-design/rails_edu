@@ -13,11 +13,13 @@
         <%= link_to Course.human_attribute_name(:id), filter_params('id-desc': 1, except: ['id-desc']) %>
       </th>
       <th class="one wide"><%= Course.human_attribute_name(:type) %></th>
-      <th class="">
+      <th class="five wide">
         <%= link_to Course.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
       </th>
       <th class="two wide"><%= Course.human_attribute_name(:author) %></th>
-      <th class="one wide"><%= Course.human_attribute_name(:limit_people) %></th>
+      <th class="one wide">
+        <%= Course.human_attribute_name(:course_students_count) %>/<%= Course.human_attribute_name(:limit_people) %>
+      </th>
       <th class="two wide">
         <%= link_to new_admin_course_path, remote: true, class: 'ui mini primary button' do %>
           <i class="plus icon"></i><%= t('.new') %>
@@ -37,7 +39,9 @@
       </td>
       <td><%= course.author&.name %></td>
       <td>
-        <%= course.limit_people %> / <%= course.course_students_count %>
+        <span><%= course.course_students_count %></span>
+        <span class="grey text">/</span>
+        <span class="green text"><%= course.limit_people %></span>
       </td>
       <td>
         <%= link_to '分配学生', admin_course_course_students_path(course), class: 'ui mini circular icon button' %>

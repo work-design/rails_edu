@@ -1,5 +1,8 @@
 class Course < ApplicationRecord
   include RailsBookingPlan
+
+  attribute :limit_people, :integer, default: 0
+
   belongs_to :course_taxon, optional: true
   belongs_to :author, class_name: 'Teacher', optional: true
   belongs_to :teacher, optional: true

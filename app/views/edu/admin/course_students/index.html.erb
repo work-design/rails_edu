@@ -1,6 +1,6 @@
 <%= render 'nav_course' %>
 
-<div class="ui top attached segment">
+<div class="ui attached segment">
   <%= render 'search_form' %>
 </div>
 
@@ -8,7 +8,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th><%= Pupil.human_attribute_name(:name) %></th>
       <th><%= CourseStudent.human_attribute_name(:created_at) %></th>
       <th>
         Check
@@ -16,6 +16,14 @@
       </th>
       <th><%= CourseStudent.human_attribute_name(:state) %></th>
       <th><%= CourseStudent.human_attribute_name(:score) %></th>
+      <th>
+        <%= link_to admin_course_course_crowds_path(@course), remote: true, class: 'ui mini primary button' do %>
+          <i class="plus icon"></i>
+        <% end %>
+        <%= link_to find_data_list_table_lists_path('CourseStudentExport', params.permit(:course_id).merge(timestamp: @course.timestamp)), class: 'ui mini blue button', remote: true do %>
+          <i class="file excel icon"></i><%= t('.export') %>
+        <% end %>
+      </th>
     </tr>
   </thead>
   <tbody>

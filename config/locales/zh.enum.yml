@@ -10,12 +10,12 @@ zh:
           false: 选修
       course_student:
         state:
-          in_studying: In Studying
-          request_quit: Request quit
-          quitted: Quitted
+          in_studying: 学习中
+          request_quit: 申请退出
+          quitted: 已退出
           in_evaluating: Reviewing
-          passed: Passed
-          failed: Failed
+          passed: 已毕业
+          failed: 需重修
       course_paper:
         type:
           ExamPaper: 考卷
