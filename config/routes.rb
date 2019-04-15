@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  scope module: 'edu' do
+    resources :courses
+  end
+
   scope :admin, module: 'edu/admin', as: 'admin' do
     resources :course_taxons
     resources :courses do

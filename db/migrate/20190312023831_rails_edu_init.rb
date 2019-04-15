@@ -39,7 +39,9 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
 
     create_table :course_grants do |t|
       t.references :course
-      t.references :department
+      t.string :grant_kind
+      t.string :grant_column
+      t.jsonb :filter, default: {}
       t.timestamps
     end
 
