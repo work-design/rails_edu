@@ -4,6 +4,6 @@
 <%= f.text_field :title %>
 <%= f.text_area :description %>
 <%= f.number_field :limit_people %>
-<%= f.select :author_id, options_for_select([[@course.author&.name, @course.author_id]], @course.author_id), { include_blank: true } %>
+<%= f.select :teacher_id, options_for_select([[@course.teacher&.name, @course.teacher_id]], @course.teacher_id), { include_blank: true } %>
 <%= f.check_box :compulsory %>
 <%= f.submit %>

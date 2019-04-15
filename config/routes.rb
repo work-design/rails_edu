@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   scope :admin, module: 'edu/admin', as: 'admin' do
     resources :course_taxons
     resources :courses do
-      get :all, on: :collection
-      get :meet, on: :member
+      get :plan, on: :collection
       resources :course_crowds, only: [:index, :create] do
         delete '' => :destroy, on: :collection
       end

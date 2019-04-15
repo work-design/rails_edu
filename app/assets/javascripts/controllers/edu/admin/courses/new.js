@@ -10,18 +10,9 @@ $('#course_lecturer_id').dropdown({
     value: 'id'
   }
 });
-$('#course_author_id').dropdown({
+$('#course_teacher_id').dropdown({
   apiSettings: {
-    url: '/edu/teachers/search?q={query}',
-  },
-  fields: {
-    name: 'name',
-    value: 'id'
-  }
-});
-$('#course_department_ids').dropdown({
-  apiSettings: {
-    url: '/hr/departments/search?q={query}',
+    url: '/admin/teachers/search?q={query}',
   },
   fields: {
     name: 'name',

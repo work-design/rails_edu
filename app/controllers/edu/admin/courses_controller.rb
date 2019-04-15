@@ -2,7 +2,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   before_action :set_course, only: [:show, :edit, :meet, :update, :destroy]
 
   def index
-    q_params = default_params.merge! params.fetch(:q, {}).permit!
+    q_params = default_params
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     if current_member
       @courses = Course.default_where(q_params).permit_with(current_member).page(params[:page])
@@ -11,8 +11,10 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
     end
   end
 
-  def all
-    q_params = default_params.merge! params.fetch(:q, {}).permit!
+  def plan
+    q_params = {
+      teacher_id: current_member.id
+    }
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     @courses = Course.default_where(q_params).page(params[:page])
 
@@ -74,7 +76,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
       :position,
       :limit_people,
       :author_id,
-      :lecturer_id,
+      :teacher_id,
       :meeting_room,
       :repeat_type,
       :start_at,
