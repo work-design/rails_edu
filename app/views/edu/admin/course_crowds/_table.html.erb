@@ -1,39 +1,34 @@
-<div class="ui modal" id="modal">
-  <i class="close icon"></i>
-  <div class="content">
-    <table class="ui bottom attached table">
-      <thead>
-        <tr>
-          <th>
-            <%= check_box_tag :member_all, 1, false, onclick: "toggleAll(this, 'member_id')", id: nil %>
-          </th>
-          <th><%= Crowd.human_attribute_name(:name) %></th>
-          <th></th>
-          <th>
-            <%= link_to 'confirm', check_admin_course_course_students_path(@course), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @crowds.each do |crowd| %>
-      <tr>
-        <td></td>
-        <td><%= crowd.name %></td>
-        <td>
-          <%= render partial: 'crowd_student', locals: { students: crowd.students } %>
-        </td>
-        <td>
-          <div class="ui toggle checkbox">
-            <% if @course.crowd_ids.include?(crowd.id) %>
-              <%= check_box_tag :crowd_id, crowd.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
-            <% else %>
-              <%= check_box_tag :crowd_id, crowd.id, false, data: { method: :post, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th>
+        <%= check_box_tag :member_all, 1, false, onclick: "toggleAll(this, 'member_id')", id: nil %>
+      </th>
+      <th><%= Crowd.human_attribute_name(:name) %></th>
+      <th></th>
+      <th>
+        <%= link_to 'confirm', check_admin_course_course_students_path(@course), id: 'checked_people', method: 'post', class: 'ui mini green label' %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @crowds.each do |crowd| %>
+  <tr>
+    <td></td>
+    <td><%= crowd.name %></td>
+    <td>
+      <%= render partial: 'crowd_student', locals: { students: crowd.students } %>
+    </td>
+    <td>
+      <div class="ui toggle checkbox">
+        <% if @course.crowd_ids.include?(crowd.id) %>
+          <%= check_box_tag :crowd_id, crowd.id, true, data: { method: :delete, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
+        <% else %>
+          <%= check_box_tag :crowd_id, crowd.id, false, data: { method: :post, remote: true, url: admin_course_course_crowds_path(@course), submit: true }, id: nil %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
