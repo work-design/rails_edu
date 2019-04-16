@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   include RailsBookingPlan
 
   attribute :limit_number, :integer, default: 0
+  attribute :present_number, :integer, default: 0
 
   belongs_to :course_taxon, optional: true
   belongs_to :author, class_name: 'Teacher', optional: true
@@ -14,6 +15,7 @@ class Course < ApplicationRecord
   has_many :course_students, dependent: :destroy
 
   has_many :course_grants, dependent: :destroy
+  has_many :course_plans, dependent: :destroy
   has_many :course_papers, dependent: :destroy
   has_many :exam_papers, dependent: :destroy
   has_many :survey_papers, dependent: :destroy
@@ -39,6 +41,16 @@ class Course < ApplicationRecord
 
   def timestamp
     self.course_students.order(created_at: :desc).first&.created_at.to_i
+  end
+
+  def sync
+    r = self.next_occurrences.flatten
+    r = r.map { |i| i[:occurrences] }.flatten
+    r.each do |i|
+      cp = self.course_plans.find_or_initialize_by(booking_on: i[:date], time_item_id: i[:id])
+      cp.room_id  = i.fetch(:room, {}).fetch('id')
+      cp.save
+    end
   end
 
 end

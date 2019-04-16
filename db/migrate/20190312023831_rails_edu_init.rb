@@ -19,7 +19,7 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.integer :lessons_count, default: 0
       t.timestamps
     end
-    
+
     create_table :lessons do |t|
       t.references :course
       t.string :title
@@ -28,10 +28,20 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :course_crowds do |t|
+      t.references :course
+      t.references :crowd
+      t.references :teacher
+      t.timestamps
+    end
+
     create_table :course_plans do |t|
       t.references :course
+      t.references :course_crowd
       t.references :lesson
-      t.references :time_item_id
+      t.references :time_item
+      t.references :teacher
+      t.references :room
       t.date :booking_on
       t.integer :time_bookings_count
       t.timestamps
@@ -56,13 +66,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :crowd
       t.references :student, polymorphic: true
       t.string :state
-      t.timestamps
-    end
-
-    create_table :course_crowds do |t|
-      t.references :course
-      t.references :crowd
-      t.references :teacher
       t.timestamps
     end
 

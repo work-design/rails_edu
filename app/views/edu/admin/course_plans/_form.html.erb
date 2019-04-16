@@ -1,0 +1,6 @@
+<%= form_with model: [:admin, @course, @course_plan] do |f| %>
+  <%= render 'shared/error_messages', target: @course_plan %>
+  <%= f.select_field :lesson_id %>
+  <%= f.text_field :booking_on %>
+  <%= f.submit %>
+<% end %>

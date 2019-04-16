@@ -17,6 +17,9 @@ Rails.application.routes.draw do
         patch :quit, on: :member
         delete '' => :destroy, on: :collection
       end
+      resources :course_plans do
+        post :sync, on: :collection
+      end
       resources :lessons do
       end
     end
