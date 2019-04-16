@@ -49,6 +49,9 @@ Rails.application.routes.draw do
       get :certification, on: :collection
     end
     resources :courses, only: [:index, :show] do
+      collection do
+        get :plan
+      end
       resources :exams, shallow: true do
         match :finish, on: :member, via: [:get, :put]
       end
