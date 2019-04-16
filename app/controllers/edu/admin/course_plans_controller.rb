@@ -3,7 +3,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_plans = @course_crowd.course_plans.page(params[:page])
+    @course_plans = @course_crowd.course_plans.order(booking_on: :asc).page(params[:page])
   end
 
   def plan
@@ -84,8 +84,8 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
 
   def course_plan_params
     params.fetch(:course_plan, {}).permit(
-      :lesson,
-      :booking_on
+      :lesson_id,
+      :room_id
     )
   end
 

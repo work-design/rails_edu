@@ -1,0 +1,10 @@
+<div class="ui modal" id="modal">
+  <i class="close icon"></i>
+  <div class="content">
+    <%= form_with model: @course_plan, url: admin_course_crowd_plan_path(@course_crowd, @course_plan) do |f| %>
+      <%= render 'shared/error_messages', target: @course_plan %>
+      <%= f.collection_select :lesson_id, @course_crowd.lessons, :id, :title %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

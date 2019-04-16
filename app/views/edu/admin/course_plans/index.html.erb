@@ -8,6 +8,7 @@
       <th><%= CoursePlan.human_attribute_name(:id) %></th>
       <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
       <th><%= CoursePlan.human_attribute_name(:booking_on) %></th>
+      <th><%= CoursePlan.human_attribute_name(:time_item) %></th>
       <th>
         <%= link_to t('.sync'), sync_admin_course_crowd_plans_path(@course_crowd), method: :post, class: 'ui teal button', remote: true %>
       </th>
@@ -17,8 +18,21 @@
   <% @course_plans.each do |course_plan| %>
     <tr>
       <td><%= course_plan.id %></td>
-      <td><%= course_plan.lesson %></td>
+      <td>
+        <% if course_plan.lesson %>
+          <%= course_plan.lesson.title %>
+        <% else %>
+          <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: '设置课节' }, remote: true, class: 'ui mini circular icon button' do %>
+            <i class="pencil alternate icon"></i>
+          <% end %>
+        <% end %>
+      </td>
       <td><%= course_plan.booking_on %></td>
+      <td>
+        <%= course_plan.time_item_id %>
+        <span class="ui label"><%= course_plan.time_item.start_at.to_s(:time) %></span>
+        <span class="ui label"><%= course_plan.time_item.finish_at.to_s(:time) %></span>
+      </td>
       <td>
         <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>

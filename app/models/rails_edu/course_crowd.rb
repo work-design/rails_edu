@@ -10,6 +10,7 @@ class CourseCrowd < ApplicationRecord
 
   has_many :course_plans, dependent: :destroy
   has_many :course_students
+  has_many :lessons, foreign_key: :course_id, primary_key: :course_id
 
   after_create_commit :sync_to_course_students
   after_destroy_commit :destroy_from_course_students
@@ -30,7 +31,7 @@ class CourseCrowd < ApplicationRecord
     end
   end
 
-  def sync
+  def sync_all
     r = self.next_occurrences.flatten
     r = r.map { |i| i[:occurrences] }.flatten
     r.each do |i|
@@ -40,5 +41,10 @@ class CourseCrowd < ApplicationRecord
     end
   end
 
+  def sync(date, time_item_id)
+    cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
+    cp.room_id  = i.fetch(:room, {}).fetch('id')
+    cp.save
+  end
 
 end
