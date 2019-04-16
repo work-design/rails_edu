@@ -1,0 +1,25 @@
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="section">排课</div>
+  </div>
+<% end %>
+
+<div class="ui top attached fluid borderless menu">
+  <div class="item">
+    <div class="ui right labeled left labeled input">
+      <%= date_field_tag :'time_plan[begin_on]', Date.today, form: 'time_plan_form', data: { remote: true, url: my_time_plans_path } %>
+      <div class="ui label">
+        <i class="arrow circle right icon"></i>
+      </div>
+      <%= date_field_tag :'time_plan[end_on]', nil, max: '2019-04-20', form: 'time_plan_form', data: { remote: true, url: my_time_plans_path } %>
+    </div>
+  </div>
+</div>
+
+<div class="ui bottom attached segment">
+  <%= select_tag :'time_plan[room_id]', options_from_collection_for_select(@rooms, :id, :name), form: 'time_plan_form', data: { remote: true, url: my_time_plans_path } %>
+  <div class="ui divider"></div>
+  <div id="calendar"></div>
+</div>

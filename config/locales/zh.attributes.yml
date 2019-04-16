@@ -2,6 +2,7 @@ zh:
   activerecord:
     attributes:
       course:
+        teacher: 老师
         course_taxon: 类别
         limit_people: 限制人数
         course_students_count: 报名人数

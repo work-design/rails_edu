@@ -1,0 +1,35 @@
+var calendarEl = document.getElementById('calendar');
+var calendar = new FullCalendar.Calendar(calendarEl, {
+  schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+  locale: 'zh-cn',
+  plugins: [ 'timeGrid' ],
+  header: {
+    left: 'prev,today,next',
+    center: 'title',
+    right: ''
+  },
+  defaultView: 'timeGridWeek',
+  columnHeaderFormat: <%= raw @settings[:columnHeaderFormat].to_json %>,
+  allDaySlot: false,
+  minTime: '<%= @settings[:minTime] %>',
+  maxTime: '<%= @settings[:maxTime] %>',
+  slotDuration: '<%= @settings[:slotDuration] %>',
+  slotLabelInterval: '<%= @settings[:slotLabelInterval] %>',
+  slotLabelFormat: {
+    hour: 'numeric',
+    minute: '2-digit',
+    omitZeroMinute: true,
+    hour12: false
+  },
+  events: <%= raw @events.to_json %>,
+  eventClick: function(info) {
+    var form = document.getElementById('time_plan_form')
+    var data = new FormData(form);
+    data.set('time_item_id', info.event.id);
+    data.set('time_item_start', info.event.start.toISOString());
+
+    Rails.ajax({url: form.action, type: 'POST', data: data, dataType: 'script'});
+  }
+});
+
+calendar.render();
