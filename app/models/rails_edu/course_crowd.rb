@@ -1,6 +1,9 @@
 class CourseCrowd < ApplicationRecord
   include RailsBookingPlan
 
+  attribute :present_number, :integer
+  attribute :limit_number, :integer
+
   belongs_to :course
   belongs_to :crowd
   belongs_to :teacher, optional: true

@@ -16,6 +16,12 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     @time_plan.time_list ||= TimeList.default
   end
 
+  def sync
+    @course_crowd.sync
+
+    redirect_to admin_course_crowd_plans_url(@course_crowd)
+  end
+
   def new
     @course_plan = @course_crowd.course_plans.build
   end

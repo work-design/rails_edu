@@ -1,7 +1,4 @@
-<div class="ui top attached tabular menu">
-  <%= link_to 'Plans', admin_course_crowd_plans_path(@course_crowd), class: active_helper(action: 'index') %>
-  <%= link_to '配置', plan_admin_course_crowd_plans_path(@course_crowd), class: active_helper(action: 'plan') %>
-</div>
+<%= render 'menu' %>
 
 <%= render 'filter' %>
 
@@ -12,7 +9,7 @@
       <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
       <th><%= CoursePlan.human_attribute_name(:booking_on) %></th>
       <th>
-        <%= link_to t('.sync'), sync_admin_course_crowd_plans_path(@course_crowd), class: 'ui teal button', remote: true %>
+        <%= link_to t('.sync'), sync_admin_course_crowd_plans_path(@course_crowd), method: :post, class: 'ui teal button', remote: true %>
       </th>
     </tr>
   </thead>
