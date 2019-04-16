@@ -1,0 +1,11 @@
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="section"><%= @course_crowd.course.title %></div>
+    <i class="right angle icon divider"></i>
+    <div class="section">排课</div>
+  </div>
+<% end %>
+
+<%= render partial: 'booking/time_plans/index', locals: { plan: @course_crowd } %>

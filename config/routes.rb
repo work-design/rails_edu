@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     end
     resources :course_crowds, only: [] do
       resources :course_plans, as: :plans do
-        post :sync, on: :collection
+        collection do
+          get :plan
+          post :sync
+        end
       end
     end
     resources :lessons, only: [] do

@@ -6,6 +6,16 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     @course_plans = @course_crowd.course_plans.page(params[:page])
   end
 
+  def plan
+    set_time_lists
+    q_params = {}.with_indifferent_access
+    q_params.merge! params.permit(:room_id)
+    @time_plans = @course_crowd.time_plans.default_where(q_params)
+
+    @time_plan = @course_crowd.time_plans.find_or_initialize_by(q_params.slice(:room_id))
+    @time_plan.time_list ||= TimeList.default
+  end
+
   def new
     @course_plan = @course_crowd.course_plans.build
   end
