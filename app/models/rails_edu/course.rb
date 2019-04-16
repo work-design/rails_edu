@@ -1,6 +1,4 @@
 class Course < ApplicationRecord
-  include RailsBookingPlan
-
   attribute :limit_number, :integer, default: 0
   attribute :present_number, :integer, default: 0
 
@@ -43,14 +41,5 @@ class Course < ApplicationRecord
     self.course_students.order(created_at: :desc).first&.created_at.to_i
   end
 
-  def sync
-    r = self.next_occurrences.flatten
-    r = r.map { |i| i[:occurrences] }.flatten
-    r.each do |i|
-      cp = self.course_plans.find_or_initialize_by(booking_on: i[:date], time_item_id: i[:id])
-      cp.room_id  = i.fetch(:room, {}).fetch('id')
-      cp.save
-    end
-  end
 
 end

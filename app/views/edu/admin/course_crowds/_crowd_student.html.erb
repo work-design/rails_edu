@@ -3,11 +3,6 @@
   <tr>
     <td>
       <%= student.real_name %>
-      <% if @course.student_type_ids.include?([student.class.base_class.name, student.id]) %>
-        <%= check_box_tag :student_id, student.id, true, data: { method: :delete, remote: true, params: "student_type=#{student.class.base_class.name}", url: admin_course_course_students_path(@course), submit: true }, id: nil %>
-      <% else %>
-        <%= check_box_tag :student_id, student.id, false, data: { method: :post, remote: true, params: "student_type=#{student.class.base_class.name}", url: admin_course_course_students_path(@course), submit: true }, id: nil %>
-      <% end %>
     </td>
   </tr>
   <% end %>

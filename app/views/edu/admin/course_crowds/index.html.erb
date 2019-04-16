@@ -1,3 +1,39 @@
-
-
-<%= render 'table' %>
+<table class="ui bottom attached table">
+  <thead>
+    <tr>
+      <th><%= CourseCrowd.human_attribute_name(:id) %></th>
+      <th><%= Crowd.human_attribute_name(:name) %></th>
+      <th><%= Crowd.human_attribute_name(:teacher) %></th>
+      <th><%= Crowd.human_attribute_name(:students) %></th>
+      <th>
+        <%= link_to new_admin_course_course_crowd_path(@course), remote: true, class: 'ui mini primary button' do %>
+          <i class="plus icon"></i><%= t('.new') %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @course_crowds.each do |course_crowd| %>
+  <tr>
+    <td><%= course_crowd.id %></td>
+    <td><%= course_crowd.crowd.name %></td>
+    <td>
+      <% if course_crowd.teacher %>
+        <%= course_crowd.teacher.name %>
+      <% else %>
+        <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
+          <i class="green male icon"></i>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <%= render partial: 'crowd_student', locals: { students: course_crowd.crowd.students } %>
+    </td>
+    <td>
+      <%= link_to '课程安排', admin_course_crowd_plans_path(course_crowd), class: 'ui mini circular icon button' %>
+      <%= link_to '课程安排', time_plans_path('CourseCrowd', course_crowd.id), class: 'ui mini circular icon button' %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

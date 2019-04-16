@@ -1,28 +1,28 @@
 class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
-  before_action :set_course
+  before_action :set_course_crowd
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_plans = CoursePlan.page(params[:page])
+    @course_plans = @course_crowd.course_plans.page(params[:page])
   end
 
   def new
-    @course_plan = @course.course_plans.build
+    @course_plan = @course_crowd.course_plans.build
   end
 
   def create
-    @course_plan = @course.course_plans.build(course_plan_params)
+    @course_plan = @course_crowd.course_plans.build(course_plan_params)
 
     respond_to do |format|
       if @course_plan.save
         format.html.phone
-        format.html { redirect_to admin_course_course_plans_url(@course), notice: 'Course plan was successfully created.' }
-        format.js { redirect_back fallback_location: admin_course_course_plans_url(@course) }
+        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully created.' }
+        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       else
         format.html.phone { render :new }
         format.html { render :new }
-        format.js { redirect_back fallback_location: admin_course_course_plans_url(@course) }
+        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       end
     end
@@ -40,13 +40,13 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_plan.save
         format.html.phone
-        format.html { redirect_to admin_course_course_plans_url(@course), notice: 'Course plan was successfully updated.' }
-        format.js { redirect_back fallback_location: admin_course_course_plans_url(@course) }
+        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully updated.' }
+        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       else
         format.html.phone { render :edit }
         format.html { render :edit }
-        format.js { redirect_back fallback_location: admin_course_course_plans_url(@course) }
+        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       end
     end
@@ -54,12 +54,12 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
 
   def destroy
     @course_plan.destroy
-    redirect_to admin_course_course_plans_url(@course), notice: 'Course plan was successfully destroyed.'
+    redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully destroyed.'
   end
 
   private
-  def set_course
-    @course = Course.find params[:course_id]
+  def set_course_crowd
+    @course_crowd = CourseCrowd.find params[:course_crowd_id]
   end
 
   def set_course_plan

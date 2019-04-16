@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :course_taxons
     resources :courses do
       get :plan, on: :collection
-      resources :course_crowds, only: [:index, :create] do
+      resources :course_crowds do
         delete '' => :destroy, on: :collection
       end
       resources :course_students do
@@ -17,10 +17,12 @@ Rails.application.routes.draw do
         patch :quit, on: :member
         delete '' => :destroy, on: :collection
       end
-      resources :course_plans do
-        post :sync, on: :collection
-      end
       resources :lessons do
+      end
+    end
+    resources :course_crowds, only: [] do
+      resources :course_plans, as: :plans do
+        post :sync, on: :collection
       end
     end
     resources :lessons, only: [] do
