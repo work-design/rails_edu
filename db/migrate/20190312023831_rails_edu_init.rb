@@ -19,6 +19,14 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.integer :lessons_count, default: 0
       t.timestamps
     end
+    
+    create_table :lessons do |t|
+      t.references :course
+      t.string :title
+      t.references :author
+      t.references :teacher
+      t.timestamps
+    end
 
     create_table :course_plans do |t|
       t.references :course
@@ -26,14 +34,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :time_item_id
       t.date :booking_on
       t.integer :time_bookings_count
-      t.timestamps
-    end
-
-    create_table :lessons do |t|
-      t.references :course
-      t.string :title
-      t.references :author
-      t.references :teacher
       t.timestamps
     end
 
