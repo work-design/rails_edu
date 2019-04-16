@@ -1,6 +1,7 @@
 class CourseCrowd < ApplicationRecord
   belongs_to :course
   belongs_to :crowd
+  belongs_to :teacher
 
   has_many :course_students
 

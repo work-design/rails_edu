@@ -74,7 +74,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
       :description,
       :type,
       :position,
-      :limit_people,
+      :limit_number,
       :author_id,
       :teacher_id,
       :meeting_room,

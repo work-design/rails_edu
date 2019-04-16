@@ -13,10 +13,19 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.integer :position, default: 1
       t.string :repeat_type
       t.string :repeat_days
-      t.integer :limit_people
+      t.integer :limit_number
       t.boolean :compulsory, default: false
       t.integer :course_students_count, default: 0
       t.integer :lessons_count, default: 0
+      t.timestamps
+    end
+
+    create_table :course_plans do |t|
+      t.references :course
+      t.references :lesson
+      t.references :time_item_id
+      t.date :booking_on
+      t.integer :time_bookings_count
       t.timestamps
     end
 
@@ -24,16 +33,7 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :course
       t.string :title
       t.references :author
-      t.timestamps
-    end
-
-    create_table :lesson_students do |t|
-      t.references :lesson
-      t.references :course_student
-      t.references :course
-      t.references :student, polymorphic: true
-      t.string :state
-      t.boolean :attended, default: false
+      t.references :teacher
       t.timestamps
     end
 
@@ -62,6 +62,7 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
     create_table :course_crowds do |t|
       t.references :course
       t.references :crowd
+      t.references :teacher
       t.timestamps
     end
 
@@ -76,6 +77,16 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.string :quit_note
       t.string :assigned_status
       t.string :job_id
+      t.timestamps
+    end
+
+    create_table :lesson_students do |t|
+      t.references :lesson
+      t.references :course_student
+      t.references :course
+      t.references :student, polymorphic: true
+      t.string :state
+      t.boolean :attended, default: false
       t.timestamps
     end
 

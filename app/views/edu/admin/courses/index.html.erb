@@ -18,7 +18,7 @@
       </th>
       <th class="two wide"><%= Course.human_attribute_name(:teacher) %></th>
       <th class="one wide">
-        <%= Course.human_attribute_name(:course_students_count) %>/<%= Course.human_attribute_name(:limit_people) %>
+        <%= Course.human_attribute_name(:course_students_count) %>/<%= Course.human_attribute_name(:limit_number) %>
       </th>
       <th class="two wide">
         <%= link_to new_admin_course_path, remote: true, class: 'ui mini primary button' do %>
@@ -41,7 +41,7 @@
       <td>
         <span><%= course.course_students_count %></span>
         <span class="grey text">/</span>
-        <span class="green text"><%= course.limit_people %></span>
+        <span class="green text"><%= course.limit_number %></span>
       </td>
       <td>
         <%= link_to '分配学生', admin_course_course_students_path(course), class: 'ui mini circular icon button' %>
