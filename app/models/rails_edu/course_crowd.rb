@@ -35,6 +35,12 @@ class CourseCrowd < ApplicationRecord
     removes = self.xx.simple_diff self.next_days
     adds = self.next_days.simple_diff self.xx
 
+    removes.each do |date, time_item_id|
+      Array(time_item_id).each do |ti|
+        self.course_plans.where(booking_on: date, time_item_id: ti).delete_all
+      end
+    end
+
     adds.each do |date, time_item_id|
       cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
       cp.room_id = i.fetch(:room, {}).fetch('id')
