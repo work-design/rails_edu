@@ -14,6 +14,7 @@ class CourseCrowd < ApplicationRecord
 
   after_create_commit :sync_to_course_students
   after_destroy_commit :destroy_from_course_students
+  after_update_commit :sync_to_course_plans, -> { saved_change_to_teacher_id? }
 
   delegate :title, to: :course
 
@@ -22,6 +23,10 @@ class CourseCrowd < ApplicationRecord
       cs = i.course_students.build(student_id: i.id, course_id: self.course_id)
       cs.save
     end
+  end
+
+  def sync_to_course_plans
+    self.course_plans.where(teacher_id: nil).update_all(teacher_id: self.teacher_id)
   end
 
   def destroy_from_course_students

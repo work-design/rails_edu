@@ -1,6 +1,7 @@
 class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   before_action :set_course
   before_action :set_course_crowds
+  before_action :set_course_crowd, only: [:edit, :update, :destroy]
 
   def index
     q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
@@ -40,13 +41,13 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_crowd.save
         format.html.phone
-        format.html { redirect_to admin_course_crowds_url, notice: 'Course crowd was successfully updated.' }
-        format.js { redirect_back fallback_location: admin_course_crowds_url }
+        format.html { redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully updated.' }
+        format.js { redirect_back fallback_location: admin_course_course_crowds_url(@course) }
         format.json { render :show }
       else
         format.html.phone { render :edit }
         format.html { render :edit }
-        format.js { redirect_back fallback_location: admin_course_crowds_url }
+        format.js { redirect_back fallback_location: admin_course_course_crowds_url(@course) }
         format.json { render :show }
       end
     end
@@ -71,6 +72,17 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
 
   def set_course
     @course = Course.find(params[:course_id])
+  end
+
+  def set_course_crowd
+    @course_crowd = @course.course_crowds.find params[:id]
+  end
+
+  def course_crowd_params
+    params.fetch(:course_crowd, {}).permit(
+      :crowd_id,
+      :teacher_id
+    )
   end
 
 end

@@ -1,14 +1,26 @@
-<%= render 'menu' %>
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <%= link_to @course_crowd.course.title, admin_course_lessons_path(@course_crowd.course_id), class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="section"><%= @course_crowd.crowd.name %></div>
+    <i class="right angle icon divider"></i>
+    <div class="section">排课</div>
+  </div>
+<% end %>
 
+<%= render 'menu' %>
 <%= render 'filter' %>
 
 <table class="ui bottom attached table">
   <thead>
     <tr>
-      <th><%= CoursePlan.human_attribute_name(:id) %></th>
-      <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
       <th><%= CoursePlan.human_attribute_name(:booking_on) %></th>
       <th><%= CoursePlan.human_attribute_name(:time_item) %></th>
+      <th><%= CoursePlan.human_attribute_name(:room) %></th>
+      <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
+      <th><%= CoursePlan.human_attribute_name(:teacher) %></th>
       <th>
         <%= link_to t('.sync'), sync_admin_course_crowd_plans_path(@course_crowd), method: :post, class: 'ui teal button', remote: true %>
       </th>
@@ -17,22 +29,22 @@
   <tbody>
   <% @course_plans.each do |course_plan| %>
     <tr>
-      <td><%= course_plan.id %></td>
+      <td><%= course_plan.booking_on %></td>
+      <td>
+        <span class="ui label"><%= course_plan.time_item.start_at.to_s(:time) %></span>
+        <span class="ui label"><%= course_plan.time_item.finish_at.to_s(:time) %></span>
+      </td>
+      <td><%= course_plan.room&.name %></td>
       <td>
         <% if course_plan.lesson %>
           <%= course_plan.lesson.title %>
         <% else %>
           <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: '设置课节' }, remote: true, class: 'ui mini circular icon button' do %>
-            <i class="pencil alternate icon"></i>
+            <i class="rss icon"></i>
           <% end %>
         <% end %>
       </td>
-      <td><%= course_plan.booking_on %></td>
-      <td>
-        <%= course_plan.time_item_id %>
-        <span class="ui label"><%= course_plan.time_item.start_at.to_s(:time) %></span>
-        <span class="ui label"><%= course_plan.time_item.finish_at.to_s(:time) %></span>
-      </td>
+      <td><%= course_plan.teacher&.name %></td>
       <td>
         <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>

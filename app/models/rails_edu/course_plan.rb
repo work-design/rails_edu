@@ -9,6 +9,7 @@ class CoursePlan < ApplicationRecord
   belongs_to :course_crowd
   belongs_to :lesson, optional: true
   belongs_to :teacher, optional: true
+  belongs_to :room, optional: true
 
   validates :booking_on, presence: true
 
