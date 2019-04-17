@@ -11,7 +11,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
 
   def new
     @course_crowd = @course.course_crowds.build
-    @crowds = Crowd.where.not(id: @course.crowd_ids)
+    @crowds = Crowd.default_where(default_params).where.not(id: @course.crowd_ids)
   end
 
   def create
