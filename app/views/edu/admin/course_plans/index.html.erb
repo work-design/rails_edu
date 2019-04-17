@@ -29,7 +29,10 @@
   <tbody>
   <% @course_plans.each do |course_plan| %>
     <tr>
-      <td><%= course_plan.booking_on %></td>
+      <td>
+        <%= course_plan.booking_on %>
+        <span class="grey text">（<%= course_plan.booking_on.to_s(:week) %>）</span>
+      </td>
       <td>
         <span class="ui label"><%= course_plan.time_item.start_at.to_s(:time) %></span>
         <span class="ui label"><%= course_plan.time_item.finish_at.to_s(:time) %></span>
