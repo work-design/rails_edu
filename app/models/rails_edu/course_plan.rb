@@ -12,6 +12,8 @@ class CoursePlan < ApplicationRecord
 
   validates :booking_on, presence: true
 
+  scope :valid, -> { default_where('booking_on-gte': Date.today) }
+
   after_initialize if: :new_record? do
     if course_crowd
       self.course_id = course_crowd.course_id

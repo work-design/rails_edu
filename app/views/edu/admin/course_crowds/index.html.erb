@@ -1,3 +1,13 @@
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="section"><%= @course.title %></div>
+    <i class="right angle icon divider"></i>
+    <div class="section"><%= CourseCrowd.human_name %></div>
+  </div>
+<% end %>
+
 <table class="ui bottom attached table">
   <thead>
     <tr>

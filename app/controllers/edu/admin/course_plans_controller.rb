@@ -3,7 +3,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_plans = @course_crowd.course_plans.order(booking_on: :asc).page(params[:page])
+    @course_plans = @course_crowd.course_plans.valid.order(booking_on: :asc).page(params[:page])
   end
 
   def plan

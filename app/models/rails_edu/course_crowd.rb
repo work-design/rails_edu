@@ -32,19 +32,25 @@ class CourseCrowd < ApplicationRecord
   end
 
   def sync_all
-    r = self.next_occurrences.flatten
-    r = r.map { |i| i[:occurrences] }.flatten
-    r.each do |i|
-      cp = self.course_plans.find_or_initialize_by(booking_on: i[:date], time_item_id: i[:id])
-      cp.room_id  = i.fetch(:room, {}).fetch('id')
+    removes = self.xx.simple_diff self.next_days
+    adds = self.next_days.simple_diff self.xx
+
+    adds.each do |date, time_item_id|
+      cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
+      cp.room_id = i.fetch(:room, {}).fetch('id')
       cp.save
     end
   end
 
-  def sync(date, time_item_id)
+  def sync
     cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
-    cp.room_id  = i.fetch(:room, {}).fetch('id')
-    cp.save
+    cp.room_id = i.fetch(:room, {}).fetch('id')
+  end
+
+  def xx
+    self.course_plans.order(booking_on: :asc).group_by(&->(i){i.booking_on.to_s}).transform_values! do |v|
+      v.map(&:time_item_id)
+    end
   end
 
 end

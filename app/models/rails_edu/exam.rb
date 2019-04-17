@@ -142,7 +142,7 @@ class Exam < ApplicationRecord
       ques = SurveyMonkey.get "surveys/#{course_paper.entity_id}/pages/#{page['id']}/questions"
       headings = ques['data'].map { |que| { que['id'] => que['heading'] } }
       answers = page['questions'].map { |que| { que['id'] => que['answers'].map(&:values).join(', ') } }
-      _results = (headings + answers).to_combined_hash
+      _results = (headings + answers).to_combine_h
       _results.transform_keys! { |key| [page['id'], key].join('/') }
       _details.merge! _results
     end
