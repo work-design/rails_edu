@@ -18,7 +18,7 @@ class CoursePlan < ApplicationRecord
   after_initialize if: :new_record? do
     if course_crowd
       self.course_id = course_crowd.course_id
-      self.teacher_id = course_crowd.teacher_id
+      self.teacher_id ||= course_crowd.teacher_id
     end
   end
 
