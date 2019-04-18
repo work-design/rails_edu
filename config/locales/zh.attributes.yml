@@ -10,6 +10,12 @@ zh:
         course_students_count: 报名人数
       course_student:
         state: 状态
+      course_plan:
+        booking_on: 日期
+        time_item: 时间段
+        room: 教室
+        lesson: 课程
+        teacher: 老师
       lesson:
         videos: 媒体资料
         documents: 文件

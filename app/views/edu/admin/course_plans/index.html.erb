@@ -22,7 +22,7 @@
       <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
       <th><%= CoursePlan.human_attribute_name(:teacher) %></th>
       <th>
-        <%= link_to t('.sync'), sync_admin_course_crowd_plans_path(@course_crowd), method: :post, class: 'ui teal button', remote: true %>
+        <%= link_to t('.plan'), plan_admin_course_crowd_plans_path(@course_crowd), class: 'ui mini primary button', remote: true %>
       </th>
     </tr>
   </thead>
