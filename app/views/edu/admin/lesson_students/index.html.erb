@@ -27,7 +27,7 @@
     <tr>
       <td><%= course_student.student.real_name %></td>
       <td><%= course_student.state %></td>
-      <td><%= course_student.created_at %></td>
+      <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
       <td>
         <div class="ui toggle checkbox">
           <% if @lesson.student_ids.include?(course_student.student_id) %>
