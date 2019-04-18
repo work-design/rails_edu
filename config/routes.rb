@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     resources :courses
   end
 
+  scope :member, module: 'edu/member', as: :member do
+
+  end
+
   scope :admin, module: 'edu/admin', as: 'admin' do
     resources :crowds do
       resources :crowd_students
@@ -80,7 +84,6 @@ Rails.application.routes.draw do
       patch 'quit' => :update_quit, on: :member
     end
     resource :teacher
-
   end
 
 end
