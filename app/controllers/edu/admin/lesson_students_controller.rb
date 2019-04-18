@@ -1,6 +1,6 @@
 class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   before_action :set_lesson
-  before_action :set_lesson_student, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson_student, only: [:show, :edit, :update]
 
   def index
     @course_students = @lesson.course.course_students.page(params[:page])
@@ -54,8 +54,9 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   def destroy
+    @lesson_student = @lesson.lesson_students.find_by(course_student_id: params[:course_student_id])
     @lesson_student.destroy
-    redirect_to admin_lesson_students_url, notice: 'Lesson student was successfully destroyed.'
+    redirect_to admin_lesson_lesson_students_url(@lesson), notice: 'Lesson student was successfully destroyed.'
   end
 
   private

@@ -3,10 +3,11 @@ class LessonStudent < ApplicationRecord
   belongs_to :course
   belongs_to :student, polymorphic: true
   belongs_to :course_student
-  has_one :card_log, ->(o){ where(card_id: o.student.card_id) }, as: :source
+  has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source
 
   before_validation :sync_course_student
-  after_commit :sync_card_log
+  after_create_commit :sync_card_log
+  after_destroy_commit :sync_revert_card_log
 
   def sync_course_student
     self.course_id = course_student.course_id
@@ -17,9 +18,19 @@ class LessonStudent < ApplicationRecord
   def sync_card_log
     return unless self.student.card
 
-    log = self.card_log || self.build_card_log
+    log = self.card_logs.build
     log.title = '签到-核销'
     log.tag_str = '签到'
+    log.save
+  end
+
+  def sync_revert_card_log
+    return unless self.student.card
+
+    log = self.card_logs.build
+    log.title = '取消签到'
+    log.tag_str = '签到'
+    log.amount = -1
     log.save
   end
 

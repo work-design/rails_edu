@@ -29,7 +29,9 @@ Rails.application.routes.draw do
       end
     end
     resources :lessons, only: [] do
-      resources :lesson_students
+      resources :lesson_students do
+        delete '' => :destroy, on: :collection
+      end
     end
     resources :crowds do
       resources :crowd_students
