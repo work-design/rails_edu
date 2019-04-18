@@ -1,3 +1,11 @@
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="active section"><%= @course.title %></div>
+  </div>
+<% end %>
+
 <%= render 'nav_course' %>
 
 <table class="ui very basic segment bottom attached large table">
@@ -5,7 +13,6 @@
   <tr>
     <th class="three wide"></th>
     <th>
-      <%= link_to 'meet', meet_admin_course_path(@course), class: 'ui mini blue right floated button' %>
       <%= link_to t('.edit'), edit_admin_course_path(@course), class: 'ui mini blue right floated button' %>
     </th>
   </tr>
@@ -28,16 +35,12 @@
     <td><%= simple_format(@course.description) %></td>
   </tr>
   <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:limit_people) %></td>
-    <td><%= @course.limit_people %></td>
+    <td class="right aligned"><%= Course.human_attribute_name(:limit_number) %></td>
+    <td><%= @course.limit_number %></td>
   </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:teacher) %></td>
     <td><%= @course.teacher&.name %></td>
-  </tr>
-  <tr>
-    <td class="right aligned">Lecturer Desc: </td>
-    <td><%= simple_format(@course.teacher&.description) %></td>
   </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:compulsory) %></td>

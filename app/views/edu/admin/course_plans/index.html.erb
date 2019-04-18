@@ -1,10 +1,10 @@
 <% content_for :breadcrumb do %>
   <div class="ui basic segment breadcrumb">
-    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
+    <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
     <i class="right angle icon divider"></i>
     <%= link_to @course_crowd.course.title, admin_course_lessons_path(@course_crowd.course_id), class: 'section' %>
     <i class="right angle icon divider"></i>
-    <div class="section"><%= @course_crowd.crowd.name %></div>
+    <%= link_to @course_crowd.crowd.name, admin_course_course_crowds_path(@course_crowd.course_id), class: 'section' %>
     <i class="right angle icon divider"></i>
     <div class="section">排课</div>
   </div>
@@ -49,6 +49,9 @@
       </td>
       <td><%= course_plan.teacher&.name %></td>
       <td>
+        <%= link_to admin_course_plan_lesson_students_path(course_plan), data: { tooltip: '点名' }, class: 'ui mini circular icon button' do %>
+          <i class="users icon"></i>
+        <% end %>
         <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>

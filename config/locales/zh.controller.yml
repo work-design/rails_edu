@@ -1,0 +1,18 @@
+zh:
+  edu:
+    admin:
+      courses:
+        index:
+          title: 课程列表
+      crowds:
+        index:
+          title: 班级
+      course_crowds:
+        index:
+          title: 分班
+      course_plans:
+        index:
+          title: 排课
+      lesson_students:
+        index:
+          title: 点名

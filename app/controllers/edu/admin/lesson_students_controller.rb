@@ -1,9 +1,9 @@
 class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
-  before_action :set_lesson
+  before_action :set_course_plan
   before_action :set_lesson_student, only: [:show, :edit, :update]
 
   def index
-    @course_students = @lesson.course.course_students.page(params[:page])
+    @course_students = @course_plan.course.course_students.page(params[:page])
     @lesson_students = LessonStudent.page(params[:page])
   end
 
@@ -12,18 +12,18 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   def create
-    @lesson_student = @lesson.lesson_students.build(course_student_id: params[:course_student_id])
+    @lesson_student = @course_plan.lesson_students.build(course_student_id: params[:course_student_id])
 
     respond_to do |format|
       if @lesson_student.save
         format.html.phone
-        format.html { redirect_to admin_lesson_lesson_students_url(@lesson), notice: 'Lesson student was successfully created.' }
-        format.js { redirect_to admin_lesson_lesson_students_url(@lesson) }
+        format.html { redirect_to admin_course_plan_lesson_students_url(@course_plan), notice: 'Lesson student was successfully created.' }
+        format.js { redirect_to admin_course_plan_lesson_students_url(@course_plan) }
         format.json { render :show }
       else
         format.html.phone { render :new }
         format.html { render :new }
-        format.js { redirect_back fallback_location: admin_lesson_students_url }
+        format.js { redirect_to admin_course_plan_lesson_students_url(@course_plan) }
         format.json { render :show }
       end
     end
@@ -54,17 +54,17 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   def destroy
-    @lesson_student = @lesson.lesson_students.find_by(course_student_id: params[:course_student_id])
+    @lesson_student = @course_plan.lesson_students.find_by(course_student_id: params[:course_student_id])
     @lesson_student.destroy
     respond_to do |format|
-      format.html { redirect_to admin_lesson_lesson_students_url(@lesson) }
+      format.html { redirect_to admin_course_plan_lesson_students_url(@course_plan) }
       format.json { render :show }
     end
   end
 
   private
-  def set_lesson
-    @lesson = Lesson.find params[:lesson_id]
+  def set_course_plan
+    @course_plan = CoursePlan.find params[:course_plan_id]
   end
 
   def set_lesson_student

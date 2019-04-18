@@ -1,10 +1,14 @@
 <% content_for :breadcrumb do %>
   <div class="ui basic segment breadcrumb">
-    <%= link_to 'Back', admin_courses_path(id: @lesson.course_id), class: 'section' %>
+    <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
     <i class="right angle icon divider"></i>
-    <%= link_to 'lesson', admin_course_lessons_path(@lesson.course_id), class: 'section' %>
+    <%= link_to @course_plan.course.title, admin_course_path(@course_plan.course_id), class: 'section' %>
     <i class="right angle icon divider"></i>
-    <div class="active section">list</div>
+    <%= link_to @course_plan.course_crowd.crowd.name, admin_course_course_crowds_path(@course_plan.course_id) %>
+    <i class="right angle icon divider"></i>
+    <%= link_to t('edu.admin.course_plans.index.title'), admin_course_crowd_plans_path(@course_plan.course_crowd_id), class: 'section' %>
+    <i class="right angle icon divider"></i>
+    <div class="section"><%= t('edu.admin.lesson_students.index.title') %></div>
   </div>
 <% end %>
 
@@ -30,18 +34,18 @@
       <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
       <td>
         <div class="ui toggle checkbox">
-          <% if @lesson.student_ids.include?(course_student.student_id) %>
-            <%= check_box_tag :course_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_lesson_lesson_students_path(@lesson), submit: true }, id: nil %>
+          <% if @course_plan.student_ids.include?(course_student.student_id) %>
+            <%= check_box_tag :course_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_plan_lesson_students_path(@course_plan), submit: true }, id: nil %>
           <% else %>
-            <%= check_box_tag :course_student_id, course_student.id, false, data: { method: :post, remote: true, url: admin_lesson_lesson_students_path(@lesson), submit: true }, id: nil %>
+            <%= check_box_tag :course_student_id, course_student.id, false, data: { method: :post, remote: true, url: admin_course_plan_lesson_students_path(@course_plan), submit: true }, id: nil %>
           <% end %>
         </div>
       </td>
-      <td class="ui labels">
-        <%= link_to edit_admin_lesson_lesson_student_path(@lesson, course_student), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
+      <td>
+        <%= link_to edit_admin_course_plan_lesson_student_path(@course_plan, course_student), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_lesson_lesson_student_path(@lesson, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+        <%= link_to admin_course_plan_lesson_student_path(@course_plan, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
           <i class="trash alternate icon"></i>
         <% end %>
       </td>

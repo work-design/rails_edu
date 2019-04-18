@@ -11,6 +11,9 @@ class CoursePlan < ApplicationRecord
   belongs_to :teacher, optional: true
   belongs_to :room, optional: true
 
+  has_many :lesson_students, dependent: :nullify
+  has_many :students, through: :lesson_students, source_type: 'Profile'
+
   validates :booking_on, presence: true
 
   scope :valid, -> { default_where('booking_on-gte': Date.today) }

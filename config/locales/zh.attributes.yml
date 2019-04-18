@@ -1,5 +1,7 @@
 zh:
   activerecord:
+    models:
+      course_crowd: 班级
     attributes:
       course:
         teacher: 老师
@@ -8,3 +10,6 @@ zh:
         course_students_count: 报名人数
       course_student:
         state: 状态
+      lesson:
+        videos: 媒体资料
+        documents: 文件

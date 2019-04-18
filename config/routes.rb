@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   end
 
   scope :admin, module: 'edu/admin', as: 'admin' do
+    resources :crowds do
+      resources :crowd_students
+    end
+
     resources :course_taxons
     resources :courses do
       get :plan, on: :collection
@@ -29,18 +33,18 @@ Rails.application.routes.draw do
       end
     end
     resources :lessons, only: [] do
-      resources :lesson_students do
-        delete '' => :destroy, on: :collection
-      end
       member do
         get 'plan' => :edit_plan
         patch 'plan' => :update_plan
         delete 'plan' => :destroy_plan
       end
     end
-    resources :crowds do
-      resources :crowd_students
+    resources :course_plans, only: [] do
+      resources :lesson_students do
+        delete '' => :destroy, on: :collection
+      end
     end
+
     resources :course_papers do
       get :add, on: :member
       resources :exams do
