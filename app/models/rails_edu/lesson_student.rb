@@ -3,10 +3,7 @@ class LessonStudent < ApplicationRecord
   belongs_to :course
   belongs_to :student, polymorphic: true
   belongs_to :course_student
-
-
   has_one :card_log, ->(o){ where(card_id: o.student.card_id) }, as: :source
-
 
   before_validation :sync_course_student
   after_commit :sync_card_log
@@ -18,7 +15,12 @@ class LessonStudent < ApplicationRecord
   end
 
   def sync_card_log
-    
+    return unless self.student.card
+
+    log = self.card_log || self.build_card_log
+    log.title = '签到-核销'
+    log.tag_str = '签到'
+    log.save
   end
 
 end
