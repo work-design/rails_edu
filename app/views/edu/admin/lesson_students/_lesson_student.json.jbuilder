@@ -6,4 +6,5 @@ json.extract! lesson_student,
 json.student lesson_student.student,
              :id,
              :real_name,
-             :nick_name
+             :nick_name,
+             :age
