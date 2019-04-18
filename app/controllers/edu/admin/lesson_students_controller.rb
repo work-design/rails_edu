@@ -56,7 +56,10 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   def destroy
     @lesson_student = @lesson.lesson_students.find_by(course_student_id: params[:course_student_id])
     @lesson_student.destroy
-    redirect_to admin_lesson_lesson_students_url(@lesson), notice: 'Lesson student was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to admin_lesson_lesson_students_url(@lesson) }
+      format.json { render :show }
+    end
   end
 
   private

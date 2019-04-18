@@ -1,4 +1,7 @@
 class LessonStudent < ApplicationRecord
+
+  attribute :attended, :boolean, default: true
+
   belongs_to :lesson
   belongs_to :course
   belongs_to :student, polymorphic: true

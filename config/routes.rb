@@ -32,6 +32,11 @@ Rails.application.routes.draw do
       resources :lesson_students do
         delete '' => :destroy, on: :collection
       end
+      member do
+        get 'plan' => :edit_plan
+        patch 'plan' => :update_plan
+        delete 'plan' => :destroy_plan
+      end
     end
     resources :crowds do
       resources :crowd_students

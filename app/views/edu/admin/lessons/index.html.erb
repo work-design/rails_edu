@@ -31,10 +31,10 @@
         <%= link_to admin_lesson_lesson_students_path(lesson), data: { tooltip: '点名' }, class: 'ui mini circular icon button' do %>
           <i class="users icon"></i>
         <% end %>
+        <%= link_to '排期', plan_admin_lesson_path(lesson), remote: true, class: 'ui mini circular icon button' %>
         <%= link_to admin_course_lesson_path(@course, lesson), data: { tooltip: t('.show') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="location arrow icon"></i>
         <% end %>
-        <%= link_to '排期', time_bookings_path('Lesson', lesson.id), class: 'ui mini circular icon button' %>
         <%= link_to edit_admin_course_lesson_path(@course, lesson), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>

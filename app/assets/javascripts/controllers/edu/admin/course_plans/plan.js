@@ -1,5 +1,5 @@
 var url = new URL(window.location.href);
-var id = url.href.match(/course_crowds\/\d\/course_plans/).toString().replace('course_crowds/', '').replace('/course_plans', '');
+var id = url.href.match(/course_crowds\/\d+\/course_plans/).toString().replace('course_crowds/', '').replace('/course_plans', '');
 var request_url = '/CourseCrowd/' + id +'/time_plans';
 
 $('#time_plan_room_id').dropdown();
