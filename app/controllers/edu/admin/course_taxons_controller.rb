@@ -13,7 +13,7 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
     @course_taxon = CourseTaxon.new(course_taxon_params)
 
     if @course_taxon.save
-      redirect_to admin_course_taxons_url, notice: 'Course taxon was successfully created.'
+      redirect_to admin_course_taxons_url
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
 
   def update
     if @course_taxon.update(course_taxon_params)
-      redirect_to admin_course_taxons_url, notice: 'Course taxon was successfully updated.'
+      redirect_to admin_course_taxons_url
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
 
   def destroy
     @course_taxon.destroy
-    redirect_to admin_course_taxons_url, notice: 'Course taxon was successfully destroyed.'
+    redirect_to admin_course_taxons_url
   end
 
   private
@@ -44,7 +44,9 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
   end
 
   def course_taxon_params
-    params.fetch(:course_taxon, {}).permit(:name)
+    params.fetch(:course_taxon, {}).permit(
+      :name
+    )
   end
 
 end

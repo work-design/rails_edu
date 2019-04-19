@@ -1,6 +1,9 @@
 <%= render 'shared/error_messages', target: @course %>
 <%= f.select :type, options_for_select(Course.options_i18n(:type), @course.type) %>
-<%= f.collection_select :course_taxon_id, CourseTaxon.all, :id, :name %>
+<div class="inline fields">
+  <%= f.collection_select :course_taxon_id, CourseTaxon.all, :id, :name, on: { wrapper_all: false } %>
+  <%= link_to 'Add Category', new_admin_course_taxon_path(return_to: request.path), class: 'ui button' %>
+</div>
 <%= f.text_field :title %>
 <%= f.text_area :description %>
 <%= f.number_field :limit_number %>

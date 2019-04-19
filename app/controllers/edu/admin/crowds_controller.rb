@@ -3,6 +3,7 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
 
   def index
     q_params = default_params
+    q_params.merge! params.permit(:name)
     @crowds = Crowd.default_where(q_params).page(params[:page])
   end
 
