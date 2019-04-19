@@ -6,8 +6,8 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
       'booking_on-gte': Date.today,
       teacher_id: current_member.id
     }.with_indifferent_access
-    q_params.merge! 'booking_on-gte': params[:start] if params[:start]
-    q_params.merge! 'booking_on-lte': params[:finish] if params[:finish]
+    q_params.merge! 'booking_on-gte': params[:start_date] if params[:start_date]
+    q_params.merge! 'booking_on-lte': params[:end_date] if params[:end_date]
 
     q_params.merge! params.permit(:room_id)
 
