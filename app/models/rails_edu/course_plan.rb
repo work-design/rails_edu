@@ -25,20 +25,18 @@ class CoursePlan < ApplicationRecord
     end
   end
 
-  def self.events(start: Time.current, finish: start + 7.days)
-    self.default_where('booking_on-gte': start, 'booking_on-lte': finish).each do |i|
-      {
-        id: i.id,
-        start: i.start_at.change(date.parts).strftime('%FT%T'),
-        end: i.finish_at.change(date.parts).strftime('%FT%T'),
-        title: "#{self.room.name} #{self.course.title}",
-        extendedProps: {
-          title: self.course.title,
-          room: self.room.as_json(only: [:id], methods: [:name]),
-          crowd: self.course_crowd.crowd.as_json(only: [:id, :name])
-        }
+  def to_event
+    {
+      id: id,
+      start: time_item.start_at.change(booking_on.parts).strftime('%FT%T'),
+      end: time_item.finish_at.change(booking_on.parts).strftime('%FT%T'),
+      title: "#{room.name} #{course.title}",
+      extendedProps: {
+        title: course.title,
+        room: room.as_json(only: [:id], methods: [:name]),
+        crowd: course_crowd.crowd.as_json(only: [:id, :name])
       }
-    end.flatten
+    }
   end
 
 end

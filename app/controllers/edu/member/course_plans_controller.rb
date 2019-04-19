@@ -1,9 +1,23 @@
 class Edu::Member::CoursePlansController < Edu::Member::BaseController
-  before_action :set_course_crowd
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_plans = @course_crowd.course_plans.valid.order(booking_on: :asc).page(params[:page])
+    q_params = {
+      'booking_on-gte': Date.today,
+      teacher_id: current_member.id
+    }.with_indifferent_access
+    q_params.merge! 'booking_on-gte': params[:start] if params[:start]
+    q_params.merge! 'booking_on-lte': params[:finish] if params[:finish]
+
+    q_params.merge! params.permit(:room_id)
+
+    @course_plans = CoursePlan.includes(:room, :teacher, :course, :time_item, course_crowd: :crowd).default_where(q_params).order(booking_on: :asc).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js
+      format.json { render json: { events: @course_plans.map(&:to_event) } }
+    end
   end
 
   def plan
@@ -14,34 +28,6 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
 
     @time_plan = @course_crowd.time_plans.find_or_initialize_by(q_params.slice(:room_id))
     @time_plan.time_list ||= TimeList.default
-  end
-
-  def sync
-    @course_crowd.sync
-
-    redirect_to admin_course_crowd_plans_url(@course_crowd)
-  end
-
-  def new
-    @course_plan = @course_crowd.course_plans.build
-  end
-
-  def create
-    @course_plan = @course_crowd.course_plans.build(course_plan_params)
-
-    respond_to do |format|
-      if @course_plan.save
-        format.html.phone
-        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully created.' }
-        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
-        format.json { render :show }
-      else
-        format.html.phone { render :new }
-        format.html { render :new }
-        format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
-        format.json { render :show }
-      end
-    end
   end
 
   def show
@@ -74,10 +60,6 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
   end
 
   private
-  def set_course_crowd
-    @course_crowd = CourseCrowd.find params[:course_crowd_id]
-  end
-
   def set_course_plan
     @course_plan = CoursePlan.find(params[:id])
   end
