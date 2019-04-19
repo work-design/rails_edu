@@ -7,4 +7,5 @@ json.student lesson_student.student,
              :id,
              :real_name,
              :nick_name,
-             :age
+             :age,
+             :birthday

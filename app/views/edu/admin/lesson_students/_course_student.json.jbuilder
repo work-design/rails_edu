@@ -6,5 +6,6 @@ json.student course_student.student,
              :id,
              :real_name,
              :nick_name,
-             :age
+             :age,
+             :birthday
 json.attended @course_plan.student_ids.include?(course_student.student_id)
