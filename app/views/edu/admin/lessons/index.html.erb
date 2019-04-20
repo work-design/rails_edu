@@ -30,13 +30,13 @@
       <td>
         <%= link_to '排期', plan_admin_lesson_path(lesson), remote: true, class: 'ui mini circular icon button' %>
         <%= link_to admin_course_lesson_path(@course, lesson), data: { tooltip: t('.show') }, class: 'ui mini circular icon button', remote: true do %>
-          <i class="location arrow icon"></i>
+          <i class="fas fa-eye"></i>
         <% end %>
         <%= link_to edit_admin_course_lesson_path(@course, lesson), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
-          <i class="pencil alternate icon"></i>
+          <i class="fas fa-pencil-alt"></i>
         <% end %>
         <%= link_to admin_course_lesson_path(@course, lesson), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-          <i class="trash alternate icon"></i>
+          <i class="fas fa-trash-alt"></i>
         <% end %>
       </td>
     </tr>
