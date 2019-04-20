@@ -37,7 +37,7 @@
         <%= link_to edit_admin_crowd_path(crowd), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+        <%= link_to admin_crowd_path(crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="trash alternate icon"></i>
         <% end %>
       </td>

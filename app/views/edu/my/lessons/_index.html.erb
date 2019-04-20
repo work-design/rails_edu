@@ -27,7 +27,7 @@
       </td>
       <td>
         <% unless course.is_a?(OfflineCourse) && (course.course_students_count >= course.limit_people.to_i) %>
-          <%= link_to 'Select', my_course_students_path(course_id: course.id), method: :post, data: {confirm: 'Are you sure?'}, class: 'ui green label' %>
+          <%= link_to 'Select', my_course_students_path(course_id: course.id), method: :post, data: {confirm: t('.confirm')}, class: 'ui green label' %>
         <% end %>
       </td>
     </tr>

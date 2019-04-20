@@ -35,7 +35,7 @@
         <%= link_to edit_admin_sm_setting_path(sm_setting), class: 'ui pink mini icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_sm_setting_path(sm_setting), method: :delete, data: { confirm: 'Are you sure?' }, class: 'ui red mini icon button' do %>
+        <%= link_to admin_sm_setting_path(sm_setting), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>
         <% end %>
       </td>

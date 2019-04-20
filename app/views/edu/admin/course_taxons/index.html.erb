@@ -26,7 +26,7 @@
         <%= link_to edit_admin_course_taxon_path(course_taxon), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
           <i class="pencil alternate icon"></i>
         <% end %>
-        <%= link_to admin_course_taxon_path(course_taxon), method: :delete, data: { tooltip: t('.destroy'), confirm: 'Are you sure?' }, class: 'ui mini circular icon button' do %>
+        <%= link_to admin_course_taxon_path(course_taxon), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="trash alternate icon"></i>
         <% end %>
       </td>
