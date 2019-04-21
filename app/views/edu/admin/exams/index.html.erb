@@ -1,9 +1,9 @@
 <div class="ui segment breadcrumb">
   <%= link_to @course_paper.type_i18n, admin_course_papers_path(type: @course_paper.type), class: 'section' %>
-  <div class="divider"> / </div>
+  <i class="fas fa-angle-right divider"></i>
   <% if @course_paper.course %>
     <%= link_to @course_paper.course.title, admin_course_papers_path(course_id: @course_paper.course_id), class: 'section' %>
-    <div class="divider"> / </div>
+    <i class="fas fa-angle-right divider"></i>
   <% end %>
   <div class="active section">Exams</div>
 </div>
