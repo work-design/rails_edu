@@ -43,9 +43,9 @@
       <td><%= course_paper.title %></td>
       <td><%= course_paper.type_i18n %></td>
       <td></td>
-      <td class="ui labels">
+      <td>
         <%= link_to add_my_exams_path(course_paper_id: course_paper.id), method: :post, data: { tooltip: 'Generate Your Exam!', turbolinks: false, confirm: 'please not refresh when finished!', 'disable-with': 'Generating...' }, class: 'ui blue mini icon button' do %>
-          <i class="clock icon"></i>
+          <i class="fas fa-clock"></i>
         <% end %>
       </td>
     </tr>
