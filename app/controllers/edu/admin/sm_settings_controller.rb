@@ -13,7 +13,7 @@ class Edu::Admin::SmSettingsController < Edu::Admin::BaseController
     @sm_setting = SmSetting.new(sm_setting_params)
 
     if @sm_setting.save
-      redirect_to admin_sm_settings_url, notice: 'Sm setting was successfully created.'
+      redirect_to admin_sm_settings_url
     else
       render :new
     end
@@ -27,7 +27,7 @@ class Edu::Admin::SmSettingsController < Edu::Admin::BaseController
 
   def update
     if @sm_setting.update(sm_setting_params)
-      redirect_to admin_sm_settings_url, notice: 'Sm setting was successfully updated.'
+      redirect_to admin_sm_settings_url
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Edu::Admin::SmSettingsController < Edu::Admin::BaseController
 
   def destroy
     @sm_setting.destroy
-    redirect_to admin_sm_settings_url, notice: 'Sm setting was successfully destroyed.'
+    redirect_to admin_sm_settings_url
   end
 
   private

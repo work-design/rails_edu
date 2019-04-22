@@ -20,7 +20,7 @@ class Edu::My::LessonStudentsController < Edu::My::BaseController
     end
 
     if @lesson_student.save_with_remind
-      redirect_to my_lesson_students_url, notice: 'Course member was successfully created.'
+      redirect_to my_lesson_students_url
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Edu::My::LessonStudentsController < Edu::My::BaseController
 
   def update
     if @lesson_student.update(lesson_student_params)
-      redirect_to my_lesson_students_url, notice: 'Course member was successfully updated.'
+      redirect_to my_lesson_students_url
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class Edu::My::LessonStudentsController < Edu::My::BaseController
 
   def destroy
     @lesson_student.destroy
-    redirect_to my_lesson_students_url, notice: 'Course member was successfully destroyed.'
+    redirect_to my_lesson_students_url
   end
 
   private

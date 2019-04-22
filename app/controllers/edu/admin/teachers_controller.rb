@@ -29,7 +29,7 @@ class Edu::Admin::TeachersController < Edu::Admin::BaseController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      redirect_to admin_teachers_url, notice: 'Teacher was successfully created.'
+      redirect_to admin_teachers_url
     else
       render :new
     end
@@ -43,7 +43,7 @@ class Edu::Admin::TeachersController < Edu::Admin::BaseController
 
   def update
     if @teacher.update(teacher_params)
-      redirect_to admin_teachers_url, notice: 'Teacher was successfully updated.'
+      redirect_to admin_teachers_url
     else
       render :edit
     end
@@ -51,7 +51,7 @@ class Edu::Admin::TeachersController < Edu::Admin::BaseController
 
   def destroy
     @teacher.destroy
-    redirect_to admin_teachers_url, notice: 'Teacher was successfully destroyed.'
+    redirect_to admin_teachers_url
   end
 
   private

@@ -20,7 +20,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_crowd.save
         format.html.phone
-        format.html { redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully created.' }
+        format.html { redirect_to admin_course_course_crowds_url(@course) }
         format.js { redirect_to admin_course_course_crowds_url(@course) }
         format.json { render :show }
       else
@@ -41,7 +41,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_crowd.save
         format.html.phone
-        format.html { redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully updated.' }
+        format.html { redirect_to admin_course_course_crowds_url(@course) }
         format.js { redirect_back fallback_location: admin_course_course_crowds_url(@course) }
         format.json { render :show }
       else
@@ -56,7 +56,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   def destroy
     @course_crowd.destroy
 
-    redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully destroyed.'
+    redirect_to admin_course_course_crowds_url(@course)
   end
 
   private

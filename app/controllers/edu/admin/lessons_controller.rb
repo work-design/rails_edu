@@ -16,8 +16,8 @@ class Edu::Admin::LessonsController < Edu::Admin::BaseController
     respond_to do |format|
       if @lesson.save
         format.html.phone
-        format.html { redirect_to admin_lessons_url, notice: 'Lesson was successfully created.' }
-        format.js { redirect_to admin_course_lessons_url(@course), notice: 'Lesson was successfully created.' }
+        format.html { redirect_to admin_lessons_url }
+        format.js { redirect_to admin_course_lessons_url(@course) }
         format.json { render :show }
       else
         format.html.phone { render :new }
@@ -40,7 +40,7 @@ class Edu::Admin::LessonsController < Edu::Admin::BaseController
     respond_to do |format|
       if @lesson.save
         format.html.phone
-        format.html { redirect_to admin_course_lessons_url(@course), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to admin_course_lessons_url(@course) }
         format.js { redirect_to admin_course_lessons_url(@course) }
         format.json { render :show }
       else
@@ -54,7 +54,7 @@ class Edu::Admin::LessonsController < Edu::Admin::BaseController
 
   def destroy
     @lesson.destroy
-    redirect_to admin_lessons_url, notice: 'Lesson was successfully destroyed.'
+    redirect_to admin_lessons_url
   end
 
   private

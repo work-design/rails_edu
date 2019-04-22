@@ -17,7 +17,7 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
     respond_to do |format|
       if @lesson_student.save
         format.html.phone
-        format.html { redirect_to admin_course_plan_lesson_students_url(@course_plan), notice: 'Lesson student was successfully created.' }
+        format.html { redirect_to admin_course_plan_lesson_students_url(@course_plan) }
         format.js { redirect_to admin_course_plan_lesson_students_url(@course_plan) }
         format.json { render :show }
       else
@@ -41,7 +41,7 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
     respond_to do |format|
       if @lesson_student.save
         format.html.phone
-        format.html { redirect_to admin_lesson_students_url, notice: 'Lesson student was successfully updated.' }
+        format.html { redirect_to admin_lesson_students_url }
         format.js { redirect_back fallback_location: admin_lesson_students_url }
         format.json { render :show }
       else

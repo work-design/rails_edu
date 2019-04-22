@@ -50,7 +50,7 @@ class Edu::Admin::ExamsController < Edu::Admin::BaseController
 
     respond_to do |format|
       if @exam.save
-        format.html { redirect_to admin_course_exams_url(@course), notice: 'Exam was successfully updated.' }
+        format.html { redirect_to admin_course_exams_url(@course) }
         format.js { head :no_content }
       else
         format.html { render :edit }
@@ -65,12 +65,12 @@ class Edu::Admin::ExamsController < Edu::Admin::BaseController
 
   def refer
     @exam.set_referenced
-    redirect_to admin_course_paper_exams_url(@course.course_paper_id), notice: 'Exam was successfully set referenced.'
+    redirect_to admin_course_paper_exams_url(@course.course_paper_id)
   end
 
   def destroy
     @exam.destroy
-    redirect_to admin_course_paper_exams_url(@exam.course_paper_id), notice: 'Exam was successfully destroyed.'
+    redirect_to admin_course_paper_exams_url(@exam.course_paper_id)
   end
 
   private

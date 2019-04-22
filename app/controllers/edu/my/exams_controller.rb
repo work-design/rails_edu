@@ -37,7 +37,7 @@ class Edu::My::ExamsController < Edu::My::BaseController
     @exam = Exam.new(exam_params)
 
     if @exam.save
-      redirect_to my_course_exams_url(@course), notice: 'Exam was successfully created.'
+      redirect_to my_course_exams_url(@course)
     else
       render :new
     end
@@ -51,7 +51,7 @@ class Edu::My::ExamsController < Edu::My::BaseController
 
   def update
     if @exam.update(exam_params)
-      redirect_to my_course_exams_url(@exam.course_id), notice: 'Exam was successfully updated.'
+      redirect_to my_course_exams_url(@exam.course_id)
     else
       render :edit
     end

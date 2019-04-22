@@ -20,7 +20,7 @@ class Edu::Admin::CoursePapersController < Edu::Admin::BaseController
     @course_paper.assign_attributes course_paper_params
 
     if @course_paper.save
-      redirect_to admin_course_papers_url(course_id: @course_paper.course_id), notice: 'Exam paper was successfully created.'
+      redirect_to admin_course_papers_url(course_id: @course_paper.course_id)
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Edu::Admin::CoursePapersController < Edu::Admin::BaseController
 
   def update
     if @course_paper.update(course_paper_params)
-      redirect_to admin_course_papers_url(course_id: @course_paper.course_id), notice: 'Exam paper was successfully updated.'
+      redirect_to admin_course_papers_url(course_id: @course_paper.course_id)
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class Edu::Admin::CoursePapersController < Edu::Admin::BaseController
 
   def destroy
     @course_paper.destroy
-    redirect_to admin_course_papers_url(course_id: @course_paper.course_id), notice: 'Exam paper was successfully destroyed.'
+    redirect_to admin_course_papers_url(course_id: @course_paper.course_id)
   end
 
   private
