@@ -31,7 +31,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
     if @course.save
       redirect_to admin_courses_url
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
