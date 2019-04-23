@@ -1,15 +1,15 @@
-<%= search_form_with model: Member.new do |f| %>
+<%= search_form_with model: Member.new(params.permit(:name)) do |f| %>
   <div class="fields">
     <%= f.text_field :name %>
-    <%= f.email_field :email %>
-    <%= f.submit 'Search' %>
+    <%= f.submit %>
+    <%= link_to t('.clear'), filter_params(except: [:name]), class: 'ui button' %>
   </div>
 <% end %>
 
 <dl>
-  <dt>Status:</dt>
+  <dt><%= CourseStudent.human_attribute_name(:state) %>:</dt>
   <dd>
-    <%= link_to 'All', filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
+    <%= link_to t('.all'), filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% CourseStudent.options_i18n(:state).each do |text, state| %>
       <%= link_to text, filter_params(state: state), class: active_params(state: state, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% end %>

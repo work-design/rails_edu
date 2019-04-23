@@ -21,7 +21,7 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
     @course_student = @course.course_students.build(course_student_params)
 
     if @course_student.save
-      redirect_to admin_course_course_crowds_url(@course), notice: 'Course member was successfully created.'
+      redirect_to admin_course_course_crowds_url(@course)
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
 
   def update
     if @course_student.update(course_student_params)
-      redirect_to course_students_url, notice: 'Course member was successfully updated.'
+      redirect_to course_students_url
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
     @course_student = @course.course_students.find_by(student_type: params[:student_type], student_id: params[:student_id])
     @course_student.destroy
 
-    redirect_to admin_course_course_crowds_url(@course), notice: 'Course crowd was successfully destroyed.'
+    redirect_to admin_course_course_crowds_url(@course)
   end
 
   def check

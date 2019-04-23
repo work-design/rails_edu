@@ -1,12 +1,11 @@
 <div class="item">
   <a class="<%= active_helper(modules: 'edu/admin', active_class: 'title active', item_class: 'title') %>">
     <i class="fas fa-book"></i>
-    <span>教务管理</span>
+    <span><%= t('edu.admin.title') %></span>
     <i class="dropdown icon"></i>
   </a>
   <div class="<%= active_helper(modules: 'edu/admin', active_class: 'menu content active', item_class: 'menu content') %>">
     <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: active_helper(controllers: ['courses', 'course_taxons', 'course_students']) %>
-    <%= link_to '课表', plan_admin_courses_path, class: active_helper(courses: ['plan']) %>
     <%= link_to t('edu.admin.crowds.index.title'), admin_crowds_path, class: active_helper(controllers: 'crowds') %>
     <%# link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
   </div>

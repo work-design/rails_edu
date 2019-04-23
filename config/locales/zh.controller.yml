@@ -1,9 +1,12 @@
 zh:
   edu:
     admin:
+      title: 教学管理
       courses:
         index:
           title: 课程列表
+        show:
+          title: 课程详情
       crowds:
         index:
           title: 班级
@@ -13,6 +16,13 @@ zh:
       course_plans:
         index:
           title: 排课
+          plan: 计划
+      course_students:
+        index:
+          title: 学生列表
       lesson_students:
         index:
           title: 点名
+      lessons:
+        index:
+          title: 节课

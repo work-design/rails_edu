@@ -3,7 +3,9 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_plans = @course_crowd.course_plans.valid.order(booking_on: :asc).page(params[:page])
+    q_params = {}
+    q_params.merge! params.permit(:booking_on)
+    @course_plans = @course_crowd.course_plans.valid.default_where(q_params).order(booking_on: :asc).page(params[:page])
   end
 
   def plan
@@ -32,7 +34,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_plan.save
         format.html.phone
-        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully created.' }
+        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd) }
         format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       else
@@ -56,7 +58,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     respond_to do |format|
       if @course_plan.save
         format.html.phone
-        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully updated.' }
+        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd) }
         format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       else
@@ -70,7 +72,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
 
   def destroy
     @course_plan.destroy
-    redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully destroyed.'
+    redirect_to admin_course_crowd_plans_url(@course_crowd)
   end
 
   private

@@ -10,14 +10,9 @@
       <th>ID</th>
       <th><%= Pupil.human_attribute_name(:name) %></th>
       <th><%= CourseStudent.human_attribute_name(:created_at) %></th>
-      <th>
-        Check
-        <%= check_box_tag :course_student_all, nil, false, onclick: "toggleAll(this, 'course_student_id')", id: nil %>
-      </th>
       <th><%= CourseStudent.human_attribute_name(:state) %></th>
       <th><%= CourseStudent.human_attribute_name(:score) %></th>
       <th>
-        
         <%= link_to find_data_list_table_lists_path('CourseStudentExport', params.permit(:course_id).merge(timestamp: @course.timestamp)), class: 'ui mini blue button', remote: true do %>
           <i class="file excel icon"></i><%= t('.export') %>
         <% end %>
@@ -27,12 +22,9 @@
   <tbody>
   <% @course_students.each do |course_student| %>
     <tr>
-      <td>
-        <%= course_student.id %>
-      </td>
+      <td><%= course_student.id %></td>
       <td><%= course_student.student.real_name %></td>
       <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
-     
       <td>
         <span><%= course_student.state_i18n %></span>
         <% if course_student.request_quit? %>
@@ -45,6 +37,7 @@
       <td>
         <%= course_student.score %>
       </td>
+      <td></td>
     </tr>
   <% end %>
   </tbody>

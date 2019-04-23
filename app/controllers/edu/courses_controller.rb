@@ -16,7 +16,7 @@ class Edu::CoursesController < Edu::BaseController
     respond_to do |format|
       if @course.save
         format.html.phone
-        format.html { redirect_to edu_courses_url, notice: 'Course was successfully created.' }
+        format.html { redirect_to edu_courses_url }
         format.js { redirect_back fallback_location: edu_courses_url }
         format.json { render :show }
       else
@@ -40,7 +40,7 @@ class Edu::CoursesController < Edu::BaseController
     respond_to do |format|
       if @course.save
         format.html.phone
-        format.html { redirect_to edu_courses_url, notice: 'Course was successfully updated.' }
+        format.html { redirect_to edu_courses_url }
         format.js { redirect_back fallback_location: edu_courses_url }
         format.json { render :show }
       else
@@ -54,7 +54,7 @@ class Edu::CoursesController < Edu::BaseController
 
   def destroy
     @course.destroy
-    redirect_to edu_courses_url, notice: 'Course was successfully destroyed.'
+    redirect_to edu_courses_url
   end
 
   private

@@ -43,20 +43,12 @@
     <td><%= @course.teacher&.name %></td>
   </tr>
   <tr>
-    <td class="right aligned"><%= Course.human_attribute_name(:compulsory) %></td>
-    <td>
-      <%= form_with model: @course, scope: :course, url: admin_course_path(@course), method: :patch, remote: true do |f| %>
-        <%= f.check_box :compulsory, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:created_at) %></td>
-    <td><%= @course.created_at.to_s(:rfc822) %></td>
+    <td><time><%= @course.created_at.to_s(:rfc822) %></time></td>
   </tr>
   <tr>
     <td class="right aligned"><%= Course.human_attribute_name(:updated_at) %></td>
-    <td><%= @course.updated_at.to_s(:rfc822) %></td>
+    <td><time><%= @course.updated_at.to_s(:rfc822) %></time></td>
   </tr>
   </tbody>
 </table>

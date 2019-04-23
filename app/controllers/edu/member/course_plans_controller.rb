@@ -42,7 +42,7 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
     respond_to do |format|
       if @course_plan.save
         format.html.phone
-        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully updated.' }
+        format.html { redirect_to admin_course_crowd_plans_url(@course_crowd) }
         format.js { redirect_back fallback_location: admin_course_crowd_plans_url(@course_crowd) }
         format.json { render :show }
       else
@@ -56,7 +56,7 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
 
   def destroy
     @course_plan.destroy
-    redirect_to admin_course_crowd_plans_url(@course_crowd), notice: 'Course plan was successfully destroyed.'
+    redirect_to admin_course_crowd_plans_url(@course_crowd)
   end
 
   private

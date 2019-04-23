@@ -1,7 +1,7 @@
 <div class="ui top attached tabular menu">
-  <%= link_to 'Course Detail', admin_course_path(@course), class: active_helper(id: @course.id) %>
-  <%= link_to '课程列表', admin_course_lessons_path(@course), class: active_helper(controllers: 'lessons') %>
-<%= link_to 'Exam/Survey', admin_course_papers_path(course_id: @course.id), class: active_helper(controllers: 'course_papers') %>
+  <%= link_to t('edu.admin.courses.show.title'), admin_course_path(@course), class: active_helper(id: @course.id) %>
+  <%= link_to t('edu.admin.lessons.index.title'), admin_course_lessons_path(@course), class: active_helper(controllers: 'lessons') %>
+  <%# link_to 'Exam/Survey', admin_course_papers_path(course_id: @course.id), class: active_helper(controllers: 'course_papers') %>
   <%# link_to 'Finished Exams', admin_course_exams_path(@course), class: active_helper(controllers: 'exams') %>
-  <%= link_to 'Joined People', admin_course_course_students_path(@course), class: active_helper('edu/admin/course_students': 'index') %>
+  <%= link_to t('edu.admin.course_students.index.title'), admin_course_course_students_path(@course), class: active_helper(controllers: 'course_students') %>
 </div>

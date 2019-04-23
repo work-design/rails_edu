@@ -11,6 +11,7 @@ zh:
         course_students_count: 报名人数
       course_student:
         state: 状态
+        score: 分数
       course_plan:
         booking_on: 日期
         time_item: 时间段
@@ -20,3 +21,6 @@ zh:
       lesson:
         videos: 媒体资料
         documents: 文件
+      crowd:
+        student_type: 学生类型
+        crowd_students_count: 学生数

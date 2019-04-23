@@ -29,7 +29,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to admin_courses_url, notice: 'Course was successfully created.'
+      redirect_to admin_courses_url
     else
       render :new
     end
@@ -44,7 +44,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to admin_course_url(@course), notice: 'Course was successfully updated.' }
+        format.html { redirect_to admin_course_url(@course) }
         format.js { redirect_to admin_courses_url }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
 
   def destroy
     @course.destroy
-    redirect_to admin_courses_url, notice: 'Course was successfully destroyed.'
+    redirect_to admin_courses_url
   end
 
   private
