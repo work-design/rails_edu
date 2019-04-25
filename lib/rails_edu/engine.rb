@@ -3,9 +3,8 @@ module RailsEdu
   class Engine < ::Rails::Engine
 
     config.autoload_paths += Dir[
-      "#{config.root}/app/models/rails_edu",
-      "#{config.root}/app/models/rails_edu/courses",
-      "#{config.root}/app/models/rails_edu/course_papers"
+      "#{config.root}/app/models/courses",
+      "#{config.root}/app/models/course_papers"
     ]
 
     config.factory_bot.definition_file_paths += Dir["#{config.root}/test/factories"] if defined?(FactoryBotRails)
