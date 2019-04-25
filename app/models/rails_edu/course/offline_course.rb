@@ -1,4 +1,4 @@
-class CaseStudy < Course
+module RailsEdu::Course::OfflineCourse
 
   def enabled?
     self.next_finish_time && self.next_finish_time > Time.now

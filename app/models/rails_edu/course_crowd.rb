@@ -1,23 +1,26 @@
-class CourseCrowd < ApplicationRecord
-  include RailsBookingPlan
-
-  attribute :present_number, :integer
-  attribute :limit_number, :integer
-
-  belongs_to :course
-  belongs_to :crowd
-  belongs_to :teacher, optional: true
-
-  has_many :course_plans, dependent: :destroy
-  has_many :course_students
-  has_many :lessons, foreign_key: :course_id, primary_key: :course_id
-
-  after_create_commit :sync_to_course_students
-  after_destroy_commit :destroy_from_course_students
-  after_update_commit :sync_to_course_plans, -> { saved_change_to_teacher_id? }
-
-  delegate :title, to: :course
-
+module RailsEdu::CourseCrowd
+  extend ActiveSupport::Concern
+  included do
+    include RailsBookingPlan
+  
+    attribute :present_number, :integer
+    attribute :limit_number, :integer
+  
+    belongs_to :course
+    belongs_to :crowd
+    belongs_to :teacher, optional: true
+  
+    has_many :course_plans, dependent: :destroy
+    has_many :course_students
+    has_many :lessons, foreign_key: :course_id, primary_key: :course_id
+  
+    after_create_commit :sync_to_course_students
+    after_destroy_commit :destroy_from_course_students
+    after_update_commit :sync_to_course_plans, -> { saved_change_to_teacher_id? }
+  
+    delegate :title, to: :course
+  end
+  
   def sync_to_course_students
     self.crowd.students.each do |i|
       cs = i.course_students.build(student_id: i.id, course_id: self.course_id)

@@ -1,25 +1,28 @@
-class Exam < ApplicationRecord
-  include RailsNoticeNotifiable
-  include StateMachine
-  belongs_to :course_paper, optional: true
-  belongs_to :course, optional: true
-  belongs_to :member
-  belongs_to :reviewer, class_name: 'Member', inverse_of: 'review_exams', counter_cache: 'review_exams_count', optional: true
-  has_one :course_student, ->(o){ where(member_id: o.member_id) }, primary_key: 'course_id', foreign_key: 'course_id'
-  serialize :answer_detail, Hash
-
-  enum state: {
-    init: 'init',
-    finished: 'finished',
-    evaluated: 'evaluated'
-  }
-  scope :processing, -> { default_where(state: 'evaluated', 'answer_mark-gte': 60).or(Exam.where(state: ['init', 'finished'])) }
-
-  after_initialize if: :new_record? do
-    self.state ||= 'init'
-    self.course_id = self.course_paper&.course_id
+module RailsEdu::Exam
+  extend ActiveSupport::Concern
+  included do
+    include RailsNoticeNotifiable
+    include StateMachine
+    belongs_to :course_paper, optional: true
+    belongs_to :course, optional: true
+    belongs_to :member
+    belongs_to :reviewer, class_name: 'Member', inverse_of: 'review_exams', counter_cache: 'review_exams_count', optional: true
+    has_one :course_student, ->(o){ where(member_id: o.member_id) }, primary_key: 'course_id', foreign_key: 'course_id'
+    serialize :answer_detail, Hash
+  
+    enum state: {
+      init: 'init',
+      finished: 'finished',
+      evaluated: 'evaluated'
+    }
+    scope :processing, -> { default_where(state: 'evaluated', 'answer_mark-gte': 60).or(Exam.where(state: ['init', 'finished'])) }
+  
+    after_initialize if: :new_record? do
+      self.state ||= 'init'
+      self.course_id = self.course_paper&.course_id
+    end
   end
-
+  
   def set_finish
     return if self.finished?
     self.set_reviewer

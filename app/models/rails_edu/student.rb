@@ -1,4 +1,4 @@
-module RailsEduStudent
+module RailsEdu::Student
   extend ActiveSupport::Concern
   included do
     has_many :course_students, as: :student, dependent: :destroy

@@ -1,19 +1,21 @@
-class LessonStudent < ApplicationRecord
-
-  attribute :attended, :boolean, default: true
-
-  belongs_to :course
-  belongs_to :student, polymorphic: true
-  belongs_to :course_student
-  belongs_to :course_crowd
-  belongs_to :course_plan
-  belongs_to :lesson, optional: true
-  has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source
-
-  before_validation :sync_course_student
-  after_create_commit :sync_card_log
-  after_destroy_commit :sync_revert_card_log
-
+module RailsEdu::LessonStudent
+  extend ActiveSupport::Concern
+  included do
+    attribute :attended, :boolean, default: true
+  
+    belongs_to :course
+    belongs_to :student, polymorphic: true
+    belongs_to :course_student
+    belongs_to :course_crowd
+    belongs_to :course_plan
+    belongs_to :lesson, optional: true
+    has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source
+  
+    before_validation :sync_course_student
+    after_create_commit :sync_card_log
+    after_destroy_commit :sync_revert_card_log
+  end
+  
   def sync_course_student
     self.course_id = course_student.course_id
     self.student_type = course_student.student_type

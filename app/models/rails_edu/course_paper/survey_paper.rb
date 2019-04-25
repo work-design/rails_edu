@@ -1,12 +1,14 @@
-class SurveyPaper < CoursePaper
+module RailsEdu::CoursePaper::SurveyPaper
   TEMP = {
     'OfflineCourse' => '151607259',
     'OnlineCourse' => '151606841',
     'ShareCourse' => '151607332'
   }
-
-  after_initialize if: :new_record? do
-    self.title ||= "Survey_#{self.course&.title}"
+  extend ActiveSupport::Concern
+  included do
+    after_initialize if: :new_record? do
+      self.title ||= "Survey_#{self.course&.title}"
+    end
   end
 
   def add

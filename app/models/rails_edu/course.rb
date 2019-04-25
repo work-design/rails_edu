@@ -1,24 +1,27 @@
-class Course < ApplicationRecord
-  attribute :limit_number, :integer, default: 0
-  attribute :present_number, :integer, default: 0
-
-  belongs_to :course_taxon, optional: true
-  belongs_to :author, class_name: 'Teacher', optional: true
-  belongs_to :teacher, optional: true
-
-  has_many :lessons
-
-  has_many :course_crowds
-  has_many :crowds, through: :course_crowds
-  has_many :course_students, dependent: :destroy
-
-  has_many :course_grants, dependent: :destroy
-  has_many :course_plans, dependent: :destroy
-  has_many :course_papers, dependent: :destroy
-  has_many :exam_papers, dependent: :destroy
-  has_many :survey_papers, dependent: :destroy
-  has_many :exams, dependent: :destroy
-
+module RailsEdu::Course
+  extend ActiveSupport::Concern
+  included do
+    attribute :limit_number, :integer, default: 0
+    attribute :present_number, :integer, default: 0
+  
+    belongs_to :course_taxon, optional: true
+    belongs_to :author, class_name: 'Teacher', optional: true
+    belongs_to :teacher, optional: true
+  
+    has_many :lessons
+  
+    has_many :course_crowds
+    has_many :crowds, through: :course_crowds
+    has_many :course_students, dependent: :destroy
+  
+    has_many :course_grants, dependent: :destroy
+    has_many :course_plans, dependent: :destroy
+    has_many :course_papers, dependent: :destroy
+    has_many :exam_papers, dependent: :destroy
+    has_many :survey_papers, dependent: :destroy
+    has_many :exams, dependent: :destroy
+  end
+  
   def student_type_ids
     course_students.pluck(:student_type, :student_id)
   end
@@ -40,6 +43,5 @@ class Course < ApplicationRecord
   def timestamp
     self.course_students.order(created_at: :desc).first&.created_at.to_i
   end
-
-
+  
 end

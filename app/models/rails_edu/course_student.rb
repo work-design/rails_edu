@@ -1,25 +1,28 @@
-class CourseStudent < ApplicationRecord
-  include StateMachine
-  attribute :state, :string, default: 'in_studying'
-
-  belongs_to :course_crowd, optional: true
-  belongs_to :course, counter_cache: true
-  belongs_to :student, polymorphic: true
-  has_many :lesson_students
-
-  validates :student_id, uniqueness: { scope: [:student_type, :course_id] }
-
-  enum state: {
-    in_studying: 'in_studying',
-    request_quit: 'request_quit',
-    quitted: 'quitted',
-    in_evaluating: 'in_evaluating',
-    passed: 'passed',
-    failed: 'failed'
-  }
-
-  after_destroy :delete_reminder_job
-
+module RailsEdu::CourseStudent
+  extend ActiveSupport::Concern
+  included do
+    include StateMachine
+    attribute :state, :string, default: 'in_studying'
+  
+    belongs_to :course_crowd, optional: true
+    belongs_to :course, counter_cache: true
+    belongs_to :student, polymorphic: true
+    has_many :lesson_students
+  
+    validates :student_id, uniqueness: { scope: [:student_type, :course_id] }
+  
+    enum state: {
+      in_studying: 'in_studying',
+      request_quit: 'request_quit',
+      quitted: 'quitted',
+      in_evaluating: 'in_evaluating',
+      passed: 'passed',
+      failed: 'failed'
+    }
+  
+    after_destroy :delete_reminder_job
+  end
+  
   def save_with_remind
     self.class.transaction do
       self.save!
