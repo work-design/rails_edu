@@ -4,17 +4,19 @@
     <i class="fas fa-angle-right divider"></i>
     <%= link_to @course.title, admin_course_path(@course), class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
-    <div class="section"><%= CourseCrowd.human_name %></div>
+    <div class="section"><%= t('.title') %></div>
   </div>
 <% end %>
+
+<%= render 'nav_course' %>
 
 <table class="ui bottom attached table">
   <thead>
     <tr>
       <th><%= CourseCrowd.human_attribute_name(:id) %></th>
       <th><%= Crowd.human_attribute_name(:name) %></th>
-      <th><%= Crowd.human_attribute_name(:teacher) %></th>
-      <th><%= Crowd.human_attribute_name(:students) %></th>
+      <th><%= CourseCrowd.human_attribute_name(:teacher) %></th>
+      <th><%= CourseCrowd.human_attribute_name(:students) %></th>
       <th>
         <%= link_to new_admin_course_course_crowd_path(@course), remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>

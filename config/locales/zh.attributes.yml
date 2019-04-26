@@ -9,6 +9,9 @@ zh:
         course_taxon_id: 类别
         limit_number: 限制人数
         course_students_count: 报名人数
+      course_crowd:
+        teacher: 老师
+        students: 学生
       course_student:
         state: 状态
         score: 分数
