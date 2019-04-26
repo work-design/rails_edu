@@ -1,4 +1,4 @@
-class Edu::My::CoursesController < Edu::My::BaseController
+class Edu::My::LessonsController < Edu::My::BaseController
   before_action :set_course, only: [:show, :edit]
 
   def index

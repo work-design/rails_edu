@@ -1,7 +1,7 @@
 module RailsEdu::Exam
   extend ActiveSupport::Concern
   included do
-    include RailsNoticeNotifiable
+    include RailsNotice::Notifiable
     include StateMachine
     belongs_to :course_paper, optional: true
     belongs_to :course, optional: true
