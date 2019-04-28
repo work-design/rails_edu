@@ -23,6 +23,7 @@ module RailsEdu::CoursePlan
       if course_crowd
         self.course_id = course_crowd.course_id
         self.teacher_id ||= course_crowd.teacher_id
+        self.room_id ||= course_crowd.room_id
       end
     end
   end

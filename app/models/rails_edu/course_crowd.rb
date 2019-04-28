@@ -8,6 +8,7 @@ module RailsEdu::CourseCrowd
     belongs_to :course
     belongs_to :crowd
     belongs_to :teacher, optional: true
+    belongs_to :room, optional: true
   
     has_many :course_plans, dependent: :destroy
     has_many :course_students
@@ -38,7 +39,7 @@ module RailsEdu::CourseCrowd
     end
   end
 
-  def sync(time_plan)
+  def sync
     removes = self.xx.simple_diff self.next_days
     adds = self.next_days.simple_diff self.xx
 
@@ -51,7 +52,6 @@ module RailsEdu::CourseCrowd
     adds.each do |date, time_item_ids|
       Array(time_item_ids).each do |time_item_id|
         cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
-        cp.room_id = time_plan.room_id
         cp.save
       end
     end

@@ -26,6 +26,11 @@ zh:
       lesson:
         videos: 媒体资料
         documents: 文件
+      lesson_student:
+        student_id: 学生
+        state: 状态
+        attended: 是否出勤
+        created_at: 入学时间
       crowd:
         student_type: 学生类型
         crowd_students_count: 学生数

@@ -12,6 +12,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   def new
     @course_crowd = @course.course_crowds.build
     @crowds = Crowd.default_where(default_params).where.not(id: @course.crowd_ids)
+    @rooms = Room.default_where(default_params)
   end
 
   def create
@@ -80,7 +81,8 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   def course_crowd_params
     params.fetch(:course_crowd, {}).permit(
       :crowd_id,
-      :teacher_id
+      :teacher_id,
+      :room_id
     )
   end
 

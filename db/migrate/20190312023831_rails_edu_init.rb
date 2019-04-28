@@ -31,7 +31,10 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
     create_table :course_crowds do |t|
       t.references :course
       t.references :crowd
+      t.references :room
       t.references :teacher
+      t.integer :limit_number
+      t.integer :present_number
       t.timestamps
     end
 

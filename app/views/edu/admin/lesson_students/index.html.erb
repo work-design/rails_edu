@@ -12,18 +12,19 @@
   </div>
 <% end %>
 
-<%= render 'filter' %>
+<div class="ui top attached segment">
+  <%= render 'filter' %>
+</div>
 
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th><%= LessonStudent.human_attribute_name(:student) %></th>
+      <th><%= LessonStudent.human_attribute_name(:student_id) %></th>
       <th><%= LessonStudent.human_attribute_name(:state) %></th>
       <th><%= LessonStudent.human_attribute_name(:created_at) %></th>
       <th>
         <%= LessonStudent.human_attribute_name(:attended) %>
       </th>
-      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -40,14 +41,6 @@
             <%= check_box_tag :course_student_id, course_student.id, false, data: { method: :post, remote: true, url: admin_course_plan_lesson_students_path(@course_plan), submit: true }, id: nil %>
           <% end %>
         </div>
-      </td>
-      <td>
-        <%= link_to edit_admin_course_plan_lesson_student_path(@course_plan, course_student), data: { tooltip: t('.edit') }, class: 'ui mini circular icon button', remote: true do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
-        <%= link_to admin_course_plan_lesson_student_path(@course_plan, course_student), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
       </td>
     </tr>
   <% end %>
