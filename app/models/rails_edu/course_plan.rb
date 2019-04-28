@@ -1,6 +1,5 @@
 module RailsEdu::CoursePlan
   extend ActiveSupport::Concern
-  include RailsBooking::Booked
 
   included do
     attribute :booking_on, :date

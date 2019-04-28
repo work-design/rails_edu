@@ -1,7 +1,6 @@
 module RailsEdu::CourseCrowd
   extend ActiveSupport::Concern
-  include RailsBooking::Plan
-  
+
   included do
     attribute :present_number, :integer
     attribute :limit_number, :integer
