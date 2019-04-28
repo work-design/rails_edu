@@ -1,7 +1,8 @@
 module RailsEdu::CourseStudent
   extend ActiveSupport::Concern
+  include StateMachine
+
   included do
-    include StateMachine
     attribute :state, :string, default: 'in_studying'
   
     belongs_to :course_crowd, optional: true

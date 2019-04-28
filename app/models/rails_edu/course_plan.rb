@@ -1,8 +1,8 @@
 module RailsEdu::CoursePlan
   extend ActiveSupport::Concern
+  include RailsBooking::Booked
+
   included do
-    include RailsBooking::Booked
-  
     attribute :booking_on, :date
     attribute :time_bookings_count, :integer, default: 0
   

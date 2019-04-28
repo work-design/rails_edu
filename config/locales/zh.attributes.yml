@@ -12,6 +12,8 @@ zh:
       course_crowd:
         teacher: 老师
         students: 学生
+        crowd_id: 班级
+        teacher_id: 老师
       course_student:
         state: 状态
         score: 分数
