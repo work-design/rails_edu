@@ -15,10 +15,10 @@ zh:
           title: 分班
       course_plans:
         index:
-          title: 排课
-          plan: 计划
-        plan:
           title: 计划
+          plan: 排课
+        plan:
+          title: 排课
       course_students:
         index:
           title: 学生列表

@@ -40,9 +40,8 @@ module RailsEdu::CourseCrowd
   end
 
   def sync
-    removes = self.xx.simple_diff self.next_days
-    adds = self.next_days.simple_diff self.xx
-
+    removes, adds = self.xx.diff_changes self.next_days
+    
     removes.each do |date, time_item_ids|
       Array(time_item_ids).each do |time_item_id|
         self.course_plans.where(booking_on: date, time_item_id: time_item_id).delete_all
