@@ -17,7 +17,8 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
 
   def create
     @course_crowd = @course.course_crowds.find_or_initialize_by(crowd_id: course_crowd_params[:crowd_id])
-
+    @course_crowd.room_id = course_crowd_params[:room_id]
+    
     respond_to do |format|
       if @course_crowd.save
         format.html.phone

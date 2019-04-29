@@ -17,6 +17,7 @@
       <th><%= Crowd.human_attribute_name(:name) %></th>
       <th><%= CourseCrowd.human_attribute_name(:teacher) %></th>
       <th><%= CourseCrowd.human_attribute_name(:students) %></th>
+      <th><%= CourseCrowd.human_attribute_name(:room_id) %></th>
       <th>
         <%= link_to new_admin_course_course_crowd_path(@course), remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>
@@ -41,6 +42,7 @@
     <td>
       <%= render partial: 'crowd_student', locals: { students: course_crowd.crowd.students } %>
     </td>
+    <td><%= course_crowd.room&.name %></td>
     <td>
       <%= link_to '课程安排', admin_course_crowd_plans_path(course_crowd), class: 'ui mini circular icon button' %>
       <%= link_to admin_course_course_crowd_path(@course, course_crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
