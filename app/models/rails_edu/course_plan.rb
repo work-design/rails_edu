@@ -44,5 +44,19 @@ module RailsEdu::CoursePlan
       }
     }
   end
+  
+  def course_students(user)
+    student_ids = user.tutelar&.pupil_ids
+    course.course_students.where(student_type: 'Profile', student_id: student_ids)
+  end
+  
+  def invoke_effect(wechat_user)
+    user = wechat_user.user
+    return unless user
+    course_students(user).each do |course_student_id|
+      r = lesson_students.build(course_student_id: course_student_id)
+      r.save
+    end
+  end
 
 end
