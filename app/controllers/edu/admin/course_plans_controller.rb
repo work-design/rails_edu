@@ -1,11 +1,11 @@
 class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   before_action :set_course_crowd
-  before_action :set_course_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_course_plan, only: [:show, :edit, :update, :qrcode, :destroy]
 
   def index
     q_params = {}
     q_params.merge! params.permit(:booking_on)
-    @course_plans = @course_crowd.course_plans.valid.default_where(q_params).order(booking_on: :asc).page(params[:page])
+    @course_plans = @course_crowd.course_plans.includes(:wechat_response).valid.default_where(q_params).order(booking_on: :asc).page(params[:page])
   end
 
   def plan
@@ -68,6 +68,14 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
         format.json { render :show }
       end
     end
+  end
+  
+  def qrcode
+    wechat_config = current_organ.wechat_configs.first
+    unless @course_plan.wechat_response
+      @course_plan.create_wechat_response(type: 'TempScanResponse', wechat_config_id: wechat_config.id) if wechat_config
+    end
+    redirect_to admin_course_crowd_plans_url(@course_crowd)
   end
 
   def destroy
