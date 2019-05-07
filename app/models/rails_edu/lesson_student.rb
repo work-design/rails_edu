@@ -49,7 +49,8 @@ module RailsEdu::LessonStudent
       str << "本次消耗次数：#{card_log.amount}\n"
       str << "剩余次数：#{card_log.card.amount}\n"
     end
-    str << "老师：#{lesson.teacher.name}\n" if lesson&.teacher
+    str << "老师：#{lesson.teacher.name}\n" if course_plan.teacher
+    str << "教室：#{lesson.room.name}\n" if course_plan.room
     str << "上课时间：#{course_plan.start_at.strftime('%F %R')}\n"
     str << "结束时间：#{course_plan.finish_at.strftime('%F %R')}\n"
   end
