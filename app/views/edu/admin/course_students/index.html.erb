@@ -17,7 +17,7 @@
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th>ID</th>
+      <th><%= CourseStudent.human_attribute_name(:id) %></th>
       <th><%= Pupil.human_attribute_name(:name) %></th>
       <th><%= CourseStudent.human_attribute_name(:created_at) %></th>
       <th><%= CourseStudent.human_attribute_name(:state) %></th>
@@ -40,7 +40,7 @@
         <% if course_student.request_quit? %>
           <%= link_to 'Approve', quit_admin_course_course_student_path(@course, course_student), method: :patch %>
         <% end %>
-        <% if ['request_quit', 'quitted'].include? course_student.state %>
+        <% if ['request_quit', 'quit'].include? course_student.state %>
           <span class="grey text">(<%= course_student.quit_note %>)</span>
         <% end %>
       </td>

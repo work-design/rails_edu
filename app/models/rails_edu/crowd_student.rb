@@ -7,7 +7,11 @@ module RailsEdu::CrowdStudent
     after_initialize if: :new_record? do
       self.student_type = self.crowd.student_type if crowd
     end
+    after_destroy_commit :quit_course
   end
   
+  def quit_course
+  
+  end
 
 end

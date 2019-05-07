@@ -28,11 +28,19 @@ module RailsEdu::CoursePlan
     end
   end
   
+  def start_str
+    time_item.start_at.change(booking_on.parts).strftime('%FT%T')
+  end
+  
+  def finish_str
+    time_item.finish_at.change(booking_on.parts).strftime('%FT%T')
+  end
+  
   def to_event
     {
       id: id,
-      start: time_item.start_at.change(booking_on.parts).strftime('%FT%T'),
-      end: time_item.finish_at.change(booking_on.parts).strftime('%FT%T'),
+      start: start_str,
+      end: finish_str,
       title: "#{room.name} #{course.title}",
       extendedProps: {
         title: course.title,

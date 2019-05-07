@@ -9,7 +9,8 @@ module RailsEdu::CourseCrowd
     belongs_to :crowd
     belongs_to :teacher, optional: true
     belongs_to :room, optional: true
-  
+    
+    has_many :crowd_students, foreign_key: :crowd_id, primary_key: :crowd_id
     has_many :course_plans, dependent: :destroy
     has_many :course_students
     has_many :lessons, foreign_key: :course_id, primary_key: :course_id

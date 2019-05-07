@@ -6,7 +6,7 @@ module RailsEdu::LessonStudent
     belongs_to :course
     belongs_to :student, polymorphic: true
     belongs_to :course_student
-    belongs_to :course_crowd
+    belongs_to :course_crowd, optional: true
     belongs_to :course_plan
     belongs_to :lesson, optional: true
     has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source

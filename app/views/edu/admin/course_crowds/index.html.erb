@@ -40,7 +40,7 @@
       <% end %>
     </td>
     <td>
-      <%= render partial: 'crowd_student', locals: { students: course_crowd.crowd.students } %>
+      <%= render partial: 'crowd_student', locals: { course_crowd: course_crowd } %>
     </td>
     <td><%= course_crowd.room&.name %></td>
     <td>
