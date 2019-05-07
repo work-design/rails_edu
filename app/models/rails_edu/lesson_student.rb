@@ -9,6 +9,7 @@ module RailsEdu::LessonStudent
     belongs_to :course_crowd, optional: true
     belongs_to :course_plan
     belongs_to :lesson, optional: true
+    has_one :card_log, ->{ default_where('amount-gt': 0) }, as: :source
     has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source
   
     before_validation :sync_course_student
@@ -40,6 +41,17 @@ module RailsEdu::LessonStudent
     log.tag_str = '签到'
     log.amount = -1
     log.save
+  end
+  
+  def to_notification
+    str = ''
+    if card_log
+      str << "本次消耗次数：#{card_log.amount}\n"
+      str << "剩余次数：#{card_log.card.amount}\n"
+    end
+    str << "老师：#{lesson.teacher.name}\n" if lesson&.teacher
+    str << "上课时间：#{course_plan.start_at.strftime('%F %R')}\n"
+    str << "结束时间：#{course_plan.finish_at.strftime('%F %R')}\n"
   end
 
 end
