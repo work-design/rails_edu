@@ -64,7 +64,6 @@ Rails.application.routes.draw do
       get :todo, on: :collection
       get :cert, on: :collection
     end
-    resources :sm_settings
   end
 
   scope :my, module: 'edu/my', as: 'my' do
