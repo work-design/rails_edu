@@ -34,7 +34,7 @@
     <tr>
       <td><%= course.id %></td>
       <td><%= course.type_i18n %></td>
-      <td><%= course.course_taxon.name %></td>
+      <td><%= course.course_taxon&.name %></td>
       <td>
         <%= link_to course.title, admin_course_path(course) %>
         <span class="<%= active_assert(course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course.compulsory_i18n %></span>
