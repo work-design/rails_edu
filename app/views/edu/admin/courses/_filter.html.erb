@@ -22,5 +22,8 @@
     <% CourseTaxon.all.each do |taxon| %>
       <%= link_to taxon.name, filter_params(course_taxon_id: taxon.id), class: active_params(course_taxon_id: taxon.id, active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% end %>
+    <%= link_to new_admin_course_taxon_path(return_to: request.path), data: { tooltip: t('.new') }, class: 'ui mini circular icon button' do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
   </dd>
 </dl>

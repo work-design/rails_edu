@@ -23,6 +23,9 @@ zh:
       course_students:
         index:
           title: 学生列表
+      course_taxons:
+        index:
+          title: 课程分类
       lesson_students:
         index:
           title: 点名

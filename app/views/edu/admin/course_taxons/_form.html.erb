@@ -1,4 +1,5 @@
 <%= form_with model: [:admin, @course_taxon], local: true do |f| %>
+  <%= hidden_field_tag :return_to, params[:return_to] %>
   <%= render 'shared/error_messages', target: @course_taxon %>
   <%= f.text_field :name %>
   <%= f.submit %>
