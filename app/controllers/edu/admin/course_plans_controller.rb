@@ -95,7 +95,8 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   def course_plan_params
     params.fetch(:course_plan, {}).permit(
       :lesson_id,
-      :room_id
+      :room_id,
+      :teacher_id
     )
   end
 

@@ -22,9 +22,7 @@
       <th><%= CoursePlan.human_attribute_name(:lesson) %></th>
       <th><%= CoursePlan.human_attribute_name(:teacher) %></th>
       <th><%= CoursePlan.human_attribute_name(:qrcode) %></th>
-      <th>
-        <%= link_to t('.plan'), plan_admin_course_crowd_plans_path(@course_crowd), class: 'ui mini primary button', remote: true %>
-      </th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -51,7 +49,7 @@
       <td><%= course_plan.teacher&.name %></td>
       <td>
         <% if course_plan.wechat_response %>
-          <%= image_tag course_plan.wechat_response.qrcode_file, class: 'ui small image' %>
+          <%= image_tag course_plan.wechat_response.qrcode_file, class: 'ui small image' if course_plan.wechat_response.qrcode_file.attached? %>
         <% else %>
           <%= link_to qrcode_admin_course_crowd_plan_path(@course_crowd, course_plan), method: :patch, data: { tooltip: t('.qrcode') }, remote: true, class: 'ui mini circular icon button' do %>
             <i class="fas fa-qrcode"></i>

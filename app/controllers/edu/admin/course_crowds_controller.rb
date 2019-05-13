@@ -6,7 +6,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   def index
     q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
     q_params.merge! params.permit(:id, :email, :office_id)
-    @course_crowds = @course.course_crowds.includes(crowd: :students)
+    @course_crowds = @course.course_crowds.order(id: :asc).includes(crowd: :students)
   end
 
   def new
@@ -35,6 +35,7 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   end
 
   def edit
+    @rooms = Room.default_where(default_params)
   end
 
   def update

@@ -3,7 +3,7 @@ module RailsEdu::Crowd
   included do
     has_many :crowd_students
     has_many :students, through: :crowd_students, source_type: 'Profile'
-    has_many :course_crowds
+    has_many :course_crowds, dependent: :destroy
     has_many :course_students, through: :course_crowds
     
     has_one_attached :logo
