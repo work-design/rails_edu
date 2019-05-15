@@ -24,6 +24,7 @@ zh:
         room_id: 教室
         lesson_id: 课程
         teacher_id: 老师
+        qrcode: 二维码
       lesson:
         videos: 媒体资料
         documents: 文件
