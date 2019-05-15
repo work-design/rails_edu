@@ -14,7 +14,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
     q_params.merge! params.permit(:room_id)
     @time_plans = @course_crowd.time_plans.default_where(q_params)
 
-    @time_plan = @course_crowd.time_plans.find_or_initialize_by(q_params.slice(:room_id))
+    @time_plan = @course_crowd.time_plans.recent || @course_crowd.time_plans.build
     @time_plan.time_list ||= TimeList.default
   end
 
