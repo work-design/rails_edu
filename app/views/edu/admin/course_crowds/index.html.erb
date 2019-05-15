@@ -2,9 +2,9 @@
   <div class="ui basic segment breadcrumb">
     <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to @course.title, admin_course_path(@course), class: 'section' %>
+    <div class="section"><%= @course.title %></div>
     <i class="fas fa-angle-right divider"></i>
-    <div class="section"><%= t('.title') %></div>
+    <div class="section active"><%= t('.title') %></div>
   </div>
 <% end %>
 

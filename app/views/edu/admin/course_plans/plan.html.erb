@@ -2,9 +2,9 @@
   <div class="ui basic segment breadcrumb">
     <%= link_to '课程列表', admin_courses_path, class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to @course_crowd.course.title, admin_course_lessons_path(@course_crowd.course_id), class: 'section' %>
+    <div class="section"><%= @course_crowd.course.title %></div>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to @course_crowd.crowd.name, admin_course_course_crowds_path(@course_crowd.course_id), class: 'section' %>
+    <%= link_to t('edu.admin.course_crowds.index.title'), admin_course_course_crowds_path(@course_crowd.course_id), class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
     <div class="section"><%= t('.title') %></div>
   </div>
