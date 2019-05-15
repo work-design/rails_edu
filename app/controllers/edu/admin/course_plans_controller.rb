@@ -50,6 +50,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   end
 
   def edit
+    @rooms = Room.default_where(default_params)
   end
 
   def update

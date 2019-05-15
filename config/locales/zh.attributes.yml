@@ -21,9 +21,9 @@ zh:
       course_plan:
         booking_on: 日期
         time_item: 时间段
-        room: 教室
-        lesson: 课程
-        teacher: 老师
+        room_id: 教室
+        lesson_id: 课程
+        teacher_id: 老师
       lesson:
         videos: 媒体资料
         documents: 文件

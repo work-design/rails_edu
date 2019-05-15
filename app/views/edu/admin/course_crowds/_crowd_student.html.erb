@@ -1,10 +1,10 @@
 <table class="ui very basic table">
   <% course_crowd.crowd_students.each do |crowd_student| %>
   <tr>
-    <td>
+    <td class="eight wide">
       <%= crowd_student.student.real_name %>
     </td>
-    <td>
+    <td class="eight wide">
       <div class="ui toggle checkbox">
         <% if @course.course_students.pluck(:student_id).include?(crowd_student.student_id) %>
           <%= check_box_tag :crowd_student_id, crowd_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_students_path(@course), submit: true }, id: nil %>

@@ -31,25 +31,19 @@
     <td><%= course_crowd.id %></td>
     <td><%= course_crowd.crowd.name %></td>
     <td>
-      <% if course_crowd.teacher %>
-        <%= course_crowd.teacher.name %>
-      <% else %>
-        <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'teacher'), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="green male icon"></i>
-        <% end %>
+      <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'teacher'), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
+        <i class="green male icon"></i>
       <% end %>
+      <%= course_crowd.teacher&.name %>
     </td>
     <td>
       <%= render partial: 'crowd_student', locals: { course_crowd: course_crowd } %>
     </td>
     <td>
-      <% if course_crowd.room %>
-        <%= course_crowd.room.name %>
-      <% else %>
-        <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'room'), data: { tooltip: '设置教室' }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-building"></i>
-        <% end %>
+      <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'room'), data: { tooltip: '设置教室' }, remote: true, class: 'ui mini circular icon button' do %>
+        <i class="fas fa-building"></i>
       <% end %>
+      <%= course_crowd.room&.name %>
     </td>
     <td>
       <%= link_to '课程安排', admin_course_crowd_plans_path(course_crowd), class: 'ui mini circular icon button' %>

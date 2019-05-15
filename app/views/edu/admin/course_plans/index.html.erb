@@ -36,17 +36,24 @@
         <span class="ui label"><%= course_plan.time_item.start_at.to_s(:time) %></span>
         <span class="ui label"><%= course_plan.time_item.finish_at.to_s(:time) %></span>
       </td>
-      <td><%= course_plan.room&.name %></td>
       <td>
-        <% if course_plan.lesson %>
-          <%= course_plan.lesson.title %>
-        <% else %>
-          <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: '设置课节' }, remote: true, class: 'ui mini circular icon button' do %>
-            <i class="fas fa-rss"></i>
-          <% end %>
+        <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan, item: 'room'), data: { tooltip: '设置教室' }, remote: true, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-building"></i>
         <% end %>
+        <%= course_plan.room&.name %>
       </td>
-      <td><%= course_plan.teacher&.name %></td>
+      <td>
+        <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan, item: 'lesson'), data: { tooltip: '设置课节' }, remote: true, class: 'ui mini circular icon button' do %>
+          <i class="fas fa-rss"></i>
+        <% end %>
+        <%= course_plan.lesson&.title %>
+      </td>
+      <td>
+        <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan, item: 'teacher'), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
+          <i class="green male icon"></i>
+        <% end %>
+        <%= course_plan.teacher&.name %>
+      </td>
       <td>
         <% if course_plan.wechat_response %>
           <%= image_tag course_plan.wechat_response.qrcode_file, class: 'ui small image' if course_plan.wechat_response.qrcode_file.attached? %>
@@ -60,9 +67,6 @@
         <% end %>
       </td>
       <td>
-        <%= link_to edit_admin_course_crowd_plan_path(@course_crowd, course_plan), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-pencil-alt"></i>
-        <% end %>
         <%= link_to admin_course_crowd_plan_path(@course_crowd, course_plan), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
