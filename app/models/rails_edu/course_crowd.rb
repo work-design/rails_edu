@@ -17,7 +17,7 @@ module RailsEdu::CourseCrowd
   
     after_create_commit :sync_to_course_students
     after_destroy_commit :destroy_from_course_students
-    after_update_commit :sync_to_course_plans, -> { saved_change_to_teacher_id? }
+    after_update_commit :sync_to_course_plans
   
     delegate :title, to: :course
   end
@@ -30,7 +30,12 @@ module RailsEdu::CourseCrowd
   end
 
   def sync_to_course_plans
-    self.course_plans.where(teacher_id: nil).update_all(teacher_id: self.teacher_id)
+    if saved_change_to_teacher_id?
+      self.course_plans.where(teacher_id: nil).update_all(teacher_id: self.teacher_id)
+    end
+    if saved_change_to_room_id?
+      self.course_plans.where(room_id: nil).update_all(room_id: self.room_id)
+    end
   end
 
   def destroy_from_course_students
