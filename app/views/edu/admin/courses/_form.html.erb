@@ -7,6 +7,5 @@
 <%= f.text_field :title %>
 <%= f.text_area :description %>
 <%= f.number_field :limit_number %>
-<%= f.select :teacher_id, options_for_select([[@course.teacher&.name, @course.teacher_id]], @course.teacher_id), { include_blank: true } %>
 <%= f.check_box :compulsory %>
 <%= f.submit %>

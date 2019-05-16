@@ -7,7 +7,7 @@
       <%= f.collection_select :lesson_id, @course_crowd.lessons, :id, :title %>
       <% end %>
       <% if params[:item] == 'teacher' %>
-        <%= f.select :teacher_id, options_for_select([[@course_plan.teacher&.name, @course_plan.teacher_id]], @course_plan.teacher_id), { include_blank: true } %>
+        <%= f.collection_members_select :teacher_id, :id, :name, { include_blank: true } %>
       <% end %>
       <% if params[:item] == 'room' %>
         <%= f.collection_select :room_id, @rooms, :id, :name, { include_blank: true } %>

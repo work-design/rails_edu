@@ -4,7 +4,7 @@
     <%= form_with model: @course_crowd, url: admin_course_course_crowd_path(@course, @course_crowd), method: :patch do |f| %>
       <%= render 'shared/error_messages', target: @course_crowd %>
       <% if params[:item] == 'teacher' %>
-      <%= f.select :teacher_id, options_for_select([[@course_crowd.teacher&.name, @course_crowd.teacher_id]], @course_crowd.teacher_id), { include_blank: true } %>
+      <%= f.collection_members_select :teacher_id, :id, :name, { include_blank: true } %>
       <% end %>
       <% if params[:item] == 'room' %>
       <%= f.collection_select :room_id, @rooms, :id, :name, { include_blank: true } %>
