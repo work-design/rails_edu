@@ -1,3 +1,4 @@
+<% if rails_role_user.any_role?('edu/admin') %>
 <div class="item">
   <a class="<%= active_helper(modules: 'edu/admin', active_class: 'title active', item_class: 'title') %>">
     <i class="fas fa-book"></i>
@@ -10,3 +11,4 @@
     <%# link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
   </div>
 </div>
+<% end %>
