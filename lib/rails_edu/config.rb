@@ -8,7 +8,6 @@ module RailsEdu #:nodoc:
     config.my_controller = 'MyController'
     config.member_controller = 'MemberController'
     config.admin_controller = 'AdminController'
-    config.panel_controller = 'PanelController'
     config.disabled_models = []
   end
 

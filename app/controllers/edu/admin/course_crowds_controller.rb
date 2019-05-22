@@ -4,9 +4,8 @@ class Edu::Admin::CourseCrowdsController < Edu::Admin::BaseController
   before_action :set_course_crowd, only: [:edit, :update, :destroy]
 
   def index
-    q_params = default_params.merge! params.fetch(:q, {}).permit(:name, :office_id, :email, :department_id)
-    q_params.merge! params.permit(:id, :email, :office_id)
-    @course_crowds = @course.course_crowds.order(id: :asc).includes(crowd: :students)
+    q_params = default_params.merge! params.permit(:id, :name, :email, :department_id)
+    @course_crowds = @course.course_crowds.default_where(q_params).order(id: :asc).includes(crowd: :students)
   end
 
   def new
