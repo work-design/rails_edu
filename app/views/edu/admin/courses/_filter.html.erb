@@ -7,7 +7,7 @@
 <% end %>
 <div class="ui divider"></div>
 <dl>
-  <dt><%= Course.human_attribute_name(:type) %>：</dt>
+  <dt><%= Course.human_attribute_name(:type) %></dt>
   <dd>
     <%= link_to t('.all'), filter_params(except: [:type]), class: active_params(type: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% Course.options_i18n(:type).each do |text, type| %>
@@ -16,7 +16,7 @@
   </dd>
 </dl>
 <dl>
-  <dt><%= link_to Course.human_attribute_name(:course_taxon_id), admin_course_taxons_path %>：</dt>
+  <dt><%= link_to Course.human_attribute_name(:course_taxon_id), admin_course_taxons_path %></dt>
   <dd>
     <%= link_to t('.all'), filter_params(except: [:course_taxon_id]), class: active_params(course_taxon_id: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% CourseTaxon.all.each do |taxon| %>
