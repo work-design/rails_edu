@@ -1,7 +1,13 @@
-<%= render 'nav_courses' %>
+<% content_for :breadcrumb do %>
+  <div class="ui basic segment breadcrumb">
+    <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
+    <i class="fas fa-angle-right divider"></i>
+    <div class="active section"><%= t('edu.admin.course_taxons.index.title') %></div>
+  </div>
+<% end %>
 
-<div class="ui attached segment">
-  <%= render 'search_form' %>
+<div class="ui top attached segment">
+  <%= render 'filter' %>
 </div>
 
 <table class="ui bottom attached selectable table">

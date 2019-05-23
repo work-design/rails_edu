@@ -12,10 +12,14 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
   def create
     @course_taxon = CourseTaxon.new(course_taxon_params)
     
-    if @course_taxon.save
-      redirect_to params[:return_to].presence || admin_course_taxons_url
-    else
-      render :new
+    respond_to do |format|
+      if @course_taxon.save
+        format.html { redirect_to admin_course_taxons_url }
+        format.js
+      else
+        format.html { render :new }
+        format.js
+      end
     end
   end
 
