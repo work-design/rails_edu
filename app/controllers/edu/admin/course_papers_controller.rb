@@ -5,7 +5,7 @@ class Edu::Admin::CoursePapersController < Edu::Admin::BaseController
   def index
     q_params = {
       course_id: params[:course_id]
-    }.with_indifferent_access
+    }
     q_params.merge! params.fetch(:q, {}).permit!
     q_params.merge! params.permit(:type)
     @course_papers = CoursePaper.default_where(q_params).page(params[:page])

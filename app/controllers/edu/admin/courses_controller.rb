@@ -2,15 +2,15 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
   before_action :set_course, only: [:show, :edit, :meet, :update, :destroy]
 
   def index
-    q_params = default_params
+    q_params = {}
+    q_params.merge! default_params
     q_params.merge! params.permit(:type, :title, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     @courses = Course.default_where(q_params).order(id: :desc).page(params[:page])
   end
 
   def plan
-    q_params = {
-      teacher_id: current_member.id
-    }
+    q_params = {}
+    q_params.merge! teacher_id: current_member.id if current_member
     q_params.merge! params.permit(:type, :course_taxon_id, 'id-desc', 'id-asc', 'title-asc')
     @courses = Course.default_where(q_params).page(params[:page])
 
@@ -85,6 +85,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
       department_ids: []
     )
     p.merge! default_params
+    p
   end
 
 end
