@@ -18,7 +18,12 @@
     <tr>
       <th><%= CoursePlan.human_attribute_name(:booking_on) %></th>
       <th><%= CoursePlan.human_attribute_name(:time_item) %></th>
-      <th><%= CoursePlan.human_attribute_name(:room_id) %></th>
+      <th>
+        <%= CoursePlan.human_attribute_name(:room_id) %>
+        <%= link_to admin_organ_rooms_path(default_params), data: { tooltip: '教室设置' }, target: '_blank' do %>
+          <i class="fas fa-cog"></i>
+        <% end %>
+      </th>
       <th><%= CoursePlan.human_attribute_name(:lesson_id) %></th>
       <th><%= CoursePlan.human_attribute_name(:teacher_id) %></th>
       <th><%= CoursePlan.human_attribute_name(:qrcode) %></th>

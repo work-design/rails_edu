@@ -17,7 +17,12 @@
       <th><%= Crowd.human_attribute_name(:name) %></th>
       <th><%= CourseCrowd.human_attribute_name(:teacher_id) %></th>
       <th><%= CourseCrowd.human_attribute_name(:students) %></th>
-      <th><%= CourseCrowd.human_attribute_name(:room_id) %></th>
+      <th>
+        <%= CourseCrowd.human_attribute_name(:room_id) %>
+        <%= link_to admin_organ_rooms_path(default_params), data: { tooltip: '教室设置' }, target: '_blank' do %>
+          <i class="fas fa-cog"></i>
+        <% end %>
+      </th>
       <th>
         <%= link_to new_admin_course_course_crowd_path(@course), remote: true, class: 'ui mini primary button' do %>
           <i class="fas fa-plus"></i><%= t('.new') %>

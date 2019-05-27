@@ -10,7 +10,12 @@
         <%= f.collection_members_select :teacher_id, :id, :name, { include_blank: true } %>
       <% end %>
       <% if params[:item] == 'room' %>
-        <%= f.collection_select :room_id, @rooms, :id, :name, { include_blank: true } %>
+        <div class="inline fields">
+        <%= f.collection_select :room_id, @rooms, :id, :name, { include_blank: true, on: { wrapper_all: false } } %>
+        <%= link_to admin_organ_rooms_path(default_params), data: { tooltip: '教室设置' }, target: '_blank' do %>
+          <i class="fas fa-cog"></i>
+        <% end %>
+        </div>
       <% end %>
       <%= f.submit %>
     <% end %>
