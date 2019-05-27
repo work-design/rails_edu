@@ -26,6 +26,8 @@ zh:
       course_taxons:
         index:
           title: 课程分类
+        new:
+          title: 添加课程分类
       lesson_students:
         index:
           title: 点名
