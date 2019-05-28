@@ -10,7 +10,7 @@ module RailsEdu::LessonStudent
     belongs_to :course_plan
     belongs_to :lesson, optional: true
     has_one :card_log, ->{ default_where('amount-gt': 0) }, as: :source
-    has_many :card_logs, ->(o){ where(card_id: o.student.card_id) }, as: :source
+    has_many :card_logs, as: :source
   
     before_validation :sync_course_student
     after_create_commit :sync_card_log
@@ -25,18 +25,20 @@ module RailsEdu::LessonStudent
   end
 
   def sync_card_log
-    return unless self.student.card
-
-    log = self.card_logs.build
+    return unless self.student.cards.present?
+    card_id = self.student.card_ids.first
+    
+    log = self.card_logs.build(card_id: card_id)
     log.title = '签到-核销'
     log.tag_str = '签到'
     log.save
   end
 
   def sync_revert_card_log
-    return unless self.student.card
+    return unless self.student.cards.present?
+    card_id = self.student.card_ids.first
 
-    log = self.card_logs.build
+    log = self.card_logs.build(card_id: card_id)
     log.title = '取消签到'
     log.tag_str = '签到'
     log.amount = -1
