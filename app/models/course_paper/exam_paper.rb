@@ -1,3 +1,3 @@
 class ExamPaper < CoursePaper
   include RailsEdu::CoursePaper::ExamPaper
-end
+end unless defined? ExamPaper

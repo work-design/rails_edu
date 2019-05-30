@@ -3,7 +3,7 @@ module RailsEdu::CoursePaper::SurveyPaper
     'OfflineCourse' => '151607259',
     'OnlineCourse' => '151606841',
     'ShareCourse' => '151607332'
-  }
+  }.freeze
   extend ActiveSupport::Concern
   included do
     after_initialize if: :new_record? do
