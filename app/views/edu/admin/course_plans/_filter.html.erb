@@ -3,6 +3,7 @@
     <div class="fields">
       <%= f.date_field :booking_on %>
       <%= f.submit %>
+      <%= link_to t('.clear'), filter_params(except: [:booking_on]), class: 'ui button' %>
     </div>
   <% end %>
 </div>
