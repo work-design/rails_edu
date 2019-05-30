@@ -45,8 +45,8 @@ module RailsEdu::CourseCrowd
     end
   end
 
-  def sync
-    removes, adds = self.xx.diff_changes self.next_days
+  def sync(start:, finish:)
+    removes, adds = self.xx.diff_changes self.next_days(start: start, finish: finish)
     
     removes.each do |date, time_item_ids|
       Array(time_item_ids).each do |time_item_id|
