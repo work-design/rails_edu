@@ -3,9 +3,11 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
   before_action :set_course_plan, only: [:show, :edit, :update, :qrcode, :destroy]
 
   def index
-    q_params = {}
-    q_params.merge! params.permit(:booking_on)
-    @course_plans = @course_crowd.course_plans.includes(:wechat_response).valid.default_where(q_params).order(booking_on: :asc).page(params[:page])
+    q_params = {
+      'booking_on-gte': Date.today
+    }
+    q_params.merge! params.permit('booking_on-gte', 'booking_on-lte')
+    @course_plans = @course_crowd.course_plans.includes(:wechat_response).default_where(q_params).order(booking_on: :asc).page(params[:page])
   end
 
   def plan

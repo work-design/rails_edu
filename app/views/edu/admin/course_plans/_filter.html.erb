@@ -1,7 +1,8 @@
 <div class="ui attached segment">
-  <%= search_form_with model: CoursePlan.new(params.permit(:booking_on)) do |f| %>
+  <%= search_form_with model: CoursePlan.new(params.permit('booking_on')) do |f| %>
     <div class="fields">
-      <%= f.date_field :booking_on %>
+      <%= f.date_field 'booking_on-gte' %>
+      <%= f.date_field 'booking_on-lte' %>
       <%= f.submit %>
       <%= link_to t('.clear'), filter_params(except: [:booking_on]), class: 'ui button' %>
     </div>
