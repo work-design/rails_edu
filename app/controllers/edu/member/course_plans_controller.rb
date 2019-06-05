@@ -5,7 +5,7 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
     q_params = {
       'booking_on-gte': Date.today,
       teacher_id: current_member.id
-    }.with_indifferent_access
+    }
     q_params.merge! 'booking_on-gte': params[:start_date] if params[:start_date]
     q_params.merge! 'booking_on-lte': params[:end_date] if params[:end_date]
 
@@ -22,7 +22,7 @@ class Edu::Member::CoursePlansController < Edu::Member::BaseController
 
   def plan
     set_time_lists
-    q_params = {}.with_indifferent_access
+    q_params = {}
     q_params.merge! params.permit(:room_id)
     @time_plans = @course_crowd.time_plans.default_where(q_params)
 

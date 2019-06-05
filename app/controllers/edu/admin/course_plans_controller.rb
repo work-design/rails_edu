@@ -7,6 +7,7 @@ class Edu::Admin::CoursePlansController < Edu::Admin::BaseController
       'booking_on-gte': Date.today
     }
     q_params.merge! params.permit('booking_on-gte', 'booking_on-lte')
+    @course_crowd.sync(start: q_params['booking_on-gte'], finish: q_params['booking_on-lte']) if q_params['booking_on-gte'] && q_params['booking_on-lte']
     @course_plans = @course_crowd.course_plans.includes(:wechat_response).default_where(q_params).order(booking_on: :asc).page(params[:page])
   end
 
