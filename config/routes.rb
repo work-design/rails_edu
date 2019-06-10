@@ -29,13 +29,7 @@ Rails.application.routes.draw do
       end
     end
     resources :course_crowds, only: [] do
-      resources :course_plans, as: :plans do
-        patch :qrcode, on: :member
-        collection do
-          get :plan
-          post :sync
-        end
-      end
+    
     end
     resources :lessons, only: [] do
       member do

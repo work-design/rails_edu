@@ -37,6 +37,12 @@ module RailsEdu::CourseCrowd
       self.course_plans.where(room_id: nil).update_all(room_id: self.room_id)
     end
   end
+  
+  def sync_to_plan_items
+    self.course_id ||= course_crowd.course_id
+    self.teacher_id ||= course_crowd.teacher_id
+    self.room_id ||= course_crowd.room_id
+  end
 
   def destroy_from_course_students
     self.crowd.students.each do |i|
