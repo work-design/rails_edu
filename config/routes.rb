@@ -28,9 +28,6 @@ Rails.application.routes.draw do
       resources :lessons do
       end
     end
-    resources :course_crowds, only: [] do
-    
-    end
     resources :lessons, only: [] do
       member do
         get 'plan' => :edit_plan
@@ -38,7 +35,7 @@ Rails.application.routes.draw do
         delete 'plan' => :destroy_plan
       end
     end
-    resources :course_plans, only: [] do
+    resources :course_crowds, only: [] do
       resources :lesson_students do
         delete '' => :destroy, on: :collection
       end

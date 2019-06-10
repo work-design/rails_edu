@@ -1,9 +1,9 @@
 class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
-  before_action :set_course_plan
+  before_action :set_course_crowd
   before_action :set_lesson_student, only: [:show, :edit, :update]
 
   def index
-    @course_students = @course_plan.course.course_students.page(params[:page])
+    @course_students = @course_crowd.course.course_students.page(params[:page])
     @lesson_students = LessonStudent.page(params[:page])
   end
 
@@ -63,8 +63,8 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
   end
 
   private
-  def set_course_plan
-    @course_plan = CoursePlan.find params[:course_plan_id]
+  def set_course_crowd
+    @course_crowd = CourseCrowd.find params[:course_plan_id]
   end
 
   def set_lesson_student

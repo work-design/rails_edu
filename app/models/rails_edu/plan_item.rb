@@ -7,7 +7,11 @@ module RailsEdu::PlanItem
     belongs_to :room, optional: true
 
     has_many :lesson_students, dependent: :nullify
-    has_many :students, through: :lesson_students, source_type: 'Profile'
+  end
+  
+  
+  def students
+    lesson_students.pluck(:student_type, :student_id).map { |i| i.join('_') }
   end
   
 end

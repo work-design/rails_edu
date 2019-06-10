@@ -2,11 +2,11 @@
   <div class="ui basic segment breadcrumb">
     <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to @course_plan.course.title, admin_course_path(@course_plan.course_id), class: 'section' %>
+    <%= link_to @course_crowd.course.title, admin_course_path(@course_crowd.course_id), class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to @course_plan.course_crowd.crowd.name, admin_course_course_crowds_path(@course_plan.course_id) %>
+    <%= link_to @course_crowd.crowd.name, admin_course_course_crowds_path(@course_crowd.course_id) %>
     <i class="fas fa-angle-right divider"></i>
-    <%= link_to t('edu.admin.course_plans.index.title'), admin_course_crowd_plans_path(@course_plan.course_crowd_id), class: 'section' %>
+    <%= link_to t('edu.admin.course_plans.index.title'), admin_course_crowd_plans_path(@course_crowd.id), class: 'section' %>
     <i class="fas fa-angle-right divider"></i>
     <div class="section"><%= t('edu.admin.lesson_students.index.title') %></div>
   </div>
@@ -35,7 +35,7 @@
       <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
       <td>
         <div class="ui toggle checkbox">
-          <% if @course_plan.student_ids.include?(course_student.student_id) %>
+          <% if @plan_item.students.include?("#{course_student.student_type}_#{course_student.student_id}") %>
             <%= check_box_tag :course_student_id, course_student.id, true, data: { method: :delete, remote: true, url: admin_course_plan_lesson_students_path(@course_plan), submit: true }, id: nil %>
           <% else %>
             <%= check_box_tag :course_student_id, course_student.id, false, data: { method: :post, remote: true, url: admin_course_plan_lesson_students_path(@course_plan), submit: true }, id: nil %>

@@ -51,29 +51,4 @@ module RailsEdu::CourseCrowd
     end
   end
 
-  def sync(start: Date.today, finish: Date.today + 14.days)
-    removes, adds = self.present_days.diff_changes self.next_days(start: start, finish: finish)
-    
-    removes.each do |date, time_item_ids|
-      Array(time_item_ids).each do |time_item_id|
-        self.course_plans.where(booking_on: date, time_item_id: time_item_id).delete_all
-      end
-    end
-
-    adds.each do |date, time_item_ids|
-      Array(time_item_ids).each do |time_item_id|
-        cp = self.course_plans.find_or_initialize_by(booking_on: date, time_item_id: time_item_id)
-        cp.save
-      end
-    end
-    
-    self
-  end
-
-  def present_days
-    self.course_plans.order(booking_on: :asc).group_by(&->(i){i.booking_on.to_s}).transform_values! do |v|
-      v.map(&:time_item_id)
-    end
-  end
-
 end
