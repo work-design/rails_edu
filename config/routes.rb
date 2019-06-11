@@ -4,10 +4,6 @@ Rails.application.routes.draw do
     resources :courses
   end
 
-  scope :member, module: 'edu/member', as: :member do
-    resources :course_plans
-  end
-
   scope :admin, module: 'edu/admin', as: 'admin' do
     resources :crowds do
       resources :crowd_students
