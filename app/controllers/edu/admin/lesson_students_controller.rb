@@ -63,7 +63,7 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
 
   private
   def set_course_crowd
-    @course_crowd = CourseCrowd.find params[:course_plan_id]
+    @course_crowd = CourseCrowd.find params[:course_crowd_id]
   end
 
   def set_lesson_student

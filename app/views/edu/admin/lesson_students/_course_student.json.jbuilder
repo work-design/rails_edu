@@ -8,4 +8,4 @@ json.student course_student.student,
              :nick_name,
              :age,
              :birthday
-json.attended @course_plan.student_ids.include?(course_student.student_id)
+json.attended @plan_item.students.include?("#{course_student.student_type}_#{course_student.student_id}")

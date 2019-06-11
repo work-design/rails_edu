@@ -1,5 +1,5 @@
-json.course @course_plan.course, :id, :title
+json.course @course_crowd.course, :id, :title
 json.course_students @course_students, partial: 'course_student', as: :course_student
-if @course_plan.lesson_id
-  json.lesson @course_plan.lesson, :id, :title
+if @plan_item&.lesson
+  json.lesson @plan_item.lesson, :id, :title
 end
