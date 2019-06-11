@@ -4,7 +4,6 @@ class Edu::Admin::LessonStudentsController < Edu::Admin::BaseController
 
   def index
     @course_students = @course_crowd.course.course_students.page(params[:page])
-    @lesson_students = LessonStudent.page(params[:page])
   end
 
   def new

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :lesson_students do
         delete '' => :destroy, on: :collection
       end
+      get :plan, on: :member
     end
 
     resources :course_papers do
