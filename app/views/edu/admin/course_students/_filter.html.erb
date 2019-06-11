@@ -7,7 +7,7 @@
 <% end %>
 
 <dl>
-  <dt><%= CourseStudent.human_attribute_name(:state) %>:</dt>
+  <dt><%= CourseStudent.human_attribute_name(:state) %></dt>
   <dd>
     <%= link_to t('.all'), filter_params(except: ['state']), class: active_params(state: '', active_class: 'ui basic blue button', item_class: 'ui basic white button') %>
     <% CourseStudent.options_i18n(:state).each do |text, state| %>
