@@ -38,18 +38,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    create_table :course_plans do |t|
-      t.references :course
-      t.references :course_crowd
-      t.references :lesson
-      t.references :time_item
-      t.references :teacher
-      t.references :room
-      t.date :booking_on
-      t.integer :time_bookings_count
-      t.timestamps
-    end
-
     create_table :course_grants do |t|
       t.references :course
       t.string :grant_kind
