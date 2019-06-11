@@ -2,8 +2,8 @@ module RailsEdu::CourseCrowd
   extend ActiveSupport::Concern
 
   included do
-    attribute :present_number, :integer
-    attribute :limit_number, :integer
+    attribute :present_number, :integer, default: 0
+    attribute :limit_number, :integer, default: 0
   
     belongs_to :course
     belongs_to :crowd
