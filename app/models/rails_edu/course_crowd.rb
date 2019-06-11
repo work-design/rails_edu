@@ -3,7 +3,6 @@ module RailsEdu::CourseCrowd
 
   included do
     attribute :present_number, :integer, default: 0
-    attribute :limit_number, :integer, default: 0
   
     belongs_to :course
     belongs_to :crowd
@@ -20,6 +19,7 @@ module RailsEdu::CourseCrowd
     after_update_commit :sync_to_course_plans
   
     delegate :title, to: :course
+    delegate :limit_number, to: :room, allow_nil: true
   end
   
   def sync_to_course_students
