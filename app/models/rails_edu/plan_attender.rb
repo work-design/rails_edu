@@ -4,7 +4,7 @@ module RailsEdu::PlanAttender
   included do
     belongs_to :course
     belongs_to :course_student
-    belongs_to :course_crowd, optional: true
+    belongs_to :crowd, optional: true
     belongs_to :lesson, optional: true
     
     before_validation :sync_course_student
@@ -14,9 +14,6 @@ module RailsEdu::PlanAttender
     if course_student
       self.attender_type = course_student.student_type
       self.attender_id = course_student.student_id
-      
-      self.course_id = course_student.course_id
-      self.course_crowd_id = course_student.course_crowd_id
     end
   end
   
