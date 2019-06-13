@@ -5,8 +5,8 @@ module RailsEdu::Course
     attribute :present_number, :integer, default: 0
   
     belongs_to :course_taxon, optional: true
-    belongs_to :author, class_name: 'Teacher', optional: true
-    belongs_to :teacher, optional: true
+    belongs_to :author, class_name: 'Member', optional: true
+    belongs_to :teacher, class_name: 'Member', optional: true
   
     has_many :lessons
   
