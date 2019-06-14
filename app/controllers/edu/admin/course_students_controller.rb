@@ -36,7 +36,7 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   end
 
   def destroy
-    @course_student = @course.course_students.find_by(student_type: params[:student_type], student_id: params[:student_id])
+    @course_student = @course.course_students.find_by(crowd_student_id: params[:crowd_student_id])
     @course_student.destroy
 
     redirect_to admin_course_course_crowds_url(@course)

@@ -8,9 +8,8 @@ module RailsEdu::CourseStudent
     
     belongs_to :course_crowd, optional: true
     belongs_to :course, counter_cache: true
-    belongs_to :crowd_student
+    belongs_to :crowd_student, optional: true
     belongs_to :student, polymorphic: true
-    has_many :lesson_students
   
     validates :student_id, uniqueness: { scope: [:student_type, :course_id] }
   
