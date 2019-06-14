@@ -17,7 +17,6 @@
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th><%= CourseStudent.human_attribute_name(:id) %></th>
       <th><%= Profile.human_attribute_name(:name) %></th>
       <th><%= CourseStudent.human_attribute_name(:created_at) %></th>
       <th><%= CourseStudent.human_attribute_name(:state) %></th>
@@ -32,7 +31,6 @@
   <tbody>
   <% @course_students.each do |course_student| %>
     <tr>
-      <td><%= course_student.id %></td>
       <td><%= course_student.student.real_name %></td>
       <td><time><%= course_student.created_at.to_s(:rfc822) %></time></td>
       <td>

@@ -14,7 +14,6 @@
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th><%= Lesson.human_attribute_name(:id) %></th>
       <th><%= Lesson.human_attribute_name(:title) %></th>
       <th><%= Lesson.human_attribute_name(:videos) %></th>
       <th><%= Lesson.human_attribute_name(:documents) %></th>
@@ -29,7 +28,6 @@
   <tbody>
   <% @lessons.each do |lesson| %>
     <tr>
-      <td><%= lesson.id %></td>
       <td><%= lesson.title %></td>
       <td>
         <%= render 'active_storage_ext/attachments/list', target: lesson.videos %>

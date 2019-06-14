@@ -13,7 +13,6 @@
 <table class="ui bottom attached selectable table">
   <thead>
     <tr>
-      <th><%= CourseCrowd.human_attribute_name(:id) %></th>
       <th><%= Crowd.human_attribute_name(:name) %></th>
       <th><%= CourseCrowd.human_attribute_name(:teacher_id) %></th>
       <th><%= CourseCrowd.human_attribute_name(:students) %></th>
@@ -33,7 +32,6 @@
   <tbody>
   <% @course_crowds.each do |course_crowd| %>
   <tr>
-    <td><%= course_crowd.id %></td>
     <td><%= course_crowd.crowd.name %></td>
     <td>
       <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'teacher'), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
