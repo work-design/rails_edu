@@ -14,9 +14,7 @@
       <th class="five wide">
         <%= link_to Course.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
       </th>
-      <th class="one wide">
-        <%= Course.human_attribute_name(:course_students_count) %>/<%= Course.human_attribute_name(:limit_number) %>
-      </th>
+      <th class="one wide"><%= Course.human_attribute_name(:course_students_count) %></th>
       <th class="one wide">
         <%= link_to Course.human_attribute_name(:created_at), filter_params('id-desc': 1, except: ['id-desc']) %>
       </th>
@@ -37,11 +35,7 @@
         <%= link_to course.title, admin_course_path(course) %>
         <span class="<%= active_assert(course.compulsory, expected: 'ui green label', unexpected: 'ui label') %>"><%= course.compulsory_i18n %></span>
       </td>
-      <td>
-        <span><%= course.course_students_count %></span>
-        <span class="grey text">/</span>
-        <span class="green text"><%= course.limit_number %></span>
-      </td>
+      <td><%= course.course_students_count %></td>
       <td><time><%= course.created_at.to_s(:rfc822) %></time></td>
       <td>
         <%= link_to '分班', admin_course_course_crowds_path(course), class: 'ui mini circular icon button' %>

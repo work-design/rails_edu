@@ -1,9 +1,6 @@
 module RailsEdu::Course
   extend ActiveSupport::Concern
   included do
-    attribute :limit_number, :integer, default: 0
-    attribute :present_number, :integer, default: 0
-  
     belongs_to :course_taxon, optional: true
     belongs_to :author, class_name: 'Member', optional: true
     belongs_to :teacher, class_name: 'Member', optional: true
