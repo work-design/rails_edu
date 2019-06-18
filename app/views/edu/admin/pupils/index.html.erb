@@ -1,0 +1,55 @@
+<%= render 'filter' %>
+
+<table class="ui bottom attached selectable table">
+  <thead>
+    <tr>
+      <th><%= Profile.human_attribute_name(:real_name) %></th>
+      <th><%= Profile.human_attribute_name(:age) %></th>
+      <th><%= Profile.human_attribute_name(:gender) %></th>
+      <th><%= Profile.human_attribute_name(:note) %></th>
+      <th>班级</th>
+      <th>会员卡</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @pupils.each do |pupil| %>
+    <tr>
+      <td><%= pupil.real_name %></td>
+      <td><%= pupil.age %></td>
+      <td>
+        <span class="ui icon label">
+          <i class="fas <%= active_assert(pupil.male?, expected: 'fa-male', unexpected: 'fa-female') %>"></i>
+          <%= pupil.gender_i18n %>
+        </span>
+      </td>
+      <td><%= pupil.note %></td>
+      <td>
+        <% pupil.crowds.each do |crowd| %>
+          <div class="ui image label">
+            <%= image_tag crowd.logo if crowd.logo.present? %>
+            <%= crowd.name %>
+            <%= link_to crowd_admin_pupil_path(pupil, crowd_id: crowd.id), method: :delete do %>
+              <i class="delete icon"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <%= link_to crowd_admin_pupil_path(pupil), data: { tooltip: '分班' }, class: 'ui mini circular icon button', remote: true do %>
+          <i class="hand point right icon"></i>
+        <% end %>
+      </td>
+      <td>
+        <% pupil.cards.each do |card| %>
+          <div class="ui image label">
+            <%= link_to_if card.card_uuid, admin_card_card_logs_path(card) %>
+            <%= link_to card_admin_pupil_path(pupil, card_id: card.id), method: :delete do %>
+              <i class="delete icon"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= paginate @pupils %>

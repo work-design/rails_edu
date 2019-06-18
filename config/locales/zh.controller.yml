@@ -34,3 +34,8 @@ zh:
       lessons:
         index:
           title: 课程内容
+      pupils:
+        index:
+          title: 园区学生
+        edit_crowd:
+          title: 分班

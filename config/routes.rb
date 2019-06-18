@@ -8,7 +8,14 @@ Rails.application.routes.draw do
     resources :crowds do
       resources :crowd_students
     end
-
+    resources :pupils do
+      member do
+        get 'crowd' => :edit_crowd
+        patch 'crowd' => :update_crowd
+        delete 'crowd' => :destroy_crowd
+        delete 'card' => :destroy_card
+      end
+    end
     resources :course_taxons
     resources :courses do
       get :plan, on: :collection
