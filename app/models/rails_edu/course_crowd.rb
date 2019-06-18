@@ -10,7 +10,7 @@ module RailsEdu::CourseCrowd
     belongs_to :room, optional: true
     
     has_many :crowd_students, foreign_key: :crowd_id, primary_key: :crowd_id
-    has_many :course_plans, dependent: :destroy
+    has_many :plan_items, as: :plan, dependent: :destroy
     has_many :course_students
     has_many :lessons, foreign_key: :course_id, primary_key: :course_id
   
@@ -31,10 +31,10 @@ module RailsEdu::CourseCrowd
 
   def sync_to_course_plans
     if saved_change_to_teacher_id?
-      self.course_plans.where(teacher_id: nil).update_all(teacher_id: self.teacher_id)
+      self.plan_items.where(teacher_id: nil).update_all(teacher_id: self.teacher_id)
     end
     if saved_change_to_room_id?
-      self.course_plans.where(room_id: nil).update_all(room_id: self.room_id)
+      self.plan_items.where(room_id: nil).update_all(room_id: self.room_id)
     end
   end
   
