@@ -23,8 +23,8 @@ module RailsEdu::CourseCrowd
   end
   
   def sync_to_course_students
-    self.crowd.students.each do |i|
-      cs = i.course_students.build(student_id: i.id, course_id: self.course_id)
+    self.crowd_students.each do |i|
+      cs = self.course_students.build(crowd_student_id: i.id)
       cs.save
     end
   end

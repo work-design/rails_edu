@@ -31,6 +31,9 @@ module RailsEdu::CourseStudent
       self.student_type = crowd_student.student_type
       self.student_id = crowd_student.student_id
     end
+    if self.course_crowd
+      self.course_id = course_crowd.course_id
+    end
   end
   
   def save_with_remind

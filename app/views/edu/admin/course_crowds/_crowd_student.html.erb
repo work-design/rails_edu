@@ -9,7 +9,7 @@
         <% if @course.course_students.pluck(:student_id).include?(crowd_student.student_id) %>
           <%= check_box_tag :crowd_student_id, crowd_student.id, true, data: { method: :delete, remote: true, url: admin_course_course_students_path(@course), submit: true }, id: nil %>
         <% else %>
-          <%= check_box_tag :crowd_student_id, crowd_student.id, false, data: { method: :post, remote: true, url: admin_course_course_students_path(@course), submit: true }, id: nil %>
+          <%= check_box_tag :crowd_student_id, crowd_student.id, false, data: { method: :post, remote: true, url: admin_course_course_students_path(@course, course_crowd_id: course_crowd.id), submit: true }, id: nil %>
         <% end %>
       </div>
     </td>

@@ -104,7 +104,7 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
     p = params.fetch(:course_student, {}).permit(
       :state
     )
-    p.merge! params.permit(:student_type, :student_id, :crowd_student_id)
+    p.merge! params.permit(:student_type, :student_id, :crowd_student_id, :course_crowd_id)
   end
 
 end
