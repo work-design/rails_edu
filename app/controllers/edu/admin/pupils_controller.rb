@@ -62,6 +62,7 @@ class Edu::Admin::PupilsController < Edu::Admin::BaseController
     card = @pupil.cards.find(params[:card_id])
     card.student = nil
     card.save
+    
     redirect_back fallback_location: admin_pupils_url
   end
 
