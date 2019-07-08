@@ -14,7 +14,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.string :repeat_type
       t.string :repeat_days
       t.integer :limit_number
-      t.boolean :compulsory, default: false
       t.integer :course_students_count, default: 0
       t.integer :lessons_count, default: 0
       t.timestamps
