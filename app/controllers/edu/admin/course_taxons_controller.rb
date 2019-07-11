@@ -2,7 +2,7 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
   before_action :set_course_taxon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_taxons = CourseTaxon.page(params[:page])
+    @course_taxons = CourseTaxon.order(id: :asc).page(params[:page])
   end
 
   def new
