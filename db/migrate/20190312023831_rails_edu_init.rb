@@ -100,6 +100,15 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :tutelages do |t|
+      t.references :tutelar
+      t.references :pupil
+      t.references :user
+      t.string :relation
+      t.boolean :major
+      t.timestamps
+    end
+
     create_table :exam_reviewers do |t|
       t.references :exam
       t.references :student, polymorphic: true
