@@ -25,13 +25,13 @@ class Edu::Admin::TutelagesController < Edu::Admin::BaseController
     respond_to do |format|
       if @pupil.save
         format.html.phone
-        format.html { redirect_to admin_pupils_url }
-        format.js { redirect_back fallback_location: admin_pupils_url }
+        format.html { redirect_to admin_tutelages_url }
+        format.js { redirect_back fallback_location: admin_tutelages_url }
         format.json { render :show }
       else
         format.html.phone { render :edit }
         format.html { render :edit }
-        format.js { redirect_back fallback_location: admin_pupils_url }
+        format.js { redirect_back fallback_location: admin_tutelages_url }
         format.json { render :show }
       end
     end
@@ -48,13 +48,13 @@ class Edu::Admin::TutelagesController < Edu::Admin::BaseController
   def update_crowd
     @tutelage.join_crowd params[:crowd_id]
 
-    redirect_back fallback_location: admin_pupils_url
+    redirect_back fallback_location: admin_tutelages_url
   end
 
   def destroy_crowd
     cs = @tutelage.crowd_students.find_by(crowd_id: params[:crowd_id])
     cs.destroy if cs
-    redirect_back fallback_location: admin_pupils_url
+    redirect_back fallback_location: admin_tutelages_url
   end
 
   def destroy_card
@@ -62,12 +62,12 @@ class Edu::Admin::TutelagesController < Edu::Admin::BaseController
     card.student = nil
     card.save
     
-    redirect_back fallback_location: admin_pupils_url
+    redirect_back fallback_location: admin_tutelages_url
   end
 
   def destroy
     @pupil.destroy
-    redirect_to admin_pupils_url
+    redirect_to admin_tutelages_url
   end
 
   private
