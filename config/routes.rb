@@ -76,6 +76,7 @@ Rails.application.routes.draw do
       patch 'quit' => :update_quit, on: :member
     end
     resource :teacher
+    resources :tutelages
   end
 
 end

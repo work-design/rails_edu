@@ -10,7 +10,6 @@
   <thead>
     <tr>
       <th><%= Crowd.human_attribute_name(:name) %></th>
-      <th><%= Crowd.human_attribute_name(:student_type) %></th>
       <th><%= Crowd.human_attribute_name(:crowd_students_count) %></th>
       <th>
         <%= link_to new_admin_crowd_path, class: 'ui mini primary button', remote: true do %>
@@ -26,7 +25,6 @@
         <%= image_tag crowd.logo, class: 'ui avatar image' if crowd.logo.present? %>
         <%= crowd.name %>
       </td>
-      <td><%= crowd.student_type_i18n %></td>
       <td><%= crowd.crowd_students_count %></td>
       <td>
         <%= link_to admin_crowd_path(crowd), data: { tooltip: t('.show') }, class: 'ui mini circular icon button', remote: true do %>

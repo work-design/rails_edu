@@ -39,7 +39,6 @@ class Edu::Admin::PupilsController < Edu::Admin::BaseController
 
   def edit_crowd
     q_params = {
-      student_type: 'Pupil',
       'id-not': @pupil.crowd_ids
     }
     q_params.merge! default_params
