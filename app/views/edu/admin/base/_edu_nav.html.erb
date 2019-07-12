@@ -7,7 +7,7 @@
   </a>
   <div class="<%= active_helper(modules: 'edu/admin', active_class: 'menu content active', item_class: 'menu content') %>">
     <%= link_to t('edu.admin.courses.index.title'), admin_courses_path, class: active_helper(controllers: ['courses', 'course_taxons', 'course_students']) %>
-    <%= link_to t('edu.admin.pupils.index.title'), admin_pupils_path, class: active_helper(controllers: ['pupils']) %>
+    <%= link_to t('edu.admin.tutelages.index.title'), admin_tutelages_path, class: active_helper(controllers: ['tutelages']) %>
     <%= link_to t('edu.admin.crowds.index.title'), admin_crowds_path, class: active_helper(controllers: 'crowds') %>
     <%# link_to 'Course Papers', admin_course_papers_path, class: active_helper(controllers: ['course_papers', 'exams']) %>
   </div>

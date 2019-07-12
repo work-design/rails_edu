@@ -10,10 +10,5 @@ module RailsEdu::Student
   end
 
 
-  def join_crowd(crowd_id)
-    cs = self.crowd_students.build
-    cs.crowd_id = crowd_id
-    cs.save
-  end
-
+ 
 end

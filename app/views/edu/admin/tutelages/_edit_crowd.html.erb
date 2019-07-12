@@ -5,7 +5,7 @@
   </div>
 
   <div class="content">
-    <%= form_with url: crowd_admin_pupil_path(@pupil), method: :patch do |f| %>
+    <%= form_with url: crowd_admin_tutelage_path(@tutelage), method: :patch do |f| %>
       <%= f.collection_select :crowd_id, @crowds, :id, :name, label: '班级' %>
       <%= f.submit %>
     <% end %>

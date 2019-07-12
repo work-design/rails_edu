@@ -45,7 +45,17 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
+    create_table :tutelages do |t|
+      t.references :tutelar
+      t.references :pupil
+      t.references :user
+      t.string :relation
+      t.boolean :major
+      t.timestamps
+    end
+
     create_table :crowds do |t|
+      t.references :organ  # For SaaS
       t.string :name
       t.integer :crowd_students_count, default: 0
       t.timestamps
@@ -97,15 +107,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
 
     create_table :course_taxons do |t|
       t.string :name
-      t.timestamps
-    end
-
-    create_table :tutelages do |t|
-      t.references :tutelar
-      t.references :pupil
-      t.references :user
-      t.string :relation
-      t.boolean :major
       t.timestamps
     end
 

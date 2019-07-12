@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :crowds do
       resources :crowd_students
     end
-    resources :pupils do
+    resources :tutelages do
       member do
         get 'crowd' => :edit_crowd
         patch 'crowd' => :update_crowd

@@ -1,5 +1,5 @@
-class Edu::Admin::PupilsController < Edu::Admin::BaseController
-  before_action :set_pupil, only: [
+class Edu::Admin::TutelagesController < Edu::Admin::BaseController
+  before_action :set_tutelage, only: [
     :show, :edit, :update,
     :edit_crowd, :update_crowd, :destroy_crowd, :destroy_card,
     :destroy
@@ -7,10 +7,10 @@ class Edu::Admin::PupilsController < Edu::Admin::BaseController
 
   def index
     q_params = {}
-    q_params.merge! default_params
+    #q_params.merge! default_params
     #q_params.merge! member_id: current_member.id if current_member
-    q_params.merge! params.permit(:real_name)
-    @pupils = Profile.left_joins(:cards).where.not(cards: { id: nil }).default_where(q_params).order(id: :desc).page(params[:page])
+    q_params.merge! params.permit('pupil.real_name')
+    @tutelages = Tutelage.left_joins(:cards).where.not(cards: { id: nil }).default_where(q_params).order(id: :desc).page(params[:page])
   end
 
   def show
@@ -39,26 +39,26 @@ class Edu::Admin::PupilsController < Edu::Admin::BaseController
 
   def edit_crowd
     q_params = {
-      'id-not': @pupil.crowd_ids
+      'id-not': @tutelage.crowd_ids
     }
     q_params.merge! default_params
     @crowds = Crowd.default_where(q_params)
   end
 
   def update_crowd
-    @pupil.join_crowd params[:crowd_id]
+    @tutelage.join_crowd params[:crowd_id]
 
     redirect_back fallback_location: admin_pupils_url
   end
 
   def destroy_crowd
-    cs = @pupil.crowd_students.find_by(crowd_id: params[:crowd_id])
+    cs = @tutelage.crowd_students.find_by(crowd_id: params[:crowd_id])
     cs.destroy if cs
     redirect_back fallback_location: admin_pupils_url
   end
 
   def destroy_card
-    card = @pupil.cards.find(params[:card_id])
+    card = @tutelage.cards.find(params[:card_id])
     card.student = nil
     card.save
     
@@ -71,8 +71,8 @@ class Edu::Admin::PupilsController < Edu::Admin::BaseController
   end
 
   private
-  def set_pupil
-    @pupil = Profile.find(params[:id])
+  def set_tutelage
+    @tutelage = Tutelage.find(params[:id])
   end
 
   def pupil_params
