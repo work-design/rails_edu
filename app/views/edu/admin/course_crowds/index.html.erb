@@ -18,7 +18,7 @@
       <th><%= CourseCrowd.human_attribute_name(:students) %></th>
       <th>
         <%= CourseCrowd.human_attribute_name(:room_id) %>
-        <%= link_to admin_organ_rooms_path(organ_id: current_organ.id), data: { tooltip: '教室设置' }, target: '_blank' do %>
+        <%= link_to admin_rooms_path, data: { tooltip: '教室设置' }, target: '_blank' do %>
           <i class="fas fa-cog"></i>
         <% end %>
       </th>
