@@ -10,7 +10,7 @@ class Edu::Admin::TutelagesController < Edu::Admin::BaseController
     #q_params.merge! default_params
     #q_params.merge! member_id: current_member.id if current_member
     q_params.merge! params.permit('pupil.real_name')
-    @tutelages = Tutelage.left_joins(:cards).where.not(cards: { id: nil }).default_where(q_params).order(id: :desc).page(params[:page])
+    @tutelages = Tutelage.distinct.joins(:cards).where.not(cards: { id: nil }).default_where(q_params).order(id: :desc).page(params[:page])
   end
 
   def show
