@@ -45,15 +45,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    create_table :tutelages do |t|
-      t.references :tutelar
-      t.references :pupil
-      t.references :user
-      t.string :relation
-      t.boolean :major
-      t.timestamps
-    end
-
     create_table :crowds do |t|
       t.references :organ  # For SaaS
       t.string :name

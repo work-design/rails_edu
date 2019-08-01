@@ -20,5 +20,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '>= 5.2'
   s.add_dependency 'rails_booking'
+  s.add_dependency 'rails_profile'
   s.add_development_dependency 'sqlite3'
 end
