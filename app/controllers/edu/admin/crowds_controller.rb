@@ -70,7 +70,7 @@ class Edu::Admin::CrowdsController < Edu::Admin::BaseController
       :logo,
       :student_type
     )
-    p.merge! default_params
+    p.merge! default_form_params
   end
 
 end

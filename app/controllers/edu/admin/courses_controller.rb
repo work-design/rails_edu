@@ -84,7 +84,7 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
       repeat_days: [],
       department_ids: []
     )
-    p.merge! default_params
+    p.merge! default_form_params
     p
   end
 
