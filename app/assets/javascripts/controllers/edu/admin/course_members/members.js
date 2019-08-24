@@ -1,4 +1,4 @@
-//= require rails_com/checkbox
+import 'rails_com/checkbox'
 
 $('#q_office_id').dropdown();
 

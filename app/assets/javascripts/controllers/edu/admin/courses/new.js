@@ -1,4 +1,3 @@
-
 $('#course_type').dropdown();
 $('#course_course_taxon_id').dropdown();
 $('#course_lecturer_id').dropdown({
