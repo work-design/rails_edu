@@ -1,2 +1,2 @@
-//= require ./new
+import './new'
 $('#course_crowd_teacher_id').dropdown();
