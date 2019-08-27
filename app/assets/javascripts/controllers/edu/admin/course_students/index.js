@@ -12,15 +12,8 @@ $('input[name=course_student_id]').change(function(){
   } else {
     check_url = path_url + '/attend?remove_ids=' + this.value;
   }
-  var params = {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Accept': 'application/javascript',
-      'X-CSRF-Token': document.head.querySelector("[name=csrf-token]").content
-    }
-  };
-  fetch_xhr_script(check_url, params)
+
+  Rails.ajax(check_url, params)
 });
 
 $('input[name=course_student_all]').change(function(){
@@ -31,13 +24,6 @@ $('input[name=course_student_all]').change(function(){
   } else {
     check_url = path_url + '/attend?remove_ids=' + getRemoveIds('course_student_id');
   }
-  var params = {
-    method: 'POST',
-    credentials: 'include',
-    headers: {
-      'Accept': 'application/javascript',
-      'X-CSRF-Token': document.head.querySelector("[name=csrf-token]").content
-    }
-  };
+
   fetch_xhr_script(check_url, params)
 });
