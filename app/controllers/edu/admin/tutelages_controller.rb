@@ -59,7 +59,8 @@ class Edu::Admin::TutelagesController < Edu::Admin::BaseController
 
   def destroy_card
     card = @tutelage.cards.find(params[:card_id])
-    card.student = nil
+    card.tutelage = nil
+    card.client = nil
     card.save
     
     redirect_back fallback_location: admin_tutelages_url
