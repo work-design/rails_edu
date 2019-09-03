@@ -36,8 +36,3 @@ zh:
       crowd:
         student_type: 学生类型
         crowd_students_count: 学生数
-      tutelage:
-        relation: 关系
-      tutelage/pupil:
-        real_name: 学生姓名
-        age: 年龄
