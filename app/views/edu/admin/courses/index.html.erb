@@ -15,6 +15,7 @@
         <%= link_to Course.human_attribute_name(:title), filter_params('title-asc': 2, except: ['title-asc']) %>
       </th>
       <th class="one wide"><%= Course.human_attribute_name(:course_students_count) %></th>
+      <th><%= Course.human_attribute_name(:price) %></th>
       <th class="one wide">
         <%= link_to Course.human_attribute_name(:created_at), filter_params('id-desc': 1, except: ['id-desc']) %>
       </th>
@@ -33,6 +34,7 @@
       <td><%= course.course_taxon&.name %></td>
       <td><%= link_to course.title, admin_course_path(course) %></td>
       <td><%= course.course_students_count %></td>
+      <td><%= course.price %></td>
       <td><time><%= course.created_at.to_s(:rfc822) %></time></td>
       <td>
         <%= link_to '分班', admin_course_course_crowds_path(course), class: 'ui mini circular icon button' %>
