@@ -1,4 +1,4 @@
-module RailsProfile::Tutelage
+module RailsEdu::Tutelage
   extend ActiveSupport::Concern
   
   included do
