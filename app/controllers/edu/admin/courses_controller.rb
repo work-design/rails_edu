@@ -23,9 +23,9 @@ class Edu::Admin::CoursesController < Edu::Admin::BaseController
 
   def create
     @course = Course.new(course_params)
-
+    
     if @course.save
-      redirect_to admin_courses_url
+      render 'create'
     else
       render :new, status: :unprocessable_entity
     end
