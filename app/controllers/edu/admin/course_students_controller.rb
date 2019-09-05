@@ -3,14 +3,9 @@ class Edu::Admin::CourseStudentsController < Edu::Admin::BaseController
   before_action :set_course_student, only: [:show, :edit, :update]
 
   def index
-    q_params = params.fetch(:q, {}).permit!
+    q_params = {}
     q_params.merge! params.permit(:id, :state)
     @course_students = @course.course_students.default_where(q_params).page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def new

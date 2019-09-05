@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     resources :course_taxons
     resources :courses do
       get :plan, on: :collection
-      resources :course_crowds do
-        delete '' => :destroy, on: :collection
-      end
       resources :course_students do
         post :check, on: :collection
         post :attend, on: :collection
@@ -30,10 +27,6 @@ Rails.application.routes.draw do
         delete 'plan' => :destroy_plan
       end
     end
-    resources :course_crowds, only: [] do
-      get :plan, on: :member
-    end
-
     resources :course_papers do
       get :add, on: :member
       resources :exams do
