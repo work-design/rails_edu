@@ -12,7 +12,6 @@ module RailsEdu::Course
     has_many :course_students, dependent: :destroy
   
     has_many :course_grants, dependent: :destroy
-    has_many :course_plans, dependent: :destroy
     has_many :course_papers, dependent: :destroy
     has_many :exam_papers, dependent: :destroy
     has_many :survey_papers, dependent: :destroy

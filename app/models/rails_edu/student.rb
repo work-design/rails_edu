@@ -1,5 +1,6 @@
 module RailsEdu::Student
   extend ActiveSupport::Concern
+  
   included do
     has_many :course_students, as: :student, dependent: :destroy
     has_many :courses, through: :course_students
@@ -9,6 +10,5 @@ module RailsEdu::Student
     has_many :crowds, through: :crowd_students
   end
 
-
- 
+  
 end
