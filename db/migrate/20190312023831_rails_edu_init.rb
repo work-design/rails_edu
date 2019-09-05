@@ -27,16 +27,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    create_table :course_crowds do |t|
-      t.references :course
-      t.references :crowd
-      t.references :room
-      t.references :teacher
-      t.integer :limit_number
-      t.integer :present_number
-      t.timestamps
-    end
-
     create_table :course_grants do |t|
       t.references :course
       t.string :grant_kind
@@ -63,7 +53,9 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
     create_table :course_students do |t|
       t.references :course
       t.references :student, polymorphic: true
-      t.references :course_crowd
+      t.references :crowd
+      t.references :room
+      t.references :teacher
       t.string :state
       t.string :watch_ids
       t.integer :score
@@ -78,7 +70,6 @@ class RailsEduInit < ActiveRecord::Migration[5.0]
       t.references :lesson
       t.references :course
       t.references :course_student
-      t.references :course_crowd
       t.references :course_plan
       t.references :student, polymorphic: true
       t.string :state

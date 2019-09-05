@@ -7,10 +7,9 @@ module RailsEdu::Course
   
     has_many :lessons
   
-    has_many :course_crowds
-    has_many :crowds, through: :course_crowds
     has_many :course_students, dependent: :destroy
-  
+    has_many :crowds, through: :course_students
+
     has_many :course_grants, dependent: :destroy
     has_many :course_papers, dependent: :destroy
     has_many :exam_papers, dependent: :destroy

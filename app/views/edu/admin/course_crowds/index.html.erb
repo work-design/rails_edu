@@ -14,8 +14,8 @@
   <thead>
     <tr>
       <th><%= Crowd.human_attribute_name(:name) %></th>
-      <th><%= CourseCrowd.human_attribute_name(:teacher_id) %></th>
       <th><%= CourseCrowd.human_attribute_name(:students) %></th>
+      <th><%= CourseCrowd.human_attribute_name(:teacher_id) %></th>
       <th>
         <%= CourseCrowd.human_attribute_name(:room_id) %>
         <%= link_to admin_rooms_path, data: { tooltip: '教室设置' }, target: '_blank' do %>
@@ -34,13 +34,13 @@
   <tr>
     <td><%= course_crowd.crowd.name %></td>
     <td>
+      <%= render partial: 'crowd_student', locals: { course_crowd: course_crowd } %>
+    </td>
+    <td>
       <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'teacher'), data: { tooltip: '设置老师' }, remote: true, class: 'ui mini circular icon button' do %>
         <i class="green male icon"></i>
       <% end %>
       <%= course_crowd.teacher&.name %>
-    </td>
-    <td>
-      <%= render partial: 'crowd_student', locals: { course_crowd: course_crowd } %>
     </td>
     <td>
       <%= link_to edit_admin_course_course_crowd_path(@course, course_crowd, item: 'room'), data: { tooltip: '设置教室' }, remote: true, class: 'ui mini circular icon button' do %>
@@ -49,10 +49,7 @@
       <%= course_crowd.room&.name %>
     </td>
     <td>
-      <%= link_to '课程安排', time_plans_path('CourseCrowd', course_crowd.id), class: 'ui mini circular icon button' %>
-      <%= link_to admin_course_course_crowd_path(@course, course_crowd), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-        <i class="fas fa-trash-alt"></i>
-      <% end %>
+    
     </td>
   </tr>
   <% end %>
