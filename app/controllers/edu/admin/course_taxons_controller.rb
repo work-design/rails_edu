@@ -2,7 +2,9 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
   before_action :set_course_taxon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @course_taxons = CourseTaxon.order(id: :asc).page(params[:page])
+    q_params = {}
+    q_params.merge! default_params
+    @course_taxons = CourseTaxon.default_where(q_params).order(id: :asc).page(params[:page])
   end
 
   def new
@@ -48,9 +50,10 @@ class Edu::Admin::CourseTaxonsController < Edu::Admin::BaseController
   end
 
   def course_taxon_params
-    params.fetch(:course_taxon, {}).permit(
+    p = params.fetch(:course_taxon, {}).permit(
       :name
     )
+    p.merge! default_form_params
   end
 
 end
