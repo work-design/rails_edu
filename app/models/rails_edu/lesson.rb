@@ -10,4 +10,13 @@ module RailsEdu::Lesson
     has_many_attached :documents
   end
   
+  
+  def video_urls
+    videos.map(&:service_url)
+  end
+  
+  def document_urls
+    documents.map(&:service_url)
+  end
+  
 end
