@@ -1,6 +1,0 @@
-<%= form_with model: [:admin, @crowd] do |f| %>
-  <%= render 'shared/error_messages', target: @crowd %>
-  <%= f.text_field :name %>
-  <%= f.file_field :logo %>
-  <%= f.submit %>
-<% end %>
