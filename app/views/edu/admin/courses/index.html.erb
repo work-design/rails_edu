@@ -37,7 +37,7 @@
       <td><%= course.price %></td>
       <td><time><%= course.created_at.to_s(:rfc822) %></time></td>
       <td>
-        <%= link_to '分班', admin_course_course_crowds_path(course), class: 'ui mini circular icon button' %>
+        <%= link_to t('edu.admin.course_students.index.title'), admin_course_course_students_path(course), class: 'ui mini circular icon button' %>
         <%= link_to admin_course_lessons_path(course), data: { tooltip: '课程内容' }, class: 'ui mini circular icon button' do %>
           <i class="list icon"></i>
         <% end %>

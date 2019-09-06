@@ -10,9 +10,6 @@ zh:
       crowds:
         index:
           title: 班级
-      course_crowds:
-        index:
-          title: 分班
       course_plans:
         index:
           title: 计划
