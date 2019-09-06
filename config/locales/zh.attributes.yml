@@ -3,36 +3,4 @@ zh:
     models:
       course_crowd: 班级
     attributes:
-      course:
-        course_taxon_id: 课程分类
-        limit_number: 限制人数
-        course_students_count: 报名人数
-        price: 消耗课时
-      course_crowd:
-        teacher: 老师
-        students: 学生
-        crowd_id: 班级
-        teacher_id: 老师
-        room_id: 教室
-      course_student:
-        state: 状态
-        score: 分数
-      course_plan:
-        booking_on: 日期
-        time_item: 时间段
-        room_id: 教室
-        lesson_id: 课程
-        teacher_id: 老师
-        qrcode: 二维码
-      lesson:
-        videos: 媒体资料
-        documents: 文件
-        author_id: 课程作者
-      lesson_student:
-        student_id: 学生
-        state: 状态
-        attended: 是否出勤
-        created_at: 入学时间
-      crowd:
-        student_type: 学生类型
-        crowd_students_count: 学生数
+
