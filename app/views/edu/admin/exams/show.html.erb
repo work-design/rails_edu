@@ -38,7 +38,7 @@
       <td></td>
       <td>
         <% if @exam.course_paper.is_a?(ExamPaper) %>
-        <%= form_with model: @exam, url: score_admin_course_paper_exam_path(@course_paper, @exam.id), method: :patch, remote: true, on: { wrapper_all: false, offset: false, label: false }, css: { wrapper_input: 'field' } do |f| %>
+        <%= form_with model: @exam, url: score_admin_course_paper_exam_path(@course_paper, @exam.id), method: :patch, remote: true, on: { wrap_all: false, offset: false, label: false }, css: { wrap_input: 'field' } do |f| %>
           <%= f.text_field :answer_mark, placeholder: 'Mark' %>
           <%= f.text_area :comment, placeholder: 'Comment' %>
           <%= f.submit %>

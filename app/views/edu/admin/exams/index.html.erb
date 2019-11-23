@@ -54,7 +54,7 @@
       <td><%= exam.comment %></td>
       <td>
         <%= form_with model: exam, url: refer_admin_course_paper_exam_path(@course_paper, exam.id), method: :put, remote: true do |f| %>
-          <%= f.check_box :referenced, disabled: exam.referenced, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrapper_all: false, offset: false} %>
+          <%= f.check_box :referenced, disabled: exam.referenced, onChange: "Rails.fire(this.form, 'submit')", label: false, on: {wrap_all: false, offset: false} %>
         <% end %>
       </td>
       <td>
