@@ -1,9 +1,10 @@
 <% content_for :breadcrumb do %>
-  <div class="ui basic segment breadcrumb">
-    <%= link_to '课程列表', admin_courses_path, class: 'section' %>
-    <i class="fas fa-angle-right divider"></i>
-    <div class="section">排课</div>
-  </div>
+<div class="breadcrumb has-succeeds-separator">
+  <ul>
+    <li><%= link_to '课程列表', admin_courses_path %></li>
+    <li class="is-active">排课</li>
+  </ul>
+</div>
 <% end %>
 
 <div class="ui top attached fluid borderless menu">
