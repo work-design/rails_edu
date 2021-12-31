@@ -19,13 +19,13 @@
       <td><%= course.id %></td>
       <td>
         <%= link_to edu_course_path(course), data: { tooltip: t('.show') }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-info"></i>
+          <i class="fa-light fa-circle-info"></i>
         <% end %>
         <%= link_to edit_edu_course_path(course), data: { tooltip: t('.edit') }, remote: true, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-pencil-alt"></i>
+          <i class="fa-light fa-pencil"></i>
         <% end %>
         <%= link_to edu_course_path(course), method: :delete, data: { tooltip: t('.destroy'), confirm: t('.confirm') }, class: 'ui mini circular icon button' do %>
-          <i class="fas fa-trash-alt"></i>
+          <i class="fa-light fa-trash"></i>
         <% end %>
       </td>
     </tr>

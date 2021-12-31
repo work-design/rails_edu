@@ -1,9 +1,9 @@
 <div class="ui segment breadcrumb">
   <%= link_to @course_paper.type_i18n, admin_course_papers_path(type: @course_paper.type), class: 'section' %>
-  <i class="fas fa-angle-right divider"></i>
+  <i class="fa-light fa-angle-right divider"></i>
   <% if @course_paper.course %>
     <%= link_to @course_paper.course.title, admin_course_papers_path(course_id: @course_paper.course_id), class: 'section' %>
-    <i class="fas fa-angle-right divider"></i>
+    <i class="fa-light fa-angle-right divider"></i>
   <% end %>
   <div class="active section">Exams</div>
 </div>
@@ -59,10 +59,10 @@
       </td>
       <td>
         <%= link_to admin_course_paper_exam_path(@course_paper, exam), class: 'ui blue mini icon button' do %>
-          <i class="fas fa-info"></i>
+          <i class="fa-light fa-circle-info"></i>
         <% end %>
         <%= link_to edit_admin_course_paper_exam_path(@course_paper, exam), class: 'ui pink mini icon button' do %>
-          <i class="fas fa-pencil-alt"></i>
+          <i class="fa-light fa-pencil"></i>
         <% end %>
         <%= link_to admin_course_paper_exam_path(@course_paper, exam), method: :delete, data: { confirm: t('.confirm') }, class: 'ui red mini icon button' do %>
           <i class="times icon"></i>

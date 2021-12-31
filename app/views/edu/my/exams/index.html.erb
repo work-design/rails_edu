@@ -32,7 +32,7 @@
       </td>
       <td class="ui labels">
         <%= link_to my_exam_path(exam), data: { tooltip: t('.show') }, class: 'ui blue mini icon button' do %>
-          <i class="fas fa-info"></i>
+          <i class="fa-light fa-circle-info"></i>
         <% end %>
       </td>
     </tr>
@@ -45,7 +45,7 @@
       <td></td>
       <td>
         <%= link_to add_my_exams_path(course_paper_id: course_paper.id), method: :post, data: { tooltip: 'Generate Your Exam!', turbolinks: false, confirm: 'please not refresh when finished!', 'disable-with': 'Generating...' }, class: 'ui blue mini icon button' do %>
-          <i class="fas fa-clock"></i>
+          <i class="fa-light fa-clock"></i>
         <% end %>
       </td>
     </tr>
