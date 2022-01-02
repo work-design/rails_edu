@@ -1,4 +1,4 @@
-module RailsEdu::Exam
+module Model::Exam
   extend ActiveSupport::Concern
   include StateMachine
 
