@@ -1,15 +1,12 @@
-$:.push File.expand_path('lib', __dir__)
-require 'rails_edu/version'
-
 Gem::Specification.new do |s|
   s.name = 'rails_edu'
-  s.version = RailsEdu::VERSION
-  s.authors = ['qinmingyuan']
+  s.version = '0.0.1'
+  s.authors = ['Mingyuan Qin']
   s.email = ['mingyuan0715@foxmail.com']
   s.homepage = 'https://github.com/work-design/rails_edu'
   s.summary = 'Summary of RailsDoc.'
   s.description = 'Description of RailsDoc.'
-  s.license = 'LGPL-3.0'
+  s.license = 'MIT'
 
   s.files = Dir[
     '{app,config,db,lib}/**/*',
